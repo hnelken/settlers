@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Node {
 
-	private enum NodeStatus {
+	public enum NodeStatus {
 		EMPTY, SETTLEMENT, CITY;
 	}
 
@@ -11,7 +11,7 @@ public class Node {
 	private boolean available;
 	private ArrayList<Edge> edges;
 
-	private NodeStatus status;
+	public NodeStatus status;
 
 	public Node() {
 		owner = null;

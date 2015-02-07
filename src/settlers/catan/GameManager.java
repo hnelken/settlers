@@ -11,6 +11,8 @@ public class GameManager {
 	private boolean gameOver;
 	private GameState state;
 	private Deck deck;
+	private Smuggler smuggler;
+	
 	private enum GameState {
 		PLAYERTURNROLL, PLAYERTURNCHOICE, WINCHECK, GAMEOVER
 	}
@@ -21,10 +23,14 @@ public class GameManager {
 		gameOver = false;
 		winner = null;
 		deck = new Deck();
-		turn = (int) (players.length * Math.random());
-
 		turn = (int)(players.length * Math.random());
-
+		Tile desert = null;
+		for (int i = 0; i < gameBoard.getTiles().length; i++) {
+			if (gameBoard.getTiles()[i].getResourceType() == Resource.DESERT) {
+				desert = gameBoard.getTiles()[i];
+			}
+		}
+		smuggler = new Smuggler(desert);
 		state = GameState.PLAYERTURNROLL;
 	}
 
@@ -95,12 +101,16 @@ public class GameManager {
 	private void distributeResources(int roll) {
 		Tile[] tiles = gameBoard.getTiles();
 		for (int tile = 0; tile < tiles.length; tile++) {
-			if (tiles[tile].rollNum() == roll) {
+			Tile t = tiles[tile];
+			if (t.rollNum() == roll && t.getResourceType() != Resource.DESERT) {
 				Node[] corners = tiles[tile].getCorners();
 				for (int corner = 0; corner < corners.length; corner++) {
 					Player owner = corners[corner].getOwner();
 					if (null != owner) {
 						owner.addResource(tiles[tile].getResourceType());
+						if (corners[corner].status == Node.NodeStatus.CITY) {
+							owner.addResource(tiles[tile].getResourceType());
+						}
 					}
 				}
 			}

@@ -131,8 +131,8 @@ public class Board {
 
 	private Resource[] getTileTypes(){
 		Resource[] tileTypes = new Resource[19];
-		int[] numOfTypes = {4,4,3,3,4};
-		Resource[] typeList = {Resource.MOISTURE,Resource.BLUEMILK,Resource.DURASTEEL,Resource.ADOBE,Resource.BANTHA};
+		int[] numOfTypes = {4,4,3,3,4,1};
+		Resource[] typeList = {Resource.MOISTURE,Resource.BLUEMILK,Resource.DURASTEEL,Resource.ADOBE,Resource.BANTHA, Resource.DESERT};
 		int index;
 		//This loop sets the type of each tile
 		for (int j = 0; j < numOfTypes.length; j++){
