@@ -1,11 +1,9 @@
 package settlers.catan;
 
 import settlers.catan.DevCard.Type;
-=======
 
 import settlers.catan.DevCard.Type;
 
->>>>>>> dba453eea640a12c1664ee5411c9435d028b617f
 import java.util.Scanner;
 
 public class GameManager {
