@@ -11,10 +11,23 @@ public class ResourcePicker extends GBFrame {
 
 	// constructor
 	public ResourcePicker() {
+		// collect resource images
+		Image[] images = getImages();
 		
 	}
 
 	// methods
+	
+	private Image[] getImages() {
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Image[] images = new Image[5];
+		images[0] = toolkit.getImage("");
+		images[0] = toolkit.getImage("");
+		images[0] = toolkit.getImage("");
+		images[0] = toolkit.getImage("");
+		images[0] = toolkit.getImage("");
+		return images;
+	}
 
 	public void buttonClicked(Button btn) {
 
