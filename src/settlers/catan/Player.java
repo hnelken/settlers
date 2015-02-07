@@ -12,6 +12,8 @@ public class Player {
 
 	private int[] resources = new int[5];
 
+	private int totalResources;
+
 	private int victoryPoints;
 
 	private int trooperCount;
@@ -24,6 +26,7 @@ public class Player {
 		for (int i : resources){
 			resources[i] = 0;
 		}
+		this.totalResources = 0;
 		this.victoryPoints = 0;
 		this.trooperCount = 0;
 		this.hand = new ArrayList<DevCard>(0);
@@ -82,6 +85,7 @@ public class Player {
 			default:
 				break;
 		}
+		this.totalResources++;
 	}
 
 	public void modifyResource(Resource resource, int n){
@@ -104,6 +108,12 @@ public class Player {
 		default:
 			break;
 		}
+		this.totalResources = this.totalResources + n;
+	}
+	
+	public void modifyResource(int i, int n){
+		resources[i] = resources[i] + n;
+		totalResources = totalResources + n;
 	}
 
 	public int getVictoryPoints() {
@@ -145,4 +155,13 @@ public class Player {
 			card.setPlayable(true);
 		}
 	}
+
+	public int[] getResources(){
+		return resources;
+	}
+
+	public int getTotalResources() {
+		return totalResources;
+	}
+
 }
