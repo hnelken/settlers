@@ -20,11 +20,19 @@ public class DevCard {
   this.owner = null;
   if (type == Type.TROOPER){
    this.setName("Stormtrooper");
+<<<<<<< HEAD
    this.setDescription("Move the robber. Steal 1 resource card from the owner of an adjacent settlement or city.");
   }
   else if (type == Type.SANDSTORM){
    this.setName("Sandstorm");
    this.setDescription("When you play this card, you can select two resources of your choice from the bank.");
+=======
+   this.description = "Move the robber. Steal 1 resource card from the owner of an adjacent settlement or city.";
+  }
+  else if (type == Type.SANDSTORM){
+   this.setName("Sandstorm");
+   this.description = "When you play this card, you can select two resources of your choice from the bank.";
+>>>>>>> 02d1b7bae7df36a299183182e820af88d07e982f
   }
   else if (type == Type.SANDCRAWLER){
    this.setName("Sandcrawler");
@@ -43,6 +51,27 @@ public DevCard(String name){
   this.setDescription("1 Victory Point!");
   this.owner = null;
  }
+<<<<<<< HEAD
+=======
+ 
+ public void play(){
+  if (type == Type.TROOPER){
+	  trooperPlay();
+  }
+  else if (type == Type.SANDSTORM){
+  }
+  else if (type == Type.SANDCRAWLER){
+  }
+  else if (type == Type.BLUEHARVEST){
+  }
+  else if (type == Type.VP){
+  }
+ }
+ 
+ private void trooperPlay(){
+   
+ }
+>>>>>>> 02d1b7bae7df36a299183182e820af88d07e982f
 
  public Player getOwner() {
   return owner;
@@ -56,6 +85,11 @@ public DevCard(String name){
   return type;
  }
 
+<<<<<<< HEAD
+	public void setType(Type type) {
+		this.type = type;
+	}
+=======
  public void setType(Type type) {
   this.type = type;
  }
@@ -63,6 +97,7 @@ public DevCard(String name){
  public boolean isPlayable() {
   return playable;
  }
+>>>>>>> 741b26ce455993dabbd7bad3ade0d5fdad24d623
 
  public void setPlayable(boolean playable) {
   this.playable = playable;
@@ -72,6 +107,7 @@ public DevCard(String name){
   return name;
  }
 
+<<<<<<< HEAD
 public String getDescription() {
 	return description;
 }
@@ -84,4 +120,20 @@ public void setDescription(String description) {
 	this.description = description;
 }
 
+=======
+<<<<<<< HEAD
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+=======
+ public void setName(String name) {
+  this.name = name;
+ }
+>>>>>>> 741b26ce455993dabbd7bad3ade0d5fdad24d623
+>>>>>>> 02d1b7bae7df36a299183182e820af88d07e982f
 }

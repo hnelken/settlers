@@ -1,6 +1,10 @@
 package settlers.catan;
 
+<<<<<<< HEAD
 import settlers.catan.DevCard.Type;
+=======
+import java.util.Scanner;
+>>>>>>> 02d1b7bae7df36a299183182e820af88d07e982f
 
 public class GameManager {
 	
@@ -19,7 +23,11 @@ public class GameManager {
 		this.players = players;
 		gameOver = false;
 		winner = null;
+<<<<<<< HEAD
 		turn = (int) (players.length * Math.random());
+=======
+		turn = (int)(players.length * Math.random());
+>>>>>>> 02d1b7bae7df36a299183182e820af88d07e982f
 		state = GameState.PLAYERTURNROLL;
 	}
 	
@@ -48,9 +56,11 @@ public class GameManager {
 			
 			//Free Choice
 			state = GameState.PLAYERTURNCHOICE;
+			takePlayerActionInput();
 			//End Turn
-			
+			endTurn();
 		//Check for 10 VP
+			state = GameState.WINCHECK;
 			checkForWin();
 			
 		//Change player turn
@@ -58,9 +68,28 @@ public class GameManager {
 		}
 	}
 
+	private void takePlayerActionInput() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("What do you want to do?");
+		System.out.println("Build? Play? End?");
+		String input = scan.nextLine();
+		input = input.toLowerCase();
+		switch (input) {
+			case "build":
+				break;
+			case "play":
+				break;
+			case "end":
+				break;
+			default:
+				System.out.println("Invalid input!");
+				takePlayerActionInput();
+		}
+	}
+	
 	private int diceRoll() {
-		int firstRoll = (int) (5 * Math.random()) + 1;
-		int secondRoll = (int) (5 * Math.random()) + 1;
+		int firstRoll = (int)(6.0 * Math.random()) + 1;
+		int secondRoll = (int)(6.0 * Math.random()) + 1;
 		return firstRoll + secondRoll;
 	}
 	

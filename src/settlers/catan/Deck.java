@@ -1,36 +1,66 @@
 package settlers.catan;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 public class Deck {
 	
 	// fields
-	DevCard[] cards = new DevCard[25];
+	Stack<DevCard> deck;
 	
 	// constructors
 	
 	public Deck() {
-		
+		deck = new Stack<DevCard>();
+		// instantiate 14 trooper cards
 		for (int i = 0; i < 14; i++) {
-			cards[i] = new DevCard(DevCard.Type.TROOPER);
+			deck.push(new DevCard(DevCard.Type.TROOPER));
 		}
-		cards[14] = new DevCard("Cantina Band");
-		cards[15] = new DevCard("Death Sticks");
-		cards[16] = new DevCard("Pod Racer");
-		cards[17] = new DevCard("Power Converters");
-		cards[18] = new DevCard("T-16 Skyhopper");
-		for (int i = 19; i < 21; i++) {
-			cards[i] = new DevCard(DevCard.Type.BLUEHARVEST);
+		// instantiate 5 unique victory-point cards
+		deck.push(new DevCard("Cantina Band"));
+		deck.push(new DevCard("Death Sticks"));
+		deck.push(new DevCard("Pod Racer"));
+		deck.push(new DevCard("Power Converters"));
+		deck.push(new DevCard("T-16 Skyhopper"));
+		// instantiate 2 blue harvest effect cards
+		for (int i = 0; i < 2; i++) {
+			deck.push(new DevCard(DevCard.Type.BLUEHARVEST));
 		}
-		for (int i = 19; i < 23; i++) {
-			cards[i] = new DevCard(DevCard.Type.SANDCRAWLER);
+		// instantiate 2 sandcrawler effect cards
+		for (int i = 0; i < 2; i++) {
+			deck.push(new DevCard(DevCard.Type.SANDCRAWLER));
 		}
-		for (int i = 23; i < 25; i++) {
-			cards[i] = new DevCard(DevCard.Type.SANDSTORM);
+		// instantiate 2 sandstorm effect cards
+		for (int i = 0; i < 2; i++) {
+			deck.push(new DevCard(DevCard.Type.SANDSTORM));
 		}
-		
+		// shuffle deck
+		shuffle();
 	}
 	
 	// methods
 	
+	private void shuffle() {
+		// randomly arrange cards in ArrayList
+		ArrayList<DevCard> cards = new ArrayList<DevCard>(25);
+		while (!deck.empty()) {
+			int index = (int)(Math.random() * (double)(cards.size()+1));
+			cards.add(index,deck.pop());
+		}
+		// put cards back into a Stack
+		while (!cards.isEmpty()) {
+			deck.push(cards.remove(0));
+		}
+	}
 	
+	public DevCard draw() {
+		if (deck.empty())
+			return null;
+		return deck.pop();
+	}
+	
+	public boolean isEmpty() {
+		return deck.empty();
+	}
 	
 }
