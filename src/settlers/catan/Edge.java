@@ -6,7 +6,7 @@ public class Edge {
 	private Node[] nodes;
 	private boolean road;
 	
-	public Edge(Node node1, Node node2){
+	public Edge(Node node1, Node node2) {
 		this.owner = null;
 		this.nodes = new Node[2];
 		this.nodes[0] = node1;

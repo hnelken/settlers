@@ -8,16 +8,8 @@ public abstract class DevCard {
 	
 	// constructors
 	
-	public DevCard() {
-		setOwner(null);
-	}
+	public abstract Player getOwner() ;
 
-	public Player getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Player owner) {
-		this.owner = owner;
-	}
+	public abstract void setOwner(Player owner) ;
 	
 }

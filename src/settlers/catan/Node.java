@@ -29,8 +29,46 @@ public class Node {
 		status = NodeStatus.CITY;
 	}
 	
-	public void checkAvailability(Player currPlayer) {
-		
+	public void availabilityCheck(Player currPlayer) {
+		for (int edge = 0; edge < edges.size(); edge++) {
+			Edge e = edges.get(edge);
+			if (e.getOwner().equals(currPlayer)) {
+				if (e.getNodes()[0].equals(this)) {
+					checkSurroundingNodes(e.getNodes()[1], currPlayer);
+				}
+				else {
+					checkSurroundingNodes(e.getNodes()[0], currPlayer);
+				}
+			}
+		}
+	}
+	
+	private void checkSurroundingNodes(Node neighbor, Player currPlayer) {
+		if (neighbor.status == NodeStatus.EMPTY) {
+			for (int edge = 0; edge < neighbor.edges.size(); edge++) {
+				Edge e = neighbor.edges.get(edge);
+				if (isSettledByPlayer(neighbor, e, currPlayer)) {
+					available = true;
+				}
+			}
+		}
+	}
+	
+	private boolean isSettledByPlayer(Node neighbor, Edge edge, Player currPlayer) {
+		if (edge.getOwner().equals(currPlayer)) {
+			Node[] nodes = edge.getNodes();
+			if (nodes[0].equals(neighbor)) {
+				if (nodes[1].owner.equals(currPlayer)) {
+					return true;
+				}
+			}
+			else {
+				if (nodes[0].owner.equals(currPlayer)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	public boolean isAvailable() {
