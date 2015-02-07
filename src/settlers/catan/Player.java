@@ -3,21 +3,21 @@ package settlers.catan;
 import java.util.*;
 
 public class Player {
-	
+
 	public GameManager manager;
-	
+
 	private String name;
-	
+
 	private int number;
-	
+
 	private int[] resources = new int[5];
-			
+
 	private int victoryPoints;
-	
+
 	private int trooperCount;
-	
+
 	private ArrayList<DevCard> hand;
-	
+
 	public Player (String name, int number){
 		this.name = name;
 		this.number = number;
@@ -47,40 +47,40 @@ public class Player {
 
 	public int getResource(Resource resource){
 		switch (resource){
-			case MOISTURE:
-				return resources[0];
-			case BLUEMILK:
-				return resources[1];
-			case DURASTEEL:
-				return resources[2];
-			case ADOBE:
-				return resources[3];
-			case BANTHA:
-				return resources[4];
-	}
+		case MOISTURE:
+			return resources[0];
+		case BLUEMILK:
+			return resources[1];
+		case DURASTEEL:
+			return resources[2];
+		case ADOBE:
+			return resources[3];
+		case BANTHA:
+			return resources[4];
+		}
 		return 0;
-}
-	
+	}
+
 	public void addResource(Resource resource){
 		switch (resource){
-			case MOISTURE:
-				resources[0]++;
-				break;
-			case BLUEMILK:
-				resources[1]++;
-				break;
-			case DURASTEEL:
-				resources[2]++;
-				break;
-			case ADOBE:
-				resources[3]++;
-				break;
-			case BANTHA:
-				resources[4]++;
-				break;
+		case MOISTURE:
+			resources[0]++;
+			break;
+		case BLUEMILK:
+			resources[1]++;
+			break;
+		case DURASTEEL:
+			resources[2]++;
+			break;
+		case ADOBE:
+			resources[3]++;
+			break;
+		case BANTHA:
+			resources[4]++;
+			break;
 		}
 	}
-	
+
 	public void modifyResource(Resource resource, int n){
 		switch (resource){
 		case MOISTURE:
@@ -98,9 +98,9 @@ public class Player {
 		case BANTHA:
 			resources[4] = resources[4] + n;
 			break;
+		}
 	}
-	}
-	
+
 	public int getVictoryPoints() {
 		return victoryPoints;
 	}
@@ -121,12 +121,12 @@ public class Player {
 		return hand;
 	}
 
-	
+
 	@Override
 	public boolean equals(Object o) {
 		return o instanceof Player && this.equals((Player)o);
 	}
-	
+
 	public boolean equals(Player p) {
 		if (null == p) {
 			return false;
@@ -135,7 +135,7 @@ public class Player {
 			return this.number == p.number && this.name.equals(p.name);
 		}
 	}
-	
+
 	public void makePlayable(){
 		for (DevCard card : hand){
 			card.setPlayable(true);

@@ -2,35 +2,35 @@ package settlers.catan;
 import java.util.*;
 
 public class Node {
-	
+
 	private enum NodeStatus {
 		EMPTY, SETTLEMENT, CITY;
 	}
-	
+
 	private Player owner;
 	private boolean available;
 	private ArrayList<Edge> edges;
-	
+
 	private NodeStatus status;
-	
+
 	public Node() {
 		owner = null;
 		status = NodeStatus.EMPTY;
 	}
-	
+
 	public void settle(Player settler) {
 		if(null == owner) {
 			owner = settler;
 			status = NodeStatus.SETTLEMENT;
 		}
 	}
-	
+
 	public void upgrade() {
 		status = NodeStatus.CITY;
 	}
-	
+
 	public void addEdge(Edge edge) {
-		
+
 	}
 	/**
 	 * Decides if this node is available for settlement by a given player
@@ -48,7 +48,7 @@ public class Node {
 			}
 		}
 	}
-	
+
 	private void checkSurroundingNodes(Node neighbor, Player currPlayer) {
 		if (neighbor.status == NodeStatus.EMPTY) {
 			for (int edge = 0; edge < neighbor.edges.size(); edge++) {
@@ -59,7 +59,7 @@ public class Node {
 			}
 		}
 	}
-	
+
 	private boolean isSettledByPlayer(Node neighbor, Edge edge, Player currPlayer) {
 		if (edge.getOwner().equals(currPlayer)) {
 			Node[] nodes = edge.getNodes();
@@ -76,17 +76,17 @@ public class Node {
 		}
 		return false;
 	}
-	
+
 	public boolean isAvailable() {
 		return available;
 	}
-	
+
 	public NodeStatus getStatus() {
 		return status;
 	}
-	
+
 	public Player getOwner() {
 		return owner;
 	}
-	
+
 }

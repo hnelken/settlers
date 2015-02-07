@@ -16,5 +16,5 @@ public class Smuggler {
 	public void setLocation(Tile location) {
 		this.location = location;
 	}
-	
+
 }
