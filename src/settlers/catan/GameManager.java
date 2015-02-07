@@ -1,5 +1,7 @@
 package settlers.catan;
 
+import settlers.catan.DevCard.Type;
+
 public class GameManager {
 	
 	private Board gameBoard;
@@ -17,7 +19,7 @@ public class GameManager {
 		this.players = players;
 		gameOver = false;
 		winner = null;
-		int turn = (int) (players.length * Math.random());
+		turn = (int) (players.length * Math.random());
 		state = GameState.PLAYERTURNROLL;
 	}
 	
@@ -97,4 +99,35 @@ public class GameManager {
 			turn++;
 		}
 	}
+	
+	 public void play(int i){
+		  if (players[turn].getHand().get(i).getType() == Type.TROOPER){
+		    this.trooperPlay();
+		  }
+		  else if (players[turn].getHand().get(i).getType() == Type.SANDSTORM){
+			  
+		  }
+		  else if (players[turn].getHand().get(i).getType() == Type.SANDCRAWLER){
+		  }
+		  else if (players[turn].getHand().get(i).getType() == Type.BLUEHARVEST){
+		  }
+		  else if (players[turn].getHand().get(i).getType() == Type.VP){
+			  this.vpPlay();
+		  }
+		  players[turn].getHand().remove(i);
+		 }
+		 
+		 private void trooperPlay(){
+		   this.moveRobber();
+		   players[turn].addTrooper();
+		 }
+		 
+		 private void vpPlay(){
+			 players[turn].modifyVictoryPoints(1);
+		 }
+
+		private void moveRobber() {
+			// TODO Auto-generated method stub
+			
+		}
 }
