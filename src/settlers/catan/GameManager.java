@@ -53,9 +53,12 @@ public class GameManager {
 			/* Take Turn */
 			//Roll Dice
 			int roll = diceRoll();
-
-			//Dole out resources
-			distributeResources(roll);
+			
+			if (roll == 7){
+				this.discardAll();
+				this.moveSmuggler();
+			} else
+				distributeResources(roll);
 
 			//Free Choice
 			state = GameState.PLAYERTURNCHOICE;
@@ -181,5 +184,16 @@ public class GameManager {
 	//move the smuggler around
 	private void moveSmuggler(){
 
+	}
+	
+	private void discardAll(){
+		for(Player player : players){
+			if (player.getTotalResources() > 7){
+				while (player.getTotalResources() != player.getTotalResources()/2){
+					int i = (int) (Math.random() * 5);
+					player.modifyResource(i, -1);
+				}
+			}
+		}
 	}
 }
