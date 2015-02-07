@@ -47,8 +47,9 @@ public class GameManager {
 			//Free Choice
 			state = GameState.PLAYERTURNCHOICE;
 			//End Turn
-			
+			endTurn();
 		//Check for 10 VP
+			state = GameState.WINCHECK;
 			checkForWin();
 			
 		//Change player turn
