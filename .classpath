@@ -2,6 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/theof_000/Documents/Case Western Reserve University/8 - Junior Spring/HackCWRU/BreezyGUI.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/nathaniel/Downloads/BreezyGUI.jar"/>
+>>>>>>> dba453eea640a12c1664ee5411c9435d028b617f
 	<classpathentry kind="output" path="bin"/>
 </classpath>
