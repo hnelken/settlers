@@ -17,9 +17,15 @@ public class Board {
     int count = 0;
     for (int i = 0; i < num.length; i++){
       for (int j = 0; j < num[i]; j++){
+<<<<<<< HEAD
         //tiles[count] = new Tile(new Node[] {nodes[tLeft[i]+j],nodes[tLeft[i]+j+vRel[i][0]], nodes[tLeft[i]+j+vRel[i][1]],
         //  nodes[tLeft[i]+j+vRel[i][2]],nodes[tLeft[i]+j+vRel[i][3]],nodes[tLeft[i]+j+vRel[i][4]]},resources[count],nums[count]);
         //count++;
+=======
+        tiles[count] = new Tile(new Node[] {nodes[tLeft[i]+j],nodes[tLeft[i]+j+vRel[i][0]], nodes[tLeft[i]+j+vRel[i][1]],
+          nodes[tLeft[i]+j+vRel[i][2]],nodes[tLeft[i]+j+vRel[i][3]],nodes[tLeft[i]+j+vRel[i][4]]},resources[count],nums[count]);
+        count++;
+>>>>>>> 60fda28673a3592eea910d0055dbbddc17c58d85
       }
     }
   }

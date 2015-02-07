@@ -40,14 +40,27 @@ public class Deck {
 	
 	// methods
 	
-	public void shuffle() {
-		ArrayList<DevCard> cards = new ArrayList<DevCard>();
+	private void shuffle() {
+		// randomly arrange cards in ArrayList
+		ArrayList<DevCard> cards = new ArrayList<DevCard>(25);
+		while (!deck.empty()) {
+			int index = (int)(Math.random() * (double)(cards.size()+1));
+			cards.add(index,deck.pop());
+		}
+		// put cards back into a Stack
+		while (!cards.isEmpty()) {
+			deck.push(cards.remove(0));
+		}
 	}
 	
 	public DevCard draw() {
 		if (deck.empty())
 			return null;
 		return deck.pop();
+	}
+	
+	public boolean isEmpty() {
+		return deck.empty();
 	}
 	
 }
