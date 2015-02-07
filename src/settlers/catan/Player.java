@@ -60,27 +60,30 @@ public class Player {
 			return resources[3];
 		case BANTHA:
 			return resources[4];
+		default:
+			return 0;
 		}
-		return 0;
 	}
 
 	public void addResource(Resource resource){
 		switch (resource){
-		case MOISTURE:
-			resources[0]++;
-			break;
-		case BLUEMILK:
-			resources[1]++;
-			break;
-		case DURASTEEL:
-			resources[2]++;
-			break;
-		case ADOBE:
-			resources[3]++;
-			break;
-		case BANTHA:
-			resources[4]++;
-			break;
+			case MOISTURE:
+				resources[0]++;
+				break;
+			case BLUEMILK:
+				resources[1]++;
+				break;
+			case DURASTEEL:
+				resources[2]++;
+				break;
+			case ADOBE:
+				resources[3]++;
+				break;
+			case BANTHA:
+				resources[4]++;
+				break;
+			default:
+				break;
 		}
 		this.totalResources++;
 	}
@@ -101,6 +104,8 @@ public class Player {
 			break;
 		case BANTHA:
 			resources[4] = resources[4] + n;
+			break;
+		default:
 			break;
 		}
 		this.totalResources = this.totalResources + n;
