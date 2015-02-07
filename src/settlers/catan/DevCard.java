@@ -16,25 +16,31 @@ public class DevCard {
 	// constructors
 	
 	public DevCard(Type type) {
-		setOwner(null);
+		this.owner = null;
 		if (type == Type.TROOPER){
-			this.name = "Stormtrooper";
+			this.setName("Stormtrooper");
 		} else if (type == Type.SANDSTORM){
-			this.name = "Sandstorm";
+			this.setName("Sandstorm");
 		} else if (type == Type.SANDCRAWLER){
-			this.name = "Sandcrawler";
+			this.setName("Sandcrawler");
 		} else if (type == Type.BLUEHARVEST){
-			this.name = "Blue Harvest";
+			this.setName("Blue Harvest");
 		}
+		this.setPlayable(false);
 	}
 	
 	public DevCard(String name){
-		this.name = name;
+		this.setName(name);
 		this.type = Type.VP;
 	}
 	
 	public void play(){
-		
+		if (type == Type.TROOPER){
+		} else if (type == Type.SANDSTORM){
+		} else if (type == Type.SANDCRAWLER){
+		} else if (type == Type.BLUEHARVEST){
+		} else if (type == Type.VP){
+		}
 	}
 
 	public Player getOwner() {
@@ -52,5 +58,24 @@ public class DevCard {
 	public void setType(Type type) {
 		this.type = type;
 	}
+<<<<<<< HEAD
+
+	public boolean isPlayable() {
+		return playable;
+	}
+
+	public void setPlayable(boolean playable) {
+		this.playable = playable;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+=======
+>>>>>>> 392e97a29941bb9f9586f1b2b62d3e8ed1daadb4
 	
 }
