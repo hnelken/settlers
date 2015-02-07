@@ -62,7 +62,7 @@ public class DevCard {
 	public void setType(Type type) {
 		this.type = type;
 	}
-
+	
 	public boolean isPlayable() {
 		return playable;
 	}
@@ -78,5 +78,4 @@ public class DevCard {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 }
