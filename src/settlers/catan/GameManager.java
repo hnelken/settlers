@@ -19,7 +19,7 @@ public class GameManager {
 		this.players = players;
 		gameOver = false;
 		winner = null;
-		int turn = (int) (players.length * Math.random());
+		turn = (int)(players.length * Math.random());
 		state = GameState.PLAYERTURNROLL;
 	}
 	
@@ -80,8 +80,8 @@ public class GameManager {
 	}
 	
 	private int diceRoll() {
-		int firstRoll = (int) (5 * Math.random()) + 1;
-		int secondRoll = (int) (5 * Math.random()) + 1;
+		int firstRoll = (int)(6.0 * Math.random()) + 1;
+		int secondRoll = (int)(6.0 * Math.random()) + 1;
 		return firstRoll + secondRoll;
 	}
 	
