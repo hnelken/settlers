@@ -44,24 +44,6 @@ public class DevCard {
 		this.owner = null;
 	}
 
-	public void play(){
-		if (type == Type.TROOPER){
-			trooperPlay();
-		}
-		else if (type == Type.SANDSTORM){
-		}
-		else if (type == Type.SANDCRAWLER){
-		}
-		else if (type == Type.BLUEHARVEST){
-		}
-		else if (type == Type.VP){
-		}
-	}
-
-	private void trooperPlay(){
-
-	}
-
 	public Player getOwner() {
 		return owner;
 	}
