@@ -116,4 +116,18 @@ public class Player {
 	public void setHand(ArrayList<DevCard> hand) {
 		this.hand = hand;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		return o instanceof Player && this.equals((Player)o);
+	}
+	
+	public boolean equals(Player p) {
+		if (null == p) {
+			return false;
+		}
+		else {
+			return this.number == p.number && this.name.equals(p.name);
+		}
+	}
 }

@@ -15,6 +15,7 @@ public class DevCard {
 	
 	// constructors
 	
+<<<<<<< HEAD
 	public DevCard(Type type) {
 		setOwner(null);
 		if (type == Type.TROOPER){
@@ -52,5 +53,10 @@ public class DevCard {
 	public void setType(Type type) {
 		this.type = type;
 	}
+=======
+	public abstract Player getOwner() ;
+
+	public abstract void setOwner(Player owner) ;
+>>>>>>> 1d349e449fb4860fae0117a8547109e365460918
 	
 }
