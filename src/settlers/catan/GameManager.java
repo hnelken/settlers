@@ -1,9 +1,13 @@
 
 package settlers.catan;
 
+<<<<<<< HEAD
+import settlers.catan.DevCard.Type;
+=======
 
 import settlers.catan.DevCard.Type;
 
+>>>>>>> dba453eea640a12c1664ee5411c9435d028b617f
 import java.util.Scanner;
 
 public class GameManager {
@@ -23,6 +27,10 @@ public class GameManager {
 		this.players = players;
 		gameOver = false;
 		winner = null;
+<<<<<<< HEAD
+		turn = (int) (players.length * Math.random());
+		turn = (int)(players.length * Math.random());
+=======
 		int turn = (int) (players.length * Math.random());
 		state = GameState.PLAYERTURNROLL;
 		for (int i = 0; i < players.length; i++) {
@@ -153,6 +161,7 @@ public class GameManager {
 
 		turn = (int)(players.length * Math.random());
 
+>>>>>>> dba453eea640a12c1664ee5411c9435d028b617f
 		state = GameState.PLAYERTURNROLL;
 	}
 
