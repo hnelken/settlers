@@ -129,15 +129,15 @@ public class GameManager {
 
 	//player can play card in his/her hand
 	public void play(int i){
-		if (players[turn].getHand().get(i).getType() == Type.TROOPER){
+		if (players[turn].getHand().get(i).getType() == DevCard.Type.TROOPER){
 			this.trooperPlay();
-		} else if (players[turn].getHand().get(i).getType() == Type.SANDSTORM){
+		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDSTORM){
 			this.sandstormPlay();
-		} else if (players[turn].getHand().get(i).getType() == Type.SANDCRAWLER){
+		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDCRAWLER){
 			this.sandcrawlerPlay();
-		} else if (players[turn].getHand().get(i).getType() == Type.BLUEHARVEST){
+		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.BLUEHARVEST){
 			this.blueHarvestPlay();
-		} else if (players[turn].getHand().get(i).getType() == Type.VP){
+		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.VP){
 			this.vpPlay();
 		}
 		players[turn].getHand().remove(i);
