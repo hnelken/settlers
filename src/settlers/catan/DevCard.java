@@ -74,11 +74,6 @@ public class DevCard {
   return type;
  }
 
-<<<<<<< HEAD
-	public void setType(Type type) {
-		this.type = type;
-	}
-=======
  public void setType(Type type) {
   this.type = type;
  }
@@ -86,8 +81,7 @@ public class DevCard {
  public boolean isPlayable() {
   return playable;
  }
->>>>>>> 741b26ce455993dabbd7bad3ade0d5fdad24d623
-
+ 
  public void setPlayable(boolean playable) {
   this.playable = playable;
  }
@@ -96,18 +90,7 @@ public class DevCard {
   return name;
  }
 
-<<<<<<< HEAD
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-=======
  public void setName(String name) {
   this.name = name;
  }
->>>>>>> 741b26ce455993dabbd7bad3ade0d5fdad24d623
 }
