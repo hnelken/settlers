@@ -44,6 +44,7 @@ public class DevCard {
 		this.owner = null;
 	}
 
+
 	public void play(){
 		switch (type) {
 			case TROOPER:

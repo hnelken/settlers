@@ -53,10 +53,10 @@ public class Deck {
 		}
 	}
 	
-	public DevCard draw(Player receiver) {
-		if (deck.empty())
-			return null;
-		return deck.pop();
+	public void draw(Player receiver) {
+		if (!deck.empty()){
+			receiver.getHand().add(deck.pop());
+		}
 	}
 	
 	public boolean isEmpty() {

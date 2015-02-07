@@ -167,7 +167,7 @@ public class GameManager {
 	}
 
 	private void blueHarvestPlay(){
-
+		ResourcePicker picker = new ResourcePicker(players[turn]);
 	}
 
 	private void sandcrawlerPlay(){
