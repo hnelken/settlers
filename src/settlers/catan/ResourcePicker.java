@@ -14,32 +14,16 @@ public class ResourcePicker extends GBFrame {
 	// constructor
 	public ResourcePicker(Player who) {
 		this.who = who;
-		Image[] images = getImages();
 		String[] str = {"Adobe", "Bantha", "Blue Milk", "Moisture", "Durasteel"};
 		for (int i = 0; i < 5; i++) {
 			buttons[i] = new JButton();
-			buttons[i].setIcon(images[i]);
+			String filename = str[i]+".jpg";
+			buttons[i].setIcon(new ImageIcon(filename));
 			new JLabel(str[i]);
 		}
 	}
 
 	// methods
-	
-	private Image[] getImages() {
-		// import images
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Image[] images = new Image[5];
-		images[0] = toolkit.getImage("Adobe.jpg");
-		images[1] = toolkit.getImage("Bantha.jpg");
-		images[2] = toolkit.getImage("Blue Milk.jpg");
-		images[3] = toolkit.getImage("Moisture.jpg");
-		images[4] = toolkit.getImage("Durasteel.jpg");
-		// scale images
-		for (int i = 0; i < 5; i++) {
-			images[i] = images[i].getScaledInstance(250, 400, Image.SCALE_FAST);
-		}
-		return images;
-	}
 
 	public void buttonClicked(JButton btn) {
 		if (btn == buttons[0]) // adobe
