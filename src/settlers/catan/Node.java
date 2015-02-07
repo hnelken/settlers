@@ -30,7 +30,7 @@ public class Node {
 	}
 
 	public void addEdge(Edge edge) {
-
+		edges.add(edge);
 	}
 	/**
 	 * Decides if this node is available for settlement by a given player
@@ -87,6 +87,10 @@ public class Node {
 
 	public Player getOwner() {
 		return owner;
+	}
+	
+	public ArrayList<Edge> getEdges() {
+		return edges;
 	}
 
 }
