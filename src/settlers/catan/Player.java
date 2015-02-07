@@ -121,7 +121,6 @@ public class Player {
 		return hand;
 	}
 
-
 	@Override
 	public boolean equals(Object o) {
 		return o instanceof Player && this.equals((Player)o);
@@ -137,7 +136,7 @@ public class Player {
 	}
 
 	public void makePlayable(){
-		for (DevCard card : hand){
+		for (DevCard card : hand) {
 			card.setPlayable(true);
 		}
 	}
