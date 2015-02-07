@@ -1,5 +1,6 @@
-import java.util.ArrayList;
+package settlers.catan;
 
+import java.util.ArrayList;
 
 public class Player {
 	

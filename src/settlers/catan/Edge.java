@@ -1,5 +1,6 @@
+package settlers.catan;
 
-public class edge {
+public class Edge {
 
 	private Player owner;
 	private Node node1;
