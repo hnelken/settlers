@@ -1,3 +1,0 @@
-public enum Resource{
-  MOISTURE, BLUEMILK, DURASTEEL, ADOBE, BANTHA
-}
