@@ -14,7 +14,11 @@ public class ResourcePicker extends GBFrame {
 	public ResourcePicker(Player who) {
 		this.who = who;
 		Image[] images = getImages();
-		
+		String[] str = 
+		for (int i = 0; i < 5; i++) {
+			buttons[i] = new Button();
+			new Label(str[i])
+		}
 	}
 
 	// methods
@@ -36,7 +40,16 @@ public class ResourcePicker extends GBFrame {
 	}
 
 	public void buttonClicked(Button btn) {
-		
+		if (btn == buttons[0]) // adobe
+			Player
+		else if (btn == buttons[1]) // bantha
+			
+		else if (btn == buttons[2]) // blue milk
+			
+		else if (btn == buttons[3]) // moisture
+			
+		else	// durasteel
+			
 	}
 
 }
