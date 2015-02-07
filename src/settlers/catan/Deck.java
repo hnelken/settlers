@@ -53,7 +53,7 @@ public class Deck {
 		}
 	}
 	
-	public DevCard draw() {
+	public DevCard draw(Player receiver) {
 		if (deck.empty())
 			return null;
 		return deck.pop();
