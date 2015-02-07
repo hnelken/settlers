@@ -1,14 +1,15 @@
 package settlers.catan;
 
-import BreezySwing.*;
 import java.awt.*;
+import BreezySwing.*;
+import javax.swing.*;
 
 public class ResourcePicker extends GBFrame {
 	
 	// fields
 	private static final long serialVersionUID = 1L;
 	private Player who;
-	private Button[] buttons = new Button[5];
+	private JButton[] buttons = new JButton[5];
 
 	// constructor
 	public ResourcePicker(Player who) {
@@ -16,8 +17,8 @@ public class ResourcePicker extends GBFrame {
 		Image[] images = getImages();
 		String[] str = {"Adobe", "Bantha", "Blue Milk", "Moisture", "Durasteel"};
 		for (int i = 0; i < 5; i++) {
-			buttons[i] = new Button();
-			new Label(str[i]);
+			buttons[i] = new JButton();
+			new JLabel(str[i]);
 		}
 	}
 
@@ -39,7 +40,7 @@ public class ResourcePicker extends GBFrame {
 		return images;
 	}
 
-	public void buttonClicked(Button btn) {
+	public void buttonClicked(JButton btn) {
 		if (btn == buttons[0]) // adobe
 			return;
 		else if (btn == buttons[1]) // bantha
