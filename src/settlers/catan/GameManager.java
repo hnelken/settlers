@@ -45,7 +45,7 @@ public class GameManager {
 			distributeResources(roll);
 			
 			//Free Choice
-			
+			state = GameState.PLAYERTURNCHOICE;
 			//End Turn
 			
 		//Check for 10 VP
@@ -78,7 +78,7 @@ public class GameManager {
 	}
 	
 	private void endTurn() {
-		
+		players[turn].makePlayable();
 	}
 	
 	private void checkForWin() {
