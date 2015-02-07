@@ -1,5 +1,7 @@
 package settlers.catan;
 
+import java.util.Scanner;
+
 public class GameManager {
 	
 	private Board gameBoard;
@@ -46,9 +48,11 @@ public class GameManager {
 			
 			//Free Choice
 			state = GameState.PLAYERTURNCHOICE;
+			takePlayerActionInput();
 			//End Turn
-			
+			endTurn();
 		//Check for 10 VP
+			state = GameState.WINCHECK;
 			checkForWin();
 			
 		//Change player turn
@@ -56,6 +60,25 @@ public class GameManager {
 		}
 	}
 
+	private void takePlayerActionInput() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("What do you want to do?");
+		System.out.println("Build? Play? End?");
+		String input = scan.nextLine();
+		input = input.toLowerCase();
+		switch (input) {
+			case "build":
+				break;
+			case "play":
+				break;
+			case "end":
+				break;
+			default:
+				System.out.println("Invalid input!");
+				takePlayerActionInput();
+		}
+	}
+	
 	private int diceRoll() {
 		int firstRoll = (int) (5 * Math.random()) + 1;
 		int secondRoll = (int) (5 * Math.random()) + 1;

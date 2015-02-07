@@ -6,7 +6,7 @@ public class DevCard {
  private Player owner;
  private boolean playable;
  private String name;
- private String descripton;
+ private String description;
  
  public enum Type {
   TROOPER, VP, SANDSTORM, SANDCRAWLER, BLUEHARVEST
@@ -20,11 +20,11 @@ public class DevCard {
   this.owner = null;
   if (type == Type.TROOPER){
    this.setName("Stormtrooper");
-   this.description = "Move the robber. Steal 1 resource card from the owner of an adjacent settlement or city."
+   this.description = "Move the robber. Steal 1 resource card from the owner of an adjacent settlement or city.";
   }
   else if (type == Type.SANDSTORM){
    this.setName("Sandstorm");
-   this.description = "When you play this card, you can select two resources of your choice from the bank."
+   this.description = "When you play this card, you can select two resources of your choice from the bank.";
   }
   else if (type == Type.SANDCRAWLER){
    this.setName("Sandcrawler");
@@ -46,7 +46,7 @@ public class DevCard {
  
  public void play(){
   if (type == Type.TROOPER){
-    trooperPlay()
+	  trooperPlay();
   }
   else if (type == Type.SANDSTORM){
   }
