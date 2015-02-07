@@ -44,8 +44,7 @@ public class DevCard {
 		this.owner = null;
 	}
 
-<<<<<<< HEAD
-=======
+
 	public void play(){
 		switch (type) {
 			case TROOPER:
@@ -66,7 +65,6 @@ public class DevCard {
 
 	}
 
->>>>>>> 77f322c903e855909b24541f13efe00d20c36eae
 	public Player getOwner() {
 		return owner;
 	}
