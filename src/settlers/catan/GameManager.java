@@ -1,6 +1,10 @@
 package settlers.catan;
 
+<<<<<<< HEAD
+import settlers.catan.DevCard.Type;
+=======
 import java.util.Scanner;
+>>>>>>> 02d1b7bae7df36a299183182e820af88d07e982f
 
 public class GameManager {
 	
@@ -19,7 +23,11 @@ public class GameManager {
 		this.players = players;
 		gameOver = false;
 		winner = null;
+<<<<<<< HEAD
+		turn = (int) (players.length * Math.random());
+=======
 		turn = (int)(players.length * Math.random());
+>>>>>>> 02d1b7bae7df36a299183182e820af88d07e982f
 		state = GameState.PLAYERTURNROLL;
 	}
 	
@@ -120,4 +128,35 @@ public class GameManager {
 			turn++;
 		}
 	}
+	
+	 public void play(int i){
+		  if (players[turn].getHand().get(i).getType() == Type.TROOPER){
+		    this.trooperPlay();
+		  }
+		  else if (players[turn].getHand().get(i).getType() == Type.SANDSTORM){
+			  
+		  }
+		  else if (players[turn].getHand().get(i).getType() == Type.SANDCRAWLER){
+		  }
+		  else if (players[turn].getHand().get(i).getType() == Type.BLUEHARVEST){
+		  }
+		  else if (players[turn].getHand().get(i).getType() == Type.VP){
+			  this.vpPlay();
+		  }
+		  players[turn].getHand().remove(i);
+		 }
+		 
+		 private void trooperPlay(){
+		   this.moveRobber();
+		   players[turn].addTrooper();
+		 }
+		 
+		 private void vpPlay(){
+			 players[turn].modifyVictoryPoints(1);
+		 }
+
+		private void moveRobber() {
+			// TODO Auto-generated method stub
+			
+		}
 }

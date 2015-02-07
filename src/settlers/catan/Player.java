@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Player {
 	
+	public GameManager manager;
+	
 	private String name;
 	
 	private int number;
@@ -132,11 +134,6 @@ public class Player {
 		else {
 			return this.number == p.number && this.name.equals(p.name);
 		}
-	}
-	
-	public void playCard(int i){
-		hand.get(i).play();
-		hand.remove(i);
 	}
 	
 	public void makePlayable(){
