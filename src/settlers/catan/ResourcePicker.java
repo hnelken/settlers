@@ -1,7 +1,6 @@
 package settlers.catan;
 
-import BreezySwing.*;
-import java.awt.*;
+import javax.swing.*;
 
 public class ResourcePicker extends GBFrame {
 	
