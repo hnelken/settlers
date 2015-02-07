@@ -18,6 +18,7 @@ public class ResourcePicker extends GBFrame {
 		String[] str = {"Adobe", "Bantha", "Blue Milk", "Moisture", "Durasteel"};
 		for (int i = 0; i < 5; i++) {
 			buttons[i] = new JButton();
+			buttons[i].setIcon(images[i]);
 			new JLabel(str[i]);
 		}
 	}
