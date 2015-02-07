@@ -18,10 +18,10 @@ public class Deck {
 		}
 		// instantiate 5 unique victory-point cards
 		deck.push(new DevCard("Cantina Band"));
-		deck.push(new DevCard("Death Sticks"));
+		deck.push(new DevCard("Pit Droids"));
 		deck.push(new DevCard("Pod Racer"));
 		deck.push(new DevCard("Power Converters"));
-		deck.push(new DevCard("T-16 Skyhopper"));
+		deck.push(new DevCard("Sarlacc Pit"));
 		// instantiate 2 blue harvest effect cards
 		for (int i = 0; i < 2; i++) {
 			deck.push(new DevCard(DevCard.Type.BLUEHARVEST));

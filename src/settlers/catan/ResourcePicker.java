@@ -4,13 +4,15 @@ import java.awt.*;
 import BreezyGUI.*;
 
 public class ResourcePicker extends GBFrame {
+	
 	// fields
-	Button[] buttons = new Button[5];
+	private static final long serialVersionUID = 1L;
+	private Button[] buttons = new Button[5];
 
 	// constructors
 
 	public ResourcePicker() {
-
+		
 	}
 
 	// methods
