@@ -37,8 +37,9 @@ public class Board {
     for (int j = 0; j < numOfTypes.length; j++){
       for (int i = 0; i < numOfTypes[j]; i++){
         index = (int)(19*Math.random());
-        while (tileTypes[index] != null)
+        while (tileTypes[index] != null){
           index = (int)(19*Math.random());
+        }
         tileTypes[index] = typeList[j];
       }
     }

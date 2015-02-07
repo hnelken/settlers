@@ -131,22 +131,20 @@ public class GameManager {
 	 public void play(int i){
 		  if (players[turn].getHand().get(i).getType() == Type.TROOPER){
 		    this.trooperPlay();
-		  }
-		  else if (players[turn].getHand().get(i).getType() == Type.SANDSTORM){
-		  }
-		  else if (players[turn].getHand().get(i).getType() == Type.SANDCRAWLER){
-		  }
-		  else if (players[turn].getHand().get(i).getType() == Type.BLUEHARVEST){
+		  } else if (players[turn].getHand().get(i).getType() == Type.SANDSTORM){
+			  this.sandstormPlay();
+		  } else if (players[turn].getHand().get(i).getType() == Type.SANDCRAWLER){
+			  this.sandcrawlerPlay();
+		  } else if (players[turn].getHand().get(i).getType() == Type.BLUEHARVEST){
 			  this.blueHarvestPlay();
-		  }
-		  else if (players[turn].getHand().get(i).getType() == Type.VP){
+		  } else if (players[turn].getHand().get(i).getType() == Type.VP){
 			  this.vpPlay();
 		  }
 		  players[turn].getHand().remove(i);
 		 }
 		 
 		 private void trooperPlay(){
-		   this.moveRobber();
+		   this.moveSmuggler();
 		   players[turn].addTrooper();
 		 }
 		 
@@ -157,9 +155,16 @@ public class GameManager {
 		 private void blueHarvestPlay(){
 			 
 		 }
+		 
+		 private void sandcrawlerPlay(){
+			 
+		 }
+		 
+		 private void sandstormPlay(){
+			 
+		 }
 
-		private void moveRobber() {
-			// TODO Auto-generated method stub
-			
-		}
+		 private void moveSmuggler(){
+		 
+		 }
 }
