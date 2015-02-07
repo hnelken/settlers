@@ -1,7 +1,5 @@
 package settlers.catan;
 
-import java.util.Stack;
-
 public class Deck {
 	
 	// fields
@@ -10,7 +8,9 @@ public class Deck {
 	// constructors
 	
 	public Deck() {
-		
+		for (int i = 0; i < 14; i++) {
+			cards[i] = new DevCard();
+		}
 	}
 	
 	// methods
