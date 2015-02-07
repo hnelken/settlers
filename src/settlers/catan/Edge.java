@@ -3,14 +3,14 @@ package settlers.catan;
 public class Edge {
 
 	private Player owner;
-	private Node node1;
-	private Node node2;
+	private Node[] nodes;
 	private boolean road;
 	
 	public Edge(Node node1, Node node2){
 		this.owner = null;
-		this.node1 = node1;
-		this.node2 = node2;
+		this.nodes = new Node[2];
+		this.nodes[0] = node1;
+		this.nodes[1] = node2;
 		this.road = false;
 	}
 
@@ -22,20 +22,8 @@ public class Edge {
 		this.owner = owner;
 	}
 
-	public Node getNode1() {
-		return node1;
-	}
-
-	public void setNode1(Node node1) {
-		this.node1 = node1;
-	}
-
-	public Node getNode2() {
-		return node2;
-	}
-
-	public void setNode2(Node node2) {
-		this.node2 = node2;
+	public Node[] getNodes(){
+		return this.nodes;
 	}
 
 	public boolean isRoad() {
