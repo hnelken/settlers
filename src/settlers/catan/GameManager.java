@@ -20,7 +20,7 @@ public class GameManager {
 		this.players = players;
 		gameOver = false;
 		winner = null;
-
+		deck = new Deck();
 		turn = (int) (players.length * Math.random());
 
 		turn = (int)(players.length * Math.random());

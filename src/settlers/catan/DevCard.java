@@ -45,16 +45,18 @@ public class DevCard {
 	}
 
 	public void play(){
-		if (type == Type.TROOPER){
-			trooperPlay();
-		}
-		else if (type == Type.SANDSTORM){
-		}
-		else if (type == Type.SANDCRAWLER){
-		}
-		else if (type == Type.BLUEHARVEST){
-		}
-		else if (type == Type.VP){
+		switch (type) {
+			case TROOPER:
+				trooperPlay();
+				break;
+			case SANDSTORM:
+				break;
+			case SANDCRAWLER:
+				break;
+			case BLUEHARVEST:
+				break;
+			case VP:
+				break;
 		}
 	}
 
