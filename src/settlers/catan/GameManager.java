@@ -66,10 +66,11 @@ public class GameManager {
 	}
 
 	private void takePlayerActionInput() {
-		Scanner scan = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("What do you want to do?");
 		System.out.println("Build? Play? End?");
-		String input = scan.nextLine();
+		String input = scanner.nextLine();
+		scanner.close();
 		input = input.toLowerCase();
 		switch (input) {
 		case "build":
