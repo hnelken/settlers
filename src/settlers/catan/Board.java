@@ -1,10 +1,12 @@
 package settlers.catan; 
 
 public class Board {
-
+	
+	private GameManager manager;
 	private Tile[] tiles;
 
-	public Board() {
+	public Board(GameManager manager) {
+		this.manager = manager;
 		tiles = new Tile[19];
 		Resource[] resources = getTileTypes();
 		int[] nums = getTileNum(resources);
