@@ -8,16 +8,8 @@ public class Player {
 	
 	private int number;
 	
-	private int moisture;
-	
-	private int blueMilk;
-	
-	private int durasteel;
-	
-	private int adobe;
-	
-	private int bantha;
-	
+	private int[] resources = new int[5];
+			
 	private int victoryPoints;
 	
 	private int trooperCount;
@@ -27,11 +19,9 @@ public class Player {
 	public Player (String name, int number){
 		this.name = name;
 		this.number = number;
-		this.moisture = 0;
-		this.blueMilk = 0;
-		this.durasteel = 0;
-		this.adobe = 0;
-		this.bantha = 0;
+		for (int i : resources){
+			resources[i] = 0;
+		}
 		this.victoryPoints = 0;
 		this.trooperCount = 0;
 		this.hand = new ArrayList<DevCard>(0);
@@ -53,46 +43,18 @@ public class Player {
 		this.number = number;
 	}
 
-	public int getMoisture() {
-		return moisture;
+	public int getResource(int i){
+		return resources[i];
 	}
-
-	public void setMoisture(int moisture) {
-		this.moisture = moisture;
+	
+	public void addResource(int i){
+		resources[i]++;
 	}
-
-	public int getBlueMilk() {
-		return blueMilk;
+	
+	public void addResource(int i, int n){
+		resources[i] = resources[i] + n;
 	}
-
-	public void setBlueMilk(int blueMilk) {
-		this.blueMilk = blueMilk;
-	}
-
-	public int getDurasteel() {
-		return durasteel;
-	}
-
-	public void setDurasteel(int durasteel) {
-		this.durasteel = durasteel;
-	}
-
-	public int getAdobe() {
-		return adobe;
-	}
-
-	public void setAdobe(int adobe) {
-		this.adobe = adobe;
-	}
-
-	public int getBantha() {
-		return bantha;
-	}
-
-	public void setBantha(int bantha) {
-		this.bantha = bantha;
-	}
-
+	
 	public int getVictoryPoints() {
 		return victoryPoints;
 	}
