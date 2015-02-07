@@ -43,7 +43,7 @@ public class GameManager {
 		 * 4. Repeat from Step 3
 		 */
 
-		while (state != GameState.GAMEOVER) {
+		while (!gameOver) {
 			/* Take Turn */
 			//Roll Dice
 			int roll = diceRoll();
@@ -113,6 +113,8 @@ public class GameManager {
 		for (int i = 0; i < players.length; i++) {
 			if (players[i].getVictoryPoints() == 10) {
 				state = GameState.GAMEOVER;
+				gameOver = true;
+				winner = players[i];
 			}
 		}
 	}
