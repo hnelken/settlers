@@ -5,6 +5,7 @@ public class Board {
 	private Tile[] tiles;
 
 	public Board() {
+		tiles = new Tile[19];
 		Resource[] resources = getTileTypes();
 		int[] nums = getTileNum(resources);
 		for (int j = 0; j < 19; j++) {
