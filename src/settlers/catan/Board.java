@@ -12,7 +12,7 @@ public class Board {
     Resource[] resources = getTileTypes();
     int[] nums = getTileNum(resources);
     int[][] vRel = {{4,8,12,7,3},{5,10,15,9,4},{6,12,17,11,5},{6,11,13,10,5},{5,9,12,8,4}};
-    int[] tLeft = {0,7,16,29,40};
+    int[] tLeft = {0,7,16,28,39};
     int[] num = {3,4,5,4,3};
     int count = 0;
     for (int i = 0; i < num.length; i++){
@@ -37,7 +37,7 @@ public class Board {
     for (int j = 0; j < numOfTypes.length; j++){
       for (int i = 0; i < numOfTypes[j]; i++){
         index = (int)(19*Math.random());
-        while (tileTypes[index] == null)
+        while (tileTypes[index] != null)
           index = (int)(19*Math.random());
         tileTypes[index] = typeList[j];
       }
@@ -50,7 +50,7 @@ public class Board {
     int[] tileNum = new int[19];
     for (int k = 2; k <= 12; k++){
       index = (int)(19*Math.random());
-      while (tileNum[index] != 0 || tileTypes[index] != null)
+      while (tileNum[index] != 0 || tileTypes[index] == null)
         index = (int)(19*Math.random());
       tileNum[index] = k;
     }
