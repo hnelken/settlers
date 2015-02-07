@@ -37,16 +37,29 @@ public class GameManager {
 		 */
 		
 		while (state != GameState.GAMEOVER) {
-			//Take Turn
+		/* Take Turn */
+			//Roll Dice
 			int roll = diceRoll();
+			
+			//Dole out resources
 			distributeResources(roll);
 			
-			//Check for 10 VP
+			//Free Choice
+			
+			//End Turn
+			
+		//Check for 10 VP
 			checkForWin();
 			
-			//Change player turn
+		//Change player turn
 			nextPlayer();
 		}
+	}
+
+	private int diceRoll() {
+		int firstRoll = (int) (5 * Math.random()) + 1;
+		int secondRoll = (int) (5 * Math.random()) + 1;
+		return firstRoll + secondRoll;
 	}
 	
 	private void distributeResources(int roll) {
@@ -64,10 +77,8 @@ public class GameManager {
 		}
 	}
 	
-	private int diceRoll() {
-		int firstRoll = (int) (5 * Math.random()) + 1;
-		int secondRoll = (int) (5 * Math.random()) + 1;
-		return firstRoll + secondRoll;
+	private void endTurn() {
+		
 	}
 	
 	private void checkForWin() {
