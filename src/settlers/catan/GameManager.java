@@ -13,6 +13,7 @@ public class GameManager {
 	private int turn;
 	private boolean gameOver;
 	private GameState state;
+	private Deck deck;
 	private enum GameState {
 		PLAYERTURNROLL, PLAYERTURNCHOICE, WINCHECK, GAMEOVER
 	}
@@ -128,7 +129,9 @@ public class GameManager {
 		}
 	}
 	
-	 public void play(int i){
+	
+	//player can play card in his/her hand
+	public void play(int i){
 		  if (players[turn].getHand().get(i).getType() == Type.TROOPER){
 		    this.trooperPlay();
 		  } else if (players[turn].getHand().get(i).getType() == Type.SANDSTORM){
@@ -164,6 +167,8 @@ public class GameManager {
 			 
 		 }
 
+		 
+		 //move the smuggler around
 		 private void moveSmuggler(){
 		 
 		 }
