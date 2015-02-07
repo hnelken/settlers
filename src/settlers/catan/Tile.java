@@ -1,7 +1,7 @@
 package settlers.catan;
 
 public class Tile{
-  private Node[] corners;
+  private Node[] corners; //Order is {NE, NW, W, SW, SE, E}
   private int resourceType;
   private int rollNum;
   
