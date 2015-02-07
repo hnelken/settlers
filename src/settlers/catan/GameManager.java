@@ -20,7 +20,7 @@ public class GameManager {
 		this.players = players;
 		gameOver = false;
 		winner = null;
-
+		deck = new Deck();
 		turn = (int) (players.length * Math.random());
 
 		turn = (int)(players.length * Math.random());
@@ -70,19 +70,20 @@ public class GameManager {
 		System.out.println("What do you want to do?");
 		System.out.println("Build? Play? End?");
 		String input = scanner.nextLine();
-		scanner.close();
-		input = input.toLowerCase();
+		input = input.toUpperCase();
 		switch (input) {
-		case "build":
+		case "BUILD":
 			break;
-		case "play":
+		case "PLAY":
 			break;
-		case "end":
+		case "END":
 			break;
 		default:
 			System.out.println("Invalid input!");
-			takePlayerActionInput();
+			//takePlayerActionInput();
 		}
+
+		scanner.close();
 	}
 
 	private int diceRoll() {

@@ -44,6 +44,29 @@ public class DevCard {
 		this.owner = null;
 	}
 
+<<<<<<< HEAD
+=======
+	public void play(){
+		switch (type) {
+			case TROOPER:
+				trooperPlay();
+				break;
+			case SANDSTORM:
+				break;
+			case SANDCRAWLER:
+				break;
+			case BLUEHARVEST:
+				break;
+			case VP:
+				break;
+		}
+	}
+
+	private void trooperPlay(){
+
+	}
+
+>>>>>>> 77f322c903e855909b24541f13efe00d20c36eae
 	public Player getOwner() {
 		return owner;
 	}
