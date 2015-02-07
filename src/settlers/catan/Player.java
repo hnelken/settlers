@@ -4,8 +4,6 @@ import java.util.*;
 
 public class Player {
 
-	public GameManager manager;
-
 	private String name;
 
 	private int number;

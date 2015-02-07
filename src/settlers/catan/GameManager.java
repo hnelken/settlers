@@ -18,7 +18,7 @@ public class GameManager {
 	}
 
 	public GameManager(Player[] players) {
-		gameBoard = new Board();
+		gameBoard = new Board(this);
 		this.players = players;
 		gameOver = false;
 		winner = null;
@@ -142,7 +142,10 @@ public class GameManager {
 			turn++;
 		}
 	}
-
+	
+	public Player getCurrPlayer(){
+		return players[turn];
+	}
 
 	//player can play card in his/her hand
 	public void play(int i){

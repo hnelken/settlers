@@ -1,11 +1,14 @@
 package settlers.catan;
 import java.util.*;
 
+
 import javax.swing.*;
 import BreezySwing.*;
 
 public class Node extends JButton{
 
+	public GameManager manager;
+	
 	private static final long serialVersionUID = -801472214232276956L;
 
 	public enum NodeStatus {
@@ -22,6 +25,7 @@ public class Node extends JButton{
 		owner = null;
 		status = NodeStatus.EMPTY;
 		this.setEnabled(false);
+		edges = new ArrayList<Edge>(3);
 	}
 
 	public void settle(Player settler) {
@@ -100,6 +104,10 @@ public class Node extends JButton{
 	}
 
 	public void buttonClicked(JButton btn){
-		
+		if (status == NodeStatus.EMPTY)
+			settle(manager.getCurrPlayer());
+		if (status == NodeStatus.CITY){
+			this.upgrade();
+		}
 	}
 }
