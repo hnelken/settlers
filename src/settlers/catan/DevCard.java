@@ -7,7 +7,7 @@ public class DevCard {
 	private boolean playable;
 	private String name;
 	
-	public static enum Type {
+	public enum Type {
 		TROOPER, VP, SANDSTORM, SANDCRAWLER, BLUEHARVEST
 	}
 	
@@ -15,27 +15,32 @@ public class DevCard {
 	
 	// constructors
 	
-<<<<<<< HEAD
 	public DevCard(Type type) {
-		setOwner(null);
+		this.owner = null;
 		if (type == Type.TROOPER){
-			this.name = "Stormtrooper";
+			this.setName("Stormtrooper");
 		} else if (type == Type.SANDSTORM){
-			this.name = "Sandstorm";
+			this.setName("Sandstorm");
 		} else if (type == Type.SANDCRAWLER){
-			this.name = "Sandcrawler";
+			this.setName("Sandcrawler");
 		} else if (type == Type.BLUEHARVEST){
-			this.name = "Blue Harvest";
+			this.setName("Blue Harvest");
 		}
+		this.setPlayable(false);
 	}
 	
 	public DevCard(String name){
-		this.name = name;
+		this.setName(name);
 		this.type = Type.VP;
 	}
 	
 	public void play(){
-		
+		if (type == Type.TROOPER){
+		} else if (type == Type.SANDSTORM){
+		} else if (type == Type.SANDCRAWLER){
+		} else if (type == Type.BLUEHARVEST){
+		} else if (type == Type.VP){
+		}
 	}
 
 	public Player getOwner() {
@@ -53,10 +58,21 @@ public class DevCard {
 	public void setType(Type type) {
 		this.type = type;
 	}
-=======
-	public abstract Player getOwner() ;
 
-	public abstract void setOwner(Player owner) ;
->>>>>>> 1d349e449fb4860fae0117a8547109e365460918
+	public boolean isPlayable() {
+		return playable;
+	}
+
+	public void setPlayable(boolean playable) {
+		this.playable = playable;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 }
