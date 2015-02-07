@@ -1,7 +1,12 @@
 package settlers.catan;
 import java.util.*;
 
-public class Node {
+import javax.swing.*;
+import BreezySwing.*;
+
+public class Node extends JButton{
+
+	private static final long serialVersionUID = -801472214232276956L;
 
 	public enum NodeStatus {
 		EMPTY, SETTLEMENT, CITY;
@@ -16,6 +21,7 @@ public class Node {
 	public Node() {
 		owner = null;
 		status = NodeStatus.EMPTY;
+		this.setEnabled(false);
 	}
 
 	public void settle(Player settler) {
@@ -93,4 +99,7 @@ public class Node {
 		return edges;
 	}
 
+	public void buttonClicked(JButton btn){
+		
+	}
 }
