@@ -45,7 +45,12 @@ public class GameManager {
 			//Change player turn
 			nextPlayer();
 		}
-		
+	}
+	
+	private int diceRoll() {
+		int firstRoll = (int) (5 * Math.random()) + 1;
+		int secondRoll = (int) (5 * Math.random()) + 1;
+		return firstRoll + secondRoll;
 	}
 	
 	private void checkForWin() {
