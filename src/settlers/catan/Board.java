@@ -50,7 +50,7 @@ public class Board {
     int[] tileNum = new int[19];
     for (int k = 2; k <= 12; k++){
       index = (int)(19*Math.random());
-      while (tileNum[index] != 0 || tileTypes[index] == null)
+      while (tileNum[index] != 0 || tileTypes[index] != null)
         index = (int)(19*Math.random());
       tileNum[index] = k;
     }
