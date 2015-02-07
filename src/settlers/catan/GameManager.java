@@ -38,12 +38,29 @@ public class GameManager {
 		
 		while (state != GameState.GAMEOVER) {
 			//Take Turn
+			int roll = diceRoll();
+			distributeResources(roll);
 			
 			//Check for 10 VP
 			checkForWin();
 			
 			//Change player turn
 			nextPlayer();
+		}
+	}
+	
+	private void distributeResources(int roll) {
+		Tile[] tiles = gameBoard.getTiles();
+		for (int tile = 0; tile < tiles.length; tile++) {
+			if (tiles[tile].rollNum() == roll) {
+				Node[] corners = tiles[tile].getCorners();
+				for (int corner = 0; corner < corners.length; corner++) {
+					Player owner = corners[corner].getOwner();
+					if (null != owner) {
+						owner.addResource(tiles[tile].getResourceType());
+					}
+				}
+			}
 		}
 	}
 	
