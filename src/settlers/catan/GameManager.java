@@ -1,10 +1,7 @@
 package settlers.catan;
 
-<<<<<<< HEAD
 import settlers.catan.DevCard.Type;
-=======
 import java.util.Scanner;
->>>>>>> 02d1b7bae7df36a299183182e820af88d07e982f
 
 public class GameManager {
 	
@@ -23,11 +20,8 @@ public class GameManager {
 		this.players = players;
 		gameOver = false;
 		winner = null;
-<<<<<<< HEAD
 		turn = (int) (players.length * Math.random());
-=======
 		turn = (int)(players.length * Math.random());
->>>>>>> 02d1b7bae7df36a299183182e820af88d07e982f
 		state = GameState.PLAYERTURNROLL;
 	}
 	
