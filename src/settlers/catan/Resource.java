@@ -1,5 +1,5 @@
-public class Resource{
-  public enum Types{
+package settlers.catan;
+
+public enum Resource {
     MOISTURE, BLUEMILK, DURASTEEL, ADOBE, BANTHA;
-  };
 }

@@ -62,9 +62,7 @@ public class DevCard {
 	public void setType(Type type) {
 		this.type = type;
 	}
-<<<<<<< HEAD
-=======
-
+	
 	public boolean isPlayable() {
 		return playable;
 	}
@@ -80,6 +78,4 @@ public class DevCard {
 	public void setName(String name) {
 		this.name = name;
 	}
->>>>>>> 5ea668d8b5cecba2279e8b169573fc03544e152f
-	
 }

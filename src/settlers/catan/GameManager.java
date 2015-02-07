@@ -51,7 +51,7 @@ public class GameManager {
 	private void checkForWin() {
 		for (int i = 0; i < players.length; i++) {
 			if (players[i].getVictoryPoints() == 10) {
-				
+				state = GameState.GAMEOVER;
 			}
 		}
 	}
