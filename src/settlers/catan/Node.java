@@ -29,6 +29,12 @@ public class Node {
 		status = NodeStatus.CITY;
 	}
 	
+	public void addEdge(Edge edge) {
+		
+	}
+	/**
+	 * Decides if this node is available for settlement by a given player
+	 */
 	public void availabilityCheck(Player currPlayer) {
 		for (int edge = 0; edge < edges.size(); edge++) {
 			Edge e = edges.get(edge);
