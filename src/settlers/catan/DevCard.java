@@ -3,10 +3,12 @@ package settlers.catan;
 public abstract class DevCard {
 	
 	// fields
-	Player owner;
+	private Player owner;
 	
 	// constructors
 	
-	public DevCard()
+	public DevCard() {
+		owner = null;
+	}
 	
 }

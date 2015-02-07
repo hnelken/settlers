@@ -1,11 +1,11 @@
 package settlers.catan;
 
-public class Tile{
+public class Tile {
   private Node[] corners; //Order is {NE, NW, W, SW, SE, E}
   private int resourceType;
   private int rollNum;
   
-  public Tile(Node[] corners, int resourceType, int rollNum){
+  public Tile(Node[] corners, int resourceType, int rollNum) {
     this.corners = corners;
     this.resourceType = resourceType;
     this.rollNum = rollNum;
