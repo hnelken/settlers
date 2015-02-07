@@ -4,6 +4,8 @@ import java.awt.*;
 import BreezyGUI.*;
 
 public class ResourcePicker extends GBFrame {
+	
+	private static final long serialVersionUID = 1L;
 	// fields
 	Button[] buttons = new Button[5];
 
