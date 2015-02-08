@@ -1,6 +1,5 @@
 package settlers.catan;
 
-import java.awt.*;
 import BreezySwing.*;
 import javax.swing.*;
 
@@ -20,11 +19,11 @@ public class ResourcePicker extends GBFrame {
 	public ResourcePicker(GameManager manager, PickerType type, String message) {
 		this.manager = manager;
 		this.type = type;
-		JLabel msg = addLabel(message, 1, 1, 400, 50);
+		addLabel(message, 1, 1, 5, 1);
 		setSize(600, 300);
 		String[] str = {"Adobe", "Bantha", "Blue Milk", "Moisture", "Durasteel"};
 		for (int i = 0; i < 5; i++) {
-			buttons[i] = addButton("", 2, i + 1, 300, 300);
+			buttons[i] = addButton("", 2, i + 1, 1, 1);
 			String filename = str[i]+".jpg";
 			buttons[i].setIcon(new ImageIcon(filename));
 			new JLabel(str[i]);
