@@ -27,6 +27,7 @@ public class ResourcePicker extends GBFrame {
 			String filename = str[i]+".jpg";
 			buttons[i].setIcon(new ImageIcon(filename));
 			new JLabel(str[i]);
+			
 		}
 		setVisible(true);
 	}
