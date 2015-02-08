@@ -137,6 +137,8 @@ public class GameManager {
 	private void stdLogic() {
 			/* Take Turn */
 			//Roll Dice
+			this.getBoard().messageBox("It's " + players[turn].getName() + "'s turn!");
+		
 			int roll = diceRoll();
 			
 			if (roll == 7){
