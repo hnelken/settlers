@@ -56,7 +56,7 @@ public class GameManager {
 		}
 		gameBoard.clickList = new ArrayList<Clickable>(Arrays.asList(gameBoard.getNodes()));
 		firstTurn = 0;
-		gameBoard.setPlayer(getFirstPlayer().getName());
+		this.getBoard().messageBox("It's " + players[turn].getName() + "'s turn!");
 		startLogicSettle();
 	}
 	
@@ -120,6 +120,8 @@ public class GameManager {
 	}
 	
 	private void setupNextPlayer() {
+		this.getBoard().messageBox("It's going to be " + getFirstPlayer().getName() + "'s turn!");
+		
 		ArrayList<Clickable> clickList = new ArrayList<Clickable>();
 		
 		System.out.println(firstTurnOrder[firstTurn].getName());
@@ -130,13 +132,13 @@ public class GameManager {
 			}
 		}
 		gameBoard.clickList = clickList;
-		gameBoard.setPlayer(getFirstPlayer().getName());
 		startLogicSettle();
 	}
 	
 	private void stdLogic() {
 			/* Take Turn */
 			//Roll Dice
+		
 			int roll = diceRoll();
 			
 			if (roll == 7){
@@ -247,7 +249,7 @@ public class GameManager {
 		else {
 			turn++;
 		}
-		gameBoard.setPlayer(getCurrPlayer().getName());
+		this.getBoard().messageBox("It's " + getCurrPlayer().getName() + "'s turn!");
 	}
 	
 	public Player getFirstPlayer() {
