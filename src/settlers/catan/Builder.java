@@ -47,20 +47,8 @@ public class Builder extends GBFrame {
 				gManager.getBoard().clickList = new ArrayList<Clickable>();
 				for (int i = 0; i < 72; i++){
 					Edge e = gManager.getBoard().getEdges()[i];
-					if (e.getOwner() != null || 
-					   (e.getNodes()[0].getOwner() != null && e.getNodes()[0].getOwner() != gManager.getCurrPlayer())||
-					   (e.getNodes()[1].getOwner() != null && e.getNodes()[1].getOwner() != gManager.getCurrPlayer())){
-						boolean road = (e.getNodes()[0].getOwner() == gManager.getCurrPlayer()
-								||e.getNodes()[1].getOwner() == gManager.getCurrPlayer());
-						for (Node n : e.getNodes()){
-							for (Edge e2: n.getEdges()){
-								if (e2.getOwner() == gManager.getCurrPlayer())
-									road = true;
-							}
-						}
-						if (road){
+					if (e.canBeRoad(gManager.getCurrPlayer())){
 							gManager.getBoard().clickList.add((Clickable)e);
-						}
 					}
 				}
 				if (!gManager.getBoard().clickList.isEmpty()){
