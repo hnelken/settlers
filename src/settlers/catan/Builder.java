@@ -8,10 +8,12 @@ public class Builder extends GBFrame {
 	// fields
 	private static final long serialVersionUID = 1L;
 	private JButton buildRoad, buildSettlement, buildCity, buildDevCard;
+	private GameManager gManager;
 	
 	// constructor
-	public Builder() {
+	public Builder(GameManager gManager) {
 		setSize(300, 400);
+		this.gManager = gManager;
 		buildRoad = addButton("Road", 1, 1, 200, 50);
 		buildSettlement = addButton("Settlement", 2, 1, 200, 50);
 		buildCity = addButton("Upgrade to City", 3, 1, 200, 50);
@@ -30,7 +32,7 @@ public class Builder extends GBFrame {
 		} else if (btn == buildCity) {
 			
 		} else if (btn == buildDevCard) {
-			
+			gManager.getDeck().draw(gManager.getCurrPlayer());
 		} else // cancel
 			dispose();
 	}
