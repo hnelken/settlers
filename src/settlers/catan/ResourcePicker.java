@@ -8,12 +8,15 @@ public class ResourcePicker extends GBFrame {
 	
 	// fields
 	private static final long serialVersionUID = 1L;
-	private Player who;
+	private GameManager manager;
+	private DevCard.Type type;
 	private JButton[] buttons = new JButton[5];
 
 	// constructor
-	public ResourcePicker(Player who) {
-		this.who = who;
+	public ResourcePicker(GameManager manager, DevCard.Type type) {
+		this.manager = manager;
+		this.type = type;
+		setSize(600, 300);
 		String[] str = {"Adobe", "Bantha", "Blue Milk", "Moisture", "Durasteel"};
 		for (int i = 0; i < 5; i++) {
 			buttons[i] = new JButton();
@@ -21,21 +24,26 @@ public class ResourcePicker extends GBFrame {
 			buttons[i].setIcon(new ImageIcon(filename));
 			new JLabel(str[i]);
 		}
+		setVisible(true);
 	}
 
 	// methods
 
 	public void buttonClicked(JButton btn) {
+		// Determine resource type
+		Resource res;
 		if (btn == buttons[0]) // adobe
-			return;
+			res = Resource.ADOBE;
 		else if (btn == buttons[1]) // bantha
-			return;
+			res = Resource.BANTHA;
 		else if (btn == buttons[2]) // blue milk
-			return;
+			res = Resource.BLUEMILK;
 		else if (btn == buttons[3]) // moisture
-			return;
-		else	// durasteel
-			return;
+			res = Resource.MOISTURE;
+		else // durasteel
+			res = Resource.DURASTEEL;
+		// Report resource chosen to game manager class
+		manager.resourceChosen(res, type);
 	}
 
 }
