@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import BreezySwing.MessageBox;
 
+import javax.swing.JButton;
 public class GameManager {
 
 	//fields
@@ -27,7 +28,7 @@ public class GameManager {
 		this.players = players;
 		gameOver = false;
 		winner = null;
-		deck = new Deck();
+		deck = new Deck(this);
 		turn = (int)(players.length * Math.random());
 		Tile desert = null;
 		for (int i = 0; i < gameBoard.getTiles().length; i++) {
@@ -218,8 +219,15 @@ public class GameManager {
 	}
 
 	private void trooperPlay(){
-		this.moveSmuggler(null);
 		players[turn].addTrooper();
+		for (JButton b : getBoard().getButtons()){
+			b.setEnabled(false);
+		}
+		getBoard().clickList = new ArrayList<Clickable>();
+		for (Tile t : getBoard().getTiles()){
+			if (t != getSmuggler().getLocation())
+				getBoard().clickList.add(t);
+		}
 	}
 
 	private void vpPlay(){
@@ -231,7 +239,17 @@ public class GameManager {
 	}
 
 	private void sandcrawlerPlay(){
-		
+		for (JButton b : getBoard().getButtons()){
+			b.setEnabled(false);
+		}
+		getCurrPlayer().modifyResource(Resource.ADOBE, 2);
+		getCurrPlayer().modifyResource(Resource.BANTHA, 2);
+		getBoard().doubleClick = true;
+		getBoard().clickList = new ArrayList<Clickable>();
+		for (Edge e : getBoard().getEdges()){
+			if (e.canBeRoad(getCurrPlayer()))
+				getBoard().clickList.add(e);
+		}
 	}
 
 	private void sandstormPlay(Resource resource){
@@ -275,4 +293,7 @@ public class GameManager {
 		return gameBoard;
 	}
 
+	private Smuggler getSmuggler(){
+		return smuggler;
+	}
 }

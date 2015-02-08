@@ -55,9 +55,9 @@ public class DevCard {
 			case TROOPER:
 				trooperPlay();
 				break;
-			case SANDSTORM:
-				break;
 			case SANDCRAWLER:
+				break;
+			case SANDSTORM:
 				break;
 			case TWINSUNS:
 				break;

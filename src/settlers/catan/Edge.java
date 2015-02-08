@@ -53,4 +53,21 @@ public class Edge extends Clickable {
 		owner.modifyResource(Resource.BANTHA, -1);
 	}
 	
+	public boolean canBeRoad(Player player){
+		boolean road = false;
+		if (getOwner() != null || 
+				(getNodes()[0].getOwner() != null && getNodes()[0].getOwner() != nodes[0].manager.getCurrPlayer())||
+				(getNodes()[1].getOwner() != null && getNodes()[1].getOwner() != nodes[0].manager.getCurrPlayer())){
+			road = getNodes()[0].getOwner() == nodes[0].manager.getCurrPlayer()
+					||getNodes()[1].getOwner() == nodes[0].manager.getCurrPlayer();
+			for (Node n : getNodes()){
+				for (Edge e2: n.getEdges()){
+					if (e2.getOwner() == nodes[0].manager.getCurrPlayer())
+						road = true;
+				}
+			}
+		}
+		return road;
+	}
+
 }
