@@ -1,39 +1,41 @@
 package settlers.catan; 
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import BreezySwing.*;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
+import BreezySwing.*;
 
 public class Board extends GBFrame {
 
+	// fields
+	public ArrayList<Clickable> clickList = new ArrayList<Clickable>();
+	public boolean doubleClick = false;
+	public Clickable lastClicked = null;
+	private static final long serialVersionUID = 1L;
 	private GameManager manager;
 	private Tile[] tiles;
 	private Node[] nodes;
 	private Edge[] edges;
-	private JButton[] buttons = new JButton[4];	
+	private JButton[] buttons = new JButton[4];
 
-	public ArrayList<Clickable> clickList = new ArrayList<Clickable>();
-	public boolean doubleClick = false;
-	public Clickable lastClicked = null;
-
+	// constructor
 	public Board(GameManager manager) {
+		// paint background
+		add(new JLabel(new ImageIcon("GAMEBOARDNEW.jpg")));
+		// initialize other GUI elements
+		buttons[0] = addButton("Trade", 4, 5, 1, 1);
+		buttons[1] = addButton("Build", 5, 5, 1, 1);
+		buttons[2] = addButton("Play Card", 6, 5, 1, 1);
+		buttons[3] = addButton("End Turn", 7, 5, 1, 1);
 		buttons[0] = addButton("Trade", 20, 5, 1, 1);
 		buttons[1] = addButton("Build", 21, 5, 1, 1);
 		buttons[2] = addButton("Play Card", 22, 5, 1, 1);
 		buttons[3] = addButton("End Turn", 23, 5, 1, 1);
 
-		GBPanel panel = addPanel(new GBPanel(){
-			public void mouseClicked(int x, int y){
+		addPanel(new GBPanel() {
+			private static final long serialVersionUID = 1L;
+			public void mouseClicked(int x, int y) {
 				Board.this.clickLoc(x,y);
-			};
+			}
 		}, 1, 1, 1, 1);
 		this.manager = manager;
 		tiles = new Tile[19];
@@ -251,6 +253,8 @@ public class Board extends GBFrame {
 			nodes[i].addEdge(edg);
 			nodes[i-6].addEdge(edg);
 		}
+		// finish constructing gui
+		this.setSize(1296, 880);
 		this.setSize(1366, 768);
 		this.setVisible(true);
 	}
