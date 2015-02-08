@@ -33,7 +33,7 @@ public class HandViewer extends GBFrame {
 			// title label at the top
 			titles[i] = addLabel(hand.get(i).getName(), 2, i+1, 300, 50);
 			buttons.set(i, addButton("", 3, i+1, 300, 300));
-			buttons.get(i).setIcon(hand.getImage());
+			buttons.get(i).setIcon(hand.get(i).getImage());
 			descriptions[i] = addTextArea(hand.get(i).getDescription(), 4, i+1, 300, 100);
 			descriptions[i].setEditable(false);  
 		}
@@ -43,7 +43,7 @@ public class HandViewer extends GBFrame {
 	
 	public void buttonClicked(JButton btn){
 		int index = buttons.indexOf(btn);
-		owner.getHand().get(index).play();
+		manager.play(index);
 		this.dispose();
 	}
 }
