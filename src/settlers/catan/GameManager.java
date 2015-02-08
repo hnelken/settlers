@@ -32,9 +32,10 @@ public class GameManager {
 		}
 		smuggler = new Smuggler(desert);
 		state = GameState.PLAYERTURNROLL;
+		logic();
 	}
 
-	public void logic() {
+	private void logic() {
 		while (!gameOver) {
 			/* Take Turn */
 			//Roll Dice
