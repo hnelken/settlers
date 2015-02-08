@@ -1,5 +1,7 @@
 package settlers.catan; 
 
+import java.util.ArrayList;
+
 import BreezySwing.*;
 
 import javax.swing.*;
@@ -10,6 +12,7 @@ public class Board extends GBFrame{
 	private Tile[] tiles;
 	private Node[] nodes;
 	private Edge[] edges;
+<<<<<<< HEAD
 	private JButton[] buttons = new JButton[4];
 
 	public Board(GameManager manager) {
@@ -20,6 +23,16 @@ public class Board extends GBFrame{
 		buttons[3] = new JButton("End Turn", x, y, z, g);
 
 		GBPanel panel = addPanel(new GBPanel(), 1, 1, 1, 1);
+=======
+	public ArrayList<Clickable> clickList;
+
+	public Board(GameManager manager) {
+		GBPanel panel = addPanel(new GBPanel(){
+			public void mouseClicked(int x, int y){
+				Board.this.clickLoc(x,y);
+			};
+		}, 1, 1, 1, 1);
+>>>>>>> 5f3341105fde40aa171f65b3343dba16c4495d00
 		this.manager = manager;
 		tiles = new Tile[19];
 		Resource[] resources = getTileTypes();
@@ -282,6 +295,7 @@ public class Board extends GBFrame{
 		return tileNum;
 	}
 	
+<<<<<<< HEAD
 	public void buttonClicked(JButton btn){
 		if (btn == buttons[0]) 
 			trade();
@@ -303,5 +317,15 @@ public class Board extends GBFrame{
 	
 	
 	
+=======
+	public void clickLoc(int x, int y){
+		for (Clickable c : clickList){
+			if (c.isInRange(x, y)){
+				c.doOnClick();
+				clickList = null;
+			}
+		}
+	}
+>>>>>>> 5f3341105fde40aa171f65b3343dba16c4495d00
 
 }
