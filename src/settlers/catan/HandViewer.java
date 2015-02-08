@@ -1,45 +1,49 @@
 package settlers.catan;
 
+import BreezySwing.*;
 import java.awt.*;
+import javax.swing.*;
 import java.util.ArrayList;
 
-import BreezySwing.*;
+public class HandViewer extends GBFrame {
 
-import javax.swing.*;
-
-public class HandViewer extends GBFrame{
-
-	private static final long serialVersionUID = -7598119143708364123L;
-	private Player owner;
+	//fields
+	
+	private static final long serialVersionUID = 1L;
 	private GameManager manager;
-	private ArrayList<DevCard> hand;
-	private JButton[] buttons;
-	private JLabel[] labels;
-	private JLabel[] descriptions;
+	private Player owner;
+	private ArrayList<JButton> buttons;
+	private JLabel[] titles;
+	private JTextArea[] descriptions;
+	
+	// constructors
 	
 	public HandViewer(GameManager manager){
-		
+		// set fields
 		this.manager = manager;
-		this.owner = manager.getCurrPlayer();
-		this.hand = owner.getHand();
-		this.buttons = new JButton[25];
-		this.setSize(500, 600);
-		this.setVisible(true);
-        		
+		owner = manager.getCurrPlayer();
+		ArrayList<DevCard> hand = owner.getHand();
+		// initialize GUI element arrays
+		buttons = new ArrayList<JButton>(hand.size());
+		titles = new JLabel[hand.size()];
+		descriptions = new JTextArea[hand.size()];
+		// instantiate individual GUI elements
+		addLabel("Click a card to play it:", 1, 1, 300, 50);
 		for (int i = 0; i < hand.size(); i++) {
-			buttons[i] = new JButton();
-			String filename = str[i]+".jpg";
-			buttons[i].setIcon(new ImageIcon(filename));
-			new JLabel(str[i]);
+			// title label at the top
+			titles[i] = addLabel(hand.get(i).getName(), 2, i+1, 300, 50);
+			buttons.set(i, addButton("", 3, i+1, 300, 300));
+			buttons.get(i).setIcon(hand.getImage());
+			descriptions[i] = addTextArea(hand.get(i).getDescription(), 4, i+1, 300, 100);
+			descriptions[i].setEditable(false);  
 		}
+		setSize(500, 600);
+		setVisible(true);
 	}
 	
 	public void buttonClicked(JButton btn){
-		for (int i = 0; i > 25; i++){
-			if (btn == buttons[i]){
-				manager.play(i);
-			}
-		}
+		int index = buttons.indexOf(btn);
+		owner.getHand().get(index).play();
 		this.dispose();
 	}
 }
