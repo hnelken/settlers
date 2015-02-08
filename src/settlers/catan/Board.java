@@ -21,15 +21,6 @@ public class Board extends GBFrame {
 	public Board(GameManager manager) {
 		// paint background
 		add(new JLabel(new ImageIcon("GAMEBOARDNEW.jpg")));
-		// initialize other GUI elements
-		buttons[0] = addButton("Trade", 4, 5, 1, 1);
-		buttons[1] = addButton("Build", 5, 5, 1, 1);
-		buttons[2] = addButton("Play Card", 6, 5, 1, 1);
-		buttons[3] = addButton("End Turn", 7, 5, 1, 1);
-		buttons[0] = addButton("Trade", 20, 5, 1, 1);
-		buttons[1] = addButton("Build", 21, 5, 1, 1);
-		buttons[2] = addButton("Play Card", 22, 5, 1, 1);
-		buttons[3] = addButton("End Turn", 23, 5, 1, 1);
 
 		addPanel(new GBPanel() {
 			private static final long serialVersionUID = 1L;
