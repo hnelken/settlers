@@ -35,6 +35,12 @@ public class Builder extends GBFrame {
 		setVisible(true);
 	}
 	
+	public Builder(GameManager gManager,boolean dev){
+		for (JButton b : gManager.getBoard().getButtons()){
+			b.setEnabled(false);
+		}
+	}
+	
 	// methods
 	
 	public void buttonClicked(JButton btn) {
