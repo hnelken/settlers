@@ -49,7 +49,6 @@ public class GameManager {
 
 			//Free Choice
 			state = GameState.PLAYERTURNCHOICE;
-			takePlayerActionInput();
 			//End Turn
 			endTurn();
 			//Check for 10 VP
@@ -59,26 +58,6 @@ public class GameManager {
 			//Change player turn
 			nextPlayer();
 		}
-	}
-	private void takePlayerActionInput() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("What do you want to do?");
-		System.out.println("Build? Play? End?");
-		String input = scanner.nextLine();
-		input = input.toUpperCase();
-		switch (input) {
-		case "BUILD":
-			break;
-		case "PLAY":
-			break;
-		case "END":
-			break;
-		default:
-			System.out.println("Invalid input!");
-			//takePlayerActionInput();
-		}
-
-		scanner.close();
 	}
 
 	private int diceRoll() {
@@ -138,11 +117,12 @@ public class GameManager {
 		if (players[turn].getHand().get(i).getType() == DevCard.Type.TROOPER){
 			this.trooperPlay();
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDSTORM){
-			ResourcePicker picker = new ResourcePicker(this, DevCard.Type.SANDSTORM);
+			ResourcePicker picker = new ResourcePicker(this, DevCard.Type.SANDSTORM, "Pick a resource to monopolize.");
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDCRAWLER){
 			this.sandcrawlerPlay();
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.TWINSUNS){
-			ResourcePicker picker = new ResourcePicker(this, DevCard.Type.TWINSUNS);
+			ResourcePicker picker = new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a resource you want from the bank.");
+			picker = new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a second resource you want from the bank.");
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.VP){
 			this.vpPlay();
 		}
@@ -159,7 +139,7 @@ public class GameManager {
 	}
 
 	private void twinSunsPlay(Resource resource){
-		players[turn].modifyResource(resource, 2);
+		players[turn].modifyResource(resource, 1);
 	}
 
 	private void sandcrawlerPlay(){
@@ -180,8 +160,8 @@ public class GameManager {
 	}
 
 	//move the smuggler around
-	private void moveSmuggler(){
-
+	private void moveSmuggler() {
+		
 	}
 	
 	private void discardAll(){
