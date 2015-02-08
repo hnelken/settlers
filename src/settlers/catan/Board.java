@@ -2,6 +2,7 @@ package settlers.catan;
 
 import BreezySwing.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Board extends GBFrame{
 	
@@ -9,8 +10,17 @@ public class Board extends GBFrame{
 	private Tile[] tiles;
 	private Node[] nodes;
 	private Edge[] edges;
+	private GBPanel panel;
+	public ArrayList<? extends Clickable> clickList = null;
 
 	public Board(GameManager manager) {
+		panel = new GBPanel(){
+			public void mouseClicked(int x,int y){
+			Board.this.clickLoc(x,y);
+			}
+		};
+		addPanel(panel,0,0,1440,1150);
+		
 		JLabel label = addLabel("GAME TIME", 1, 1, 1, 1);
 		//Node node = (Node)addButton("PRESS", 1, 2, 3, 4);
 		this.manager = manager;
@@ -190,7 +200,7 @@ public class Board extends GBFrame{
 			nodes[i].addEdge(edg);
 			nodes[i-4].addEdge(edg);
 		}
-		for (int i = 38; i < 43; i++){
+		for (int i = 43; i < 47; i++){
 			edg = new Edge(nodes[i],nodes[i-4]);
 			edges[index] = edg;
 			index++;
@@ -209,7 +219,7 @@ public class Board extends GBFrame{
 			nodes[i].addEdge(edg);
 			nodes[i-5].addEdge(edg);
 		}
-		for (int i = 34; i < 38; i++){
+		for (int i = 33; i < 38; i++){
 			edg = new Edge(nodes[i],nodes[i-5]);
 			edges[index] = edg;
 			index++;
@@ -269,6 +279,10 @@ public class Board extends GBFrame{
 			tileNum[index] = k;
 		}
 		return tileNum;
+	}
+	
+	public void clickLoc(int x, int y){
+		
 	}
 
 }

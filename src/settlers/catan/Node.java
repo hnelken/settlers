@@ -29,14 +29,14 @@ public class Node extends Clickable{
 		this.ycord = ycord;
 	}
 
-	public void settle(Player settler) {
+	private void settle(Player settler) {
 		if(null == owner) {
 			owner = settler;
 			status = NodeStatus.SETTLEMENT;
 		}
 	}
 
-	public void upgrade() {
+	private void upgrade() {
 		status = NodeStatus.CITY;
 	}
 
@@ -114,5 +114,14 @@ public class Node extends Clickable{
 	
 	public int getRadius(){
 		return 40;
+	}
+	
+	public void doOnClick(){
+		if (status == NodeStatus.EMPTY){
+			settle(manager.getCurrPlayer());
+		}
+		else {
+			upgrade();
+		}
 	}
 }

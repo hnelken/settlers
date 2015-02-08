@@ -34,5 +34,9 @@ public class Tile extends Clickable {
 	public int getRadius(){
 		return 60;
 	}
+	
+	public void doOnClick(){
+		corners[0].manager.moveSmuggler(this);
+	}
 
 }
