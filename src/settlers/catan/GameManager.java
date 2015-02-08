@@ -35,9 +35,7 @@ public class GameManager {
 
 	// methods
 	
-	public Board getBoard() {
-		return gameBoard;
-	}
+
 	
 	private void logic() {
 			/* Take Turn */
@@ -46,7 +44,7 @@ public class GameManager {
 			
 			if (roll == 7){
 				this.discardAll();
-				this.moveSmuggler();
+				this.moveSmuggler(null);
 			} else
 				distributeResources(roll);
 
@@ -133,7 +131,7 @@ public class GameManager {
 	}
 
 	private void trooperPlay(){
-		this.moveSmuggler();
+		this.moveSmuggler(null);
 		players[turn].addTrooper();
 	}
 
@@ -167,7 +165,7 @@ public class GameManager {
 
 	//move the smuggler around
 	public void moveSmuggler(Tile t) {
-		
+		smuggler.setLocation(t);
 	}
 	
 	private void discardAll(){
@@ -187,7 +185,6 @@ public class GameManager {
 	
 	public Board getBoard(){
 		return gameBoard;
-	}
 	}
 
 }
