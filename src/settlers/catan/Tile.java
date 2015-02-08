@@ -1,42 +1,47 @@
 package settlers.catan;
 
 public class Tile extends Clickable {
-	private Node[] corners; //Order is {N, NE, SE, S, SW, NW}
+	
+	// fields
+	public GameManager manager;
+	private Node[] corners; // order: {N, NE, SE, S, SW, NW}
 	private Resource resourceType;
 	private int rollNum;
-	public GameManager manager;
 
+	// constructor
 	public Tile(Node[] corners, Resource resourceType, int rollNum) {
 		this.corners = corners;
 		this.resourceType = resourceType;
 		this.rollNum = rollNum;
 	}
 
-	public Node[] getCorners(){
+	// methods
+	
+	public Node[] getCorners() {
 		return corners;
 	}
 
-	public Resource getResourceType(){
+	public Resource getResourceType() {
 		return resourceType;
 	}
 
-	public int rollNum(){
+	public int rollNum() {
 		return rollNum;
 	}
 	
-	public int getXcord(){
+	public int getXcord() {
 		return corners[0].getXcord();
 	}
 	
-	public int getYcord(){
+	public int getYcord() {
 		return (corners[1].getYcord()+corners[2].getYcord())/2;
 	}
 	
-	public int getRadius(){
+	public int getRadius() {
 		return 60;
 	}
 	
-	public void doOnClick(){
+	public void doOnClick() {
 		manager.moveSmuggler(this);
 	}
 

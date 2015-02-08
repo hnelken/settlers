@@ -2,11 +2,12 @@ package settlers.catan;
 
 public class Smuggler {
 
+	// fields
 	private Tile location;
 
-	//this is only made when making the board and we encounter the desert.
-	public Smuggler(Tile location){
-		this.location = location;
+	// constructor
+	public Smuggler(Tile location) {
+		this.location = location; // this is a reference to the desert tile
 	}
 
 	public Tile getLocation() {

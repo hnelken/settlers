@@ -1,27 +1,20 @@
 package settlers.catan;
+
 import java.util.*;
 
+public class Node extends Clickable {
 
-import javax.swing.*;
-
-public class Node extends Clickable{
-
+	// fields
 	public GameManager manager;
-	
-
-	public enum NodeStatus {
-		EMPTY, SETTLEMENT, CITY;
-	}
-
+	public enum NodeStatus {EMPTY, SETTLEMENT, CITY}
+	public NodeStatus status;
 	private ArrayList<Tile> surrounding;
 	private Player owner;
 	private boolean available;
 	private ArrayList<Edge> edges;
-	private int xcord;
-	private int ycord;
+	private int xcord, ycord;
 
-	public NodeStatus status;
-
+	// constructor
 	public Node(int xcord, int ycord) {
 		owner = null;
 		status = NodeStatus.EMPTY;
@@ -31,6 +24,8 @@ public class Node extends Clickable{
 		this.ycord = ycord;
 	}
 
+	// methods
+	
 	private void settle(Player settler) {
 		if(null == owner) {
 			owner = settler;
@@ -62,8 +57,7 @@ public class Node extends Clickable{
 			if (currPlayer.equals(getOwner())) {
 				if (e.getNodes()[0].equals(this)) {
 					checkSurroundingNodes(e.getNodes()[1], currPlayer);
-				}
-				else {
+				} else {
 					checkSurroundingNodes(e.getNodes()[0], currPlayer);
 				}
 			}
@@ -88,8 +82,7 @@ public class Node extends Clickable{
 				if (nodes[1].owner.equals(currPlayer)) {
 					return true;
 				}
-			}
-			else {
+			} else {
 				if (nodes[0].owner.equals(currPlayer)) {
 					return true;
 				}
@@ -114,27 +107,26 @@ public class Node extends Clickable{
 		return edges;
 	}
 	
-	public int getXcord(){
+	public int getXcord() {
 		return xcord;
 	}
 	
-	public int getYcord(){
+	public int getYcord() {
 		return ycord;
 	}
 	
-	public int getRadius(){
+	public int getRadius() {
 		return 40;
 	}
 	
-	public void doOnClick(){
+	public void doOnClick() {
 		if (status == NodeStatus.EMPTY){
 			settle(manager.getCurrPlayer());
 			owner.modifyResource(Resource.ADOBE, -1);
 			owner.modifyResource(Resource.BANTHA, -1);
 			owner.modifyResource(Resource.BLUEMILK, -1);
 			owner.modifyResource(Resource.MOISTURE, -1);
-		}
-		else {
+		} else {
 			upgrade();
 			owner.modifyResource(Resource.DURASTEEL, -3);
 			owner.modifyResource(Resource.MOISTURE, -2);
