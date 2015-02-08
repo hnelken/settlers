@@ -1,5 +1,7 @@
 package settlers.catan;
 
+import javax.swing.JButton;
+
 public class DevCard {
 
 	// fields
@@ -7,6 +9,7 @@ public class DevCard {
 	private boolean playable;
 	private String name;
 	private String description;
+	private GameManager manager;
 
 	public enum Type {
 		TROOPER, VP, SANDSTORM, SANDCRAWLER, TWINSUNS
@@ -16,7 +19,7 @@ public class DevCard {
 
 	// constructors
 
-	public DevCard(Type type) {
+	public DevCard(Type type, GameManager manager) {
 		this.owner = null;
 		if (type == Type.TROOPER){
 			this.setName("Stormtrooper");
@@ -35,6 +38,7 @@ public class DevCard {
 			this.setDescription("When you play this card, you can select 2 resources of your choice from the bank.");
 		}
 		this.setPlayable(false);
+		this.manager = manager;
 	}
 
 	public DevCard(String name){
@@ -62,7 +66,10 @@ public class DevCard {
 	}
 
 	private void trooperPlay(){
-
+		owner.addTrooper();
+		for (JButton b : manager.getBoard().getButtons()){
+			b.setEnabled(false);
+		}
 	}
 
 	public Player getOwner() {

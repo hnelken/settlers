@@ -22,7 +22,7 @@ public class GameManager {
 		this.players = players;
 		gameOver = false;
 		winner = null;
-		deck = new Deck();
+		deck = new Deck(this);
 		turn = (int)(players.length * Math.random());
 		Tile desert = null;
 		for (int i = 0; i < gameBoard.getTiles().length; i++)
@@ -188,4 +188,7 @@ public class GameManager {
 		return gameBoard;
 	}
 
+	public Smuggler getSmuggler(){
+		return smuggler;
+	}
 }

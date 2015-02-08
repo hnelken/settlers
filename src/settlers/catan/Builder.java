@@ -63,6 +63,11 @@ public class Builder extends GBFrame {
 						}
 					}
 				}
+				if (!gManager.getBoard().clickList.isEmpty()){
+					for (JButton b : gManager.getBoard().getButtons()){
+						b.setEnabled(false);
+					}
+				}
 			}
 		} 
 		else if (btn == buildSettlement) {
@@ -80,6 +85,11 @@ public class Builder extends GBFrame {
 						gManager.getBoard().clickList.add((Clickable)n);
 					}
 				}
+				if (!gManager.getBoard().clickList.isEmpty()){
+					for (JButton b : gManager.getBoard().getButtons()){
+						b.setEnabled(false);
+					}
+				}
 			}
 		} 
 		else if (btn == buildCity) {
@@ -92,6 +102,11 @@ public class Builder extends GBFrame {
 				for (Node n : gManager.getBoard().getNodes()){
 					if (n.getStatus() == Node.NodeStatus.SETTLEMENT && n.getOwner() == gManager.getCurrPlayer()){
 						gManager.getBoard().clickList.add((Clickable)n);
+					}
+				}
+				if (!gManager.getBoard().clickList.isEmpty()){
+					for (JButton b : gManager.getBoard().getButtons()){
+						b.setEnabled(false);
 					}
 				}
 			}
