@@ -128,12 +128,12 @@ public class GameManager {
 		if (players[turn].getHand().get(i).getType() == DevCard.Type.TROOPER){
 			this.trooperPlay();
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDSTORM){
-			/*ResourcePicker picker = */new ResourcePicker(this, DevCard.Type.SANDSTORM, "Pick a resource to monopolize."); //TODO
+			/*ResourcePicker picker = */new ResourcePicker(this, ResourcePicker.PickerType.SANDSTORM, "Pick a resource to monopolize."); //TODO
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDCRAWLER){
 			this.sandcrawlerPlay();
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.TWINSUNS){
-			/*ResourcePicker picker = */new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a resource you want from the bank."); //TODO
-			/*picker = */new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a second resource you want from the bank."); //TODO
+			/*ResourcePicker picker = */new ResourcePicker(this, ResourcePicker.PickerType.TWINSUNS, "Pick a resource you want from the bank."); //TODO
+			/*picker = */new ResourcePicker(this, ResourcePicker.PickerType.TWINSUNS, "Pick a second resource you want from the bank."); //TODO
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.VP){
 			this.vpPlay();
 		}
@@ -166,13 +166,19 @@ public class GameManager {
 		}
 	}
 	
-	public void resourceChosen(Resource resource, DevCard.Type type){
-		if (type == DevCard.Type.TWINSUNS){
+	public void resourceChosen(Resource resource, ResourcePicker.PickerType type){
+		if (type == ResourcePicker.PickerType.TWINSUNS){
 			this.twinSunsPlay(resource);
-		} else if (type == DevCard.Type.SANDSTORM){
+		} else if (type == ResourcePicker.PickerType.SANDSTORM){
 			this.sandstormPlay(resource);
+		} else if (type == ResourcePicker.PickerType.TRADINGAWAY){
+			this.getCurrPlayer().modifyResource(resource, -4);
+		} else if (type == ResourcePicker.PickerType.TRADINGFOR){
+			this.getCurrPlayer().addResource(resource);
 		}
 	}
+	
+	
 
 	//move the smuggler around
 	public void moveSmuggler(Tile t) {

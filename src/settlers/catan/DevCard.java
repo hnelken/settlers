@@ -1,5 +1,7 @@
 package settlers.catan;
 
+import javax.swing.ImageIcon;
+
 public class DevCard {
 
 	// fields
@@ -48,28 +50,9 @@ public class DevCard {
 		setDescription("1 Victory Point!");
 	}
 
-	// methods
-
-	public void play(){
-		switch (type) {
-			case TROOPER:
-				trooperPlay();
-				break;
-			case SANDCRAWLER:
-				break;
-			case SANDSTORM:
-				break;
-			case TWINSUNS:
-				break;
-			case VP:
-				break;
-		}
+	public ImageIcon getImage(){
+		return new ImageIcon();
 	}
-
-	private void trooperPlay(){
-
-	}
-
 	public Player getOwner() {
 		return owner;
 	}

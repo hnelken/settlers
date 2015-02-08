@@ -239,7 +239,7 @@ public class Board extends GBFrame{
 			nodes[i-6].addEdge(edg);
 		}
 
-		this.setSize(900, 600);
+		this.setSize(1296, 880);
 		this.setVisible(true);
 	}
 
@@ -292,19 +292,16 @@ public class Board extends GBFrame{
 	}
 
 	public void buttonClicked(JButton btn){
-		if (btn == buttons[0]) 
-			trade();
+		if (btn == buttons[0]){ 
+			new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGAWAY, "Select a resource you would like to trade away.");
+			new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGFOR, "Select a resource you would like.");
+		}
 		else if (btn == buttons[1])
 			new Builder(manager);
 		else if (btn == buttons[2])
 			new HandViewer(manager);
 		else if (btn == buttons[3])
 			manager.endTurn();
-	}
-
-	private void trade() {
-		// TODO Auto-generated method stub
-
 	}
 	
 	public JButton[] getButtons(){
