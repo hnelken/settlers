@@ -47,5 +47,6 @@ public class HandViewer extends GBFrame{
 				manager.play(i);
 			}
 		}
+		this.dispose();
 	}
 }

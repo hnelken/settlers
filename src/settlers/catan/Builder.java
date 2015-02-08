@@ -31,8 +31,10 @@ public class Builder extends GBFrame {
 			
 		} else if (btn == buildDevCard) {
 			
-		} else // cancel
+		} else {// cancel
 			dispose();
+		}
+		dispose();
 	}
 	
 }

@@ -9,7 +9,7 @@ public class DevCard {
 	private String description;
 
 	public enum Type {
-		TROOPER, VP, SANDSTORM, SANDCRAWLER, BLUEHARVEST
+		TROOPER, VP, SANDSTORM, SANDCRAWLER, TWINSUNS
 	}
 
 	private Type type;
@@ -30,8 +30,8 @@ public class DevCard {
 			this.setName("Sandcrawler");
 			this.setDescription("Place two new roads as if you had just built them.");
 		}
-		else if (type == Type.BLUEHARVEST){
-			this.setName("Blue Harvest");
+		else if (type == Type.TWINSUNS){
+			this.setName("Twin Suns");
 			this.setDescription("When you play this card, you can select 2 resources of your choice from the bank.");
 		}
 		this.setPlayable(false);
@@ -54,7 +54,7 @@ public class DevCard {
 				break;
 			case SANDCRAWLER:
 				break;
-			case BLUEHARVEST:
+			case TWINSUNS:
 				break;
 			case VP:
 				break;

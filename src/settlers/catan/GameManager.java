@@ -152,11 +152,11 @@ public class GameManager {
 		if (players[turn].getHand().get(i).getType() == DevCard.Type.TROOPER){
 			this.trooperPlay();
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDSTORM){
-			this.sandstormPlay();
+			ResourcePicker picker = new ResourcePicker(this, DevCard.Type.SANDSTORM);
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDCRAWLER){
 			this.sandcrawlerPlay();
-		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.BLUEHARVEST){
-			this.blueHarvestPlay();
+		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.TWINSUNS){
+			ResourcePicker picker = new ResourcePicker(this, DevCard.Type.TWINSUNS);
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.VP){
 			this.vpPlay();
 		}
@@ -172,16 +172,25 @@ public class GameManager {
 		players[turn].modifyVictoryPoints(1);
 	}
 
-	private void blueHarvestPlay(){
-		ResourcePicker picker = new ResourcePicker(players[turn]);
+	private void twinSunsPlay(Resource resource){
+		players[turn].modifyResource(resource, 2);
 	}
 
 	private void sandcrawlerPlay(){
-
 	}
 
-	private void sandstormPlay(){
-
+	private void sandstormPlay(Resource resource){
+		for(Player player : players){
+			
+		}
+	}
+	
+	public void resourceChosen(Resource resource, DevCard.Type type){
+		if (type == DevCard.Type.TWINSUNS){
+			this.twinSunsPlay(resource);
+		} else if (type == DevCard.Type.SANDSTORM){
+			this.sandstormPlay(resource);
+		}
 	}
 
 	//move the smuggler around

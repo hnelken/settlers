@@ -44,6 +44,7 @@ public class ResourcePicker extends GBFrame {
 			res = Resource.DURASTEEL;
 		// Report resource chosen to game manager class
 		manager.resourceChosen(res, type);
+		dispose();
 	}
 
 }
