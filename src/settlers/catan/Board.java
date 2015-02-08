@@ -1,10 +1,6 @@
 package settlers.catan; 
 
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import BreezySwing.*;
 
@@ -24,7 +20,7 @@ public class Board extends GBFrame {
 	// constructor
 	public Board(GameManager manager) {
 		// paint background
-		add(new JLabel(new ImageIcon("gameboard.jpg")));
+		add(new JLabel(new ImageIcon("GAMEBOARDNEW.jpg")));
 		// initialize other GUI elements
 		buttons[0] = addButton("Trade", 4, 5, 1, 1);
 		buttons[1] = addButton("Build", 5, 5, 1, 1);
@@ -35,10 +31,11 @@ public class Board extends GBFrame {
 		buttons[2] = addButton("Play Card", 22, 5, 1, 1);
 		buttons[3] = addButton("End Turn", 23, 5, 1, 1);
 
-		GBPanel panel = addPanel(new GBPanel(){
-			public void mouseClicked(int x, int y){
+		addPanel(new GBPanel() {
+			private static final long serialVersionUID = 1L;
+			public void mouseClicked(int x, int y) {
 				Board.this.clickLoc(x,y);
-			};
+			}
 		}, 1, 1, 1, 1);
 		this.manager = manager;
 		tiles = new Tile[19];
