@@ -11,8 +11,7 @@ public class Board extends GBFrame{
 	private Edge[] edges;
 
 	public Board(GameManager manager) {
-		JLabel label = addLabel("GAME TIME", 1, 1, 1, 1);
-		//Node node = (Node)addButton("PRESS", 1, 2, 3, 4);
+		GBPanel panel = addPanel(new GBPanel(), 1, 1, 1, 1);
 		this.manager = manager;
 		tiles = new Tile[19];
 		Resource[] resources = getTileTypes();
@@ -25,6 +24,7 @@ public class Board extends GBFrame{
 		for (int i = 0; i < numNodes.length; i++){
 			for (int j =0; j < numNodes[i]; j++){
 				nodes[index] = new Node(coords[i][0]+dist*j,coords[i][1]);
+				nodes[index].manager = manager;
 				index++;
 			}
 		}
@@ -108,6 +108,7 @@ public class Board extends GBFrame{
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 			}
+			tiles[j].manager = manager;
 		}
 		this.setSize(500, 500);
 		this.setVisible(true);
