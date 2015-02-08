@@ -7,6 +7,8 @@ public class Board extends GBFrame{
 	
 	private GameManager manager;
 	private Tile[] tiles;
+	private Node[] nodes;
+	private Edge[] edges;
 
 	public Board(GameManager manager) {
 		JLabel label = addLabel("GAME TIME", 1, 1, 1, 1);
@@ -15,7 +17,7 @@ public class Board extends GBFrame{
 		tiles = new Tile[19];
 		Resource[] resources = getTileTypes();
 		int[] nums = getTileNum(resources);
-		Node[] nodes = new Node[54];
+		nodes = new Node[54];
 		int[] numNodes = {3,4,4,5,5,6,6,5,5,4,4,3};
 		int[][] coords = {{366,140},{273,199},{273,303},{175,360},{175,462},{83,519},{83,625},{180,677},{180,786},{275,840},{275,948},{372,999}};
 		int dist = 200;
@@ -109,77 +111,113 @@ public class Board extends GBFrame{
 		}
 		this.setSize(500, 500);
 		this.setVisible(true);
+		edges = new Edge[66];
+		index = 0;
 		Edge edg;
 		for (int i = 0; i < 3; i++){
 			edg = new Edge(nodes[i],nodes[i+3]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i+3].addEdge(edg);
 			edg = new Edge(nodes[i],nodes[i+4]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i+4].addEdge(edg);
 		}
 		for (int i = 3; i < 7; i++){
 			edg = new Edge(nodes[i],nodes[i+4]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i+4].addEdge(edg);
 		}
 		for (int i = 7; i < 11; i++){
 			edg = new Edge(nodes[i],nodes[i+4]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i+4].addEdge(edg);
 			edg = new Edge(nodes[i],nodes[i+5]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i+5].addEdge(edg);
 		}
 		for (int i = 11; i < 16; i++){
 			edg = new Edge(nodes[i],nodes[i+5]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i+5].addEdge(edg);
 		}
 		for (int i = 16; i < 21; i++){
 			edg = new Edge(nodes[i],nodes[i+5]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i+5].addEdge(edg);
 			edg = new Edge(nodes[i],nodes[i+6]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i+6].addEdge(edg);
 		}
 		for (int i = 21; i < 27; i++){
 			edg = new Edge(nodes[i],nodes[i+6]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i+6].addEdge(edg);
 		}
 		for (int i = 51; i < 54; i++){
 			edg = new Edge(nodes[i],nodes[i-3]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i-3].addEdge(edg);
 			edg = new Edge(nodes[i],nodes[i-4]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i-4].addEdge(edg);
 		}
 		for (int i = 47; i < 51; i++){
 			edg = new Edge(nodes[i],nodes[i+4]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i-4].addEdge(edg);
 		}
 		for (int i = 38; i < 43; i++){
 			edg = new Edge(nodes[i],nodes[i-4]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i-4].addEdge(edg);
 			edg = new Edge(nodes[i],nodes[i-5]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i-5].addEdge(edg);
 		}
 		for (int i = 38; i < 43; i++){
 			edg = new Edge(nodes[i],nodes[i-5]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i-5].addEdge(edg);
 		}
 		for (int i = 34; i < 38; i++){
 			edg = new Edge(nodes[i],nodes[i-5]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i-5].addEdge(edg);
 			edg = new Edge(nodes[i],nodes[i-6]);
+			edges[index] = edg;
+			index++;
 			nodes[i].addEdge(edg);
 			nodes[i-6].addEdge(edg);
 		}
@@ -187,6 +225,14 @@ public class Board extends GBFrame{
 
 	public Tile[] getTiles(){
 		return tiles;
+	}
+	
+	public Edge[] getEdges(){
+		return edges;
+	}
+	
+	public Node[] getNodes(){
+			return nodes;
 	}
 
 	private Resource[] getTileTypes(){

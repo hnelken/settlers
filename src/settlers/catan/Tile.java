@@ -1,6 +1,6 @@
 package settlers.catan;
 
-public class Tile {
+public class Tile extends Clickable {
 	private Node[] corners; //Order is {N, NE, SE, S, SW, NW}
 	private Resource resourceType;
 	private int rollNum;
