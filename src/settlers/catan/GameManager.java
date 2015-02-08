@@ -143,6 +143,7 @@ public class GameManager {
 			this.sandcrawlerPlay();
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.TWINSUNS){
 			ResourcePicker picker = new ResourcePicker(this, DevCard.Type.TWINSUNS);
+			picker = new ResourcePicker(this, DevCard.Type.TWINSUNS);
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.VP){
 			this.vpPlay();
 		}
@@ -159,7 +160,7 @@ public class GameManager {
 	}
 
 	private void twinSunsPlay(Resource resource){
-		players[turn].modifyResource(resource, 2);
+		players[turn].modifyResource(resource, 1);
 	}
 
 	private void sandcrawlerPlay(){
@@ -167,7 +168,10 @@ public class GameManager {
 
 	private void sandstormPlay(Resource resource){
 		for(Player player : players){
-			
+			if (!player.equals(players[turn])){
+				players[turn].modifyResource(resource, player.getResource(resource));
+				player.modifyResource(resource, -(player.getResource(resource)));
+			}
 		}
 	}
 	
