@@ -17,9 +17,12 @@ public class GameManager {
 	private GameState state; //TODO
 	private Deck deck;
 	private Smuggler smuggler; //TODO
+	private Player[] firstTurnOrder;
+	private int firstTurn;
+	private Node settlement;
 	
 	private enum GameState {
-		FIRSTTURN, PLAYERTURNROLL, PLAYERTURNCHOICE, WINCHECK, GAMEOVER
+		FTSFORWARD, FTRFORWARD, FTSBACK, FTRBACK, PLAYERTURNROLL, PLAYERTURNCHOICE, WINCHECK, GAMEOVER
 	}
 
 	// constructor
@@ -37,14 +40,13 @@ public class GameManager {
 			} //end if
 		} //end for
 		smuggler = new Smuggler(desert);
-		state = GameState.FIRSTTURN;
-		startLogic();
+		state = GameState.FTSFORWARD;
+		startSetup();
 	}
 
 	// methods
-	
-	private void startLogic() {
-		Player[] firstTurnOrder = new Player[players.length];
+	private void startSetup() {
+		firstTurnOrder = new Player[players.length];
 		int index = 0;
 		for (int player = turn; player < players.length; player++) {
 			firstTurnOrder[index++] = players[player];
@@ -53,85 +55,78 @@ public class GameManager {
 			firstTurnOrder[index++] = players[i];
 		}
 		gameBoard.clickList = new ArrayList<Clickable>(Arrays.asList(gameBoard.getNodes()));
-		
-				//BEGIN SNAKE FORWARD
+		firstTurn = 0;
+		startLogicSettle();
+	}
+	
+	private void startLogicSettle() {
+		if (state == GameState.FTSFORWARD) {
+		//BEGIN SNAKE FORWARD
+			///Give resources for a civilization
+			firstTurnOrder[firstTurn].addResource(Resource.ADOBE);
+			firstTurnOrder[firstTurn].addResource(Resource.BANTHA);
+			firstTurnOrder[firstTurn].addResource(Resource.BLUEMILK);
+			firstTurnOrder[firstTurn].addResource(Resource.MOISTURE);
+
+			Builder builder = new Builder(this);	//Place a settlement
+		}
+		else if (state == GameState.FTSBACK) {
+			// SNAKE BACKWARDS
+				///Give resources for a civilization
+				firstTurnOrder[firstTurn].addResource(Resource.ADOBE);
+				firstTurnOrder[firstTurn].addResource(Resource.BANTHA);
+				firstTurnOrder[firstTurn].addResource(Resource.BLUEMILK);
+				firstTurnOrder[firstTurn].addResource(Resource.MOISTURE);
+
+				Builder builder = new Builder(this);	//Place a settlement
+		}
+	}
+	
+	private void startLogicRoad() {
+		gameBoard.clickList = new ArrayList<Clickable>();
+
 		Edge[] edges = gameBoard.getEdges();
-		for (int i = 0; i < firstTurnOrder.length; i++) {
-						///Give resources for a civilization
-			firstTurnOrder[i].modifyResource(Resource.ADOBE, 1);
-			firstTurnOrder[i].modifyResource(Resource.BANTHA, 1);
-			firstTurnOrder[i].modifyResource(Resource.BLUEMILK, 1);
-			firstTurnOrder[i].modifyResource(Resource.MOISTURE, 1);
-			
-			Builder builder = new Builder(this);	//Place a settlement
-			
-			gameBoard.clickList = new ArrayList<Clickable>();
-			new MessageBox(gameBoard, "WARNING: DON'T CONTINUE UNTIL YOU ARE DONE BUILDING");
-			
-			for (int j = 0; j < edges.length; j++) { 		//establish open edges
-				if (!edges[j].isRoad()) {
-					gameBoard.clickList.add(edges[j]);
-				}
-			}
-						//Give resources for a road
-			firstTurnOrder[i].modifyResource(Resource.ADOBE, 1);
-			firstTurnOrder[i].modifyResource(Resource.BANTHA, 1);
-			
-			builder = new Builder(this);		//place a road
-			new MessageBox(gameBoard, "WARNING: DON'T CONTINUE UNTIL YOU ARE DONE BUILDING");
-			
-			ArrayList<Clickable> clickList = new ArrayList<Clickable>();
-			
-			Node[] nodes = gameBoard.getNodes();			//Establish open nodes
-			for (int j = 0; j < nodes.length; j++) {
-				if (nodes[j].status == Node.NodeStatus.EMPTY) {
-					clickList.add(nodes[j]);
-				}
+		for (int j = 0; j < edges.length; j++) { 		//establish open edges
+			if (!edges[j].isRoad()) {
+				gameBoard.clickList.add(edges[j]);
 			}
 		}
-				// SNAKE BACKWARDS
-		for (int i = players.length - 1; i >= 0; i--) {
-						///Give resources for a civilization
-			firstTurnOrder[i].modifyResource(Resource.ADOBE, 1);
-			firstTurnOrder[i].modifyResource(Resource.BANTHA, 1);
-			firstTurnOrder[i].modifyResource(Resource.BLUEMILK, 1);
-			firstTurnOrder[i].modifyResource(Resource.MOISTURE, 1);
-			
-			Builder builder = new Builder(this);	//Place a settlement
-			new MessageBox(gameBoard, "WARNING: DON'T CONTINUE UNTIL YOU ARE DONE BUILDING");
-			
-			Node settlement = (Node)gameBoard.lastClicked;
-			
+		if (state == GameState.FTRFORWARD) {
+			//Give resources for a road
+			firstTurnOrder[firstTurn].addResource(Resource.ADOBE);
+			firstTurnOrder[firstTurn].addResource(Resource.BANTHA);
+
+			Builder builder = new Builder(this);		//place a road
+		}
+		else if (state == GameState.FTRBACK) {
+			settlement = (Node)gameBoard.lastClicked;
+
 			gameBoard.clickList = new ArrayList<Clickable>();
-			
+
 			for (int j = 0; j < edges.length; j++) { 		//establish open edges
 				if (!edges[j].isRoad()) {
 					gameBoard.clickList.add(edges[j]);
 				}
 			}
-						//Give resources for a road
-			firstTurnOrder[i].modifyResource(Resource.ADOBE, 1);
-			firstTurnOrder[i].modifyResource(Resource.BANTHA, 1);
-			
-			builder = new Builder(this);		//place a road
-			new MessageBox(gameBoard, "WARNING: DON'T CONTINUE UNTIL YOU ARE DONE BUILDING");
-			
-			ArrayList<Clickable> clickList = new ArrayList<Clickable>();
-			
-			Node[] nodes = gameBoard.getNodes();			//Establish open nodes
-			for (int j = 0; j < nodes.length; j++) {
-				if (nodes[j].status == Node.NodeStatus.EMPTY) {
-					clickList.add(nodes[j]);
-				}
-			}
-			
-			for (int t = 0; t < settlement.getTiles().size(); t++) {
-				settlement.getOwner().addResource(settlement.getTiles().get(t).getResourceType());
+			//Give resources for a road
+			firstTurnOrder[firstTurn].modifyResource(Resource.ADOBE, 1);
+			firstTurnOrder[firstTurn].modifyResource(Resource.BANTHA, 1);
+
+			Builder builder = new Builder(this);		//place a road
+		}
+	}
+	
+	private void setupNextPlayer() {
+		ArrayList<Clickable> clickList = new ArrayList<Clickable>();
+
+		Node[] nodes = gameBoard.getNodes();			//Establish open nodes
+		for (int j = 0; j < nodes.length; j++) {
+			if (nodes[j].status == Node.NodeStatus.EMPTY) {
+				clickList.add(nodes[j]);
 			}
 		}
 		
-		state = GameState.PLAYERTURNROLL;
-		stdLogic();
+		startLogicSettle();
 	}
 	
 	private void stdLogic() {
@@ -174,17 +169,56 @@ public class GameManager {
 	}
 
 	public void endTurn() {
-		players[turn].makePlayable();
-		
-		//Check for 10 VP
-		state = GameState.WINCHECK;
-		checkForWin();
-
-		//Change player turn
-		nextPlayer();
-		
-		state = GameState.PLAYERTURNROLL;
-		stdLogic();
+		if (state == GameState.FTRFORWARD) {
+			if (firstTurn < players.length) {
+				firstTurn++;
+				state = GameState.FTSFORWARD;
+				setupNextPlayer();
+				startLogicSettle();
+			}
+			else {
+				firstTurn--;
+				state = GameState.FTRBACK;
+				setupNextPlayer();
+				startLogicSettle();
+			}
+		}
+		else if (state == GameState.FTRBACK) {
+			if (firstTurn >= 0) {
+				firstTurn--;
+				state = GameState.FTSBACK;
+				//Add resultant resources from settlement placement
+				for (int t = 0; t < settlement.getTiles().size(); t++) {
+					settlement.getOwner().addResource(settlement.getTiles().get(t).getResourceType());
+				}
+				setupNextPlayer();
+			}
+			else {
+				state = GameState.PLAYERTURNROLL;
+				stdLogic();
+			}
+		}
+		else if (state == GameState.FTSFORWARD){
+			state = GameState.FTRFORWARD;
+			startLogicRoad();
+		}
+		else if (state == GameState.FTSBACK) {
+			state = GameState.FTRBACK;
+			startLogicRoad();
+		}
+		else {
+			players[turn].makePlayable();
+			
+			//Check for 10 VP
+			state = GameState.WINCHECK;
+			checkForWin();
+	
+			//Change player turn
+			nextPlayer();
+			
+			state = GameState.PLAYERTURNROLL;
+			stdLogic();
+		}
 	}
 
 	private void checkForWin() {
