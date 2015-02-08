@@ -1,4 +1,3 @@
-
 package settlers.catan;
 import java.util.ArrayList;
 

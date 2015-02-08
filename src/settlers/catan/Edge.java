@@ -49,6 +49,8 @@ public class Edge extends Clickable {
 	public void doOnClick(){
 		setRoad(true);
 		setOwner(nodes[0].manager.getCurrPlayer());
+		owner.modifyResource(Resource.ADOBE, -1);
+		owner.modifyResource(Resource.BANTHA, -1);
 	}
 	
 }
