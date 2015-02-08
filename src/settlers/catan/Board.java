@@ -26,11 +26,11 @@ public class Board extends GBFrame {
 	public Clickable lastClicked = null;
 
 	public Board(GameManager manager) {
-		player = addLabel("", 1, 5, 2, 2);		//FIX THESE NUMBERs
-		buttons[0] = addButton("Trade", 4, 5, 1, 1);
-		buttons[1] = addButton("Build", 5, 5, 1, 1);
-		buttons[2] = addButton("Play Card", 6, 5, 1, 1);
-		buttons[3] = addButton("End Turn", 7, 5, 1, 1);
+		player = addLabel("", 2, 5, 2, 2);		//FIX THESE NUMBERs
+		buttons[0] = addButton("Trade", 5, 5, 1, 1);
+		buttons[1] = addButton("Build", 6, 5, 1, 1);
+		buttons[2] = addButton("Play Card", 7, 5, 1, 1);
+		buttons[3] = addButton("End Turn", 8, 5, 1, 1);
 
 		GBPanel panel = addPanel(new GBPanel(){
 			public void mouseClicked(int x, int y){
@@ -253,7 +253,7 @@ public class Board extends GBFrame {
 			nodes[i].addEdge(edg);
 			nodes[i-6].addEdge(edg);
 		}
-		this.setSize(1296, 880);
+		this.setSize(1366, 768);
 		this.setVisible(true);
 	}
 
