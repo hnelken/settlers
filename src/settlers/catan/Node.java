@@ -103,14 +103,6 @@ public class Node extends Clickable{
 	public ArrayList<Edge> getEdges() {
 		return edges;
 	}
-
-	public void buttonClicked(JButton btn){
-		if (status == NodeStatus.EMPTY)
-			settle(manager.getCurrPlayer());
-		if (status == NodeStatus.CITY){
-			this.upgrade();
-		}
-	}
 	
 	public int getXcord(){
 		return xcord;
