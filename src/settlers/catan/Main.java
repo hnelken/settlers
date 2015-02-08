@@ -14,7 +14,7 @@ public class Main {
 			System.out.println("Player " + (i + 1) + " is " + args[i] + "!");
 		}
 		
-		GameManager manager = new GameManager(players);
+		new GameManager(players);
 	}
 
 }
