@@ -35,7 +35,7 @@ public class Edge extends Clickable {
 	}
 	
 	public int getXcord(){
-		retrun nodes[0].getXcord()+nodes[1].getXcord()
+		return nodes[0].getXcord()+nodes[1].getXcord();
 	}
-	}
+	
 }
