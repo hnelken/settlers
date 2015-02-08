@@ -3,13 +3,11 @@ import java.util.*;
 
 
 import javax.swing.*;
-import BreezySwing.*;
 
-public class Node extends JButton{
+public class Node extends Clickable{
 
 	public GameManager manager;
 	
-	private static final long serialVersionUID = -801472214232276956L;
 
 	public enum NodeStatus {
 		EMPTY, SETTLEMENT, CITY;
@@ -26,7 +24,6 @@ public class Node extends JButton{
 	public Node(int xcord, int ycord) {
 		owner = null;
 		status = NodeStatus.EMPTY;
-		this.setEnabled(false);
 		edges = new ArrayList<Edge>(3);
 		this.xcord = xcord;
 		this.ycord = ycord;
@@ -121,5 +118,9 @@ public class Node extends JButton{
 	
 	public int getYcord(){
 		return ycord;
+	}
+	
+	public int getRadius(){
+		return 40;
 	}
 }

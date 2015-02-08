@@ -1,6 +1,6 @@
 package settlers.catan;
 
-public class Edge {
+public class Edge extends Clickable {
 
 	private Player owner;
 	private Node[] nodes;
@@ -33,4 +33,17 @@ public class Edge {
 	public void setRoad(boolean road) {
 		this.road = road;
 	}
+	
+	public int getXcord(){
+		return (nodes[0].getXcord()+nodes[1].getXcord())/2;
+	}
+	
+	public int getYcord(){
+		return (nodes[0].getYcord()+nodes[1].getYcord())/2;
+	}
+	
+	public int getRadius(){
+		return 40;
+	}
+	
 }
