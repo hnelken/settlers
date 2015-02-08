@@ -119,9 +119,15 @@ public class Node extends Clickable{
 	public void doOnClick(){
 		if (status == NodeStatus.EMPTY){
 			settle(manager.getCurrPlayer());
+			owner.modifyResource(Resource.ADOBE, -1);
+			owner.modifyResource(Resource.BANTHA, -1);
+			owner.modifyResource(Resource.BLUEMILK, -1);
+			owner.modifyResource(Resource.MOISTURE, -1);
 		}
 		else {
 			upgrade();
+			owner.modifyResource(Resource.DURASTEEL, -3);
+			owner.modifyResource(Resource.MOISTURE, -2);
 		}
 	}
 }

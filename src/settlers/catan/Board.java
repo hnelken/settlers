@@ -13,6 +13,7 @@ public class Board extends GBFrame{
 	private Node[] nodes;
 	private Edge[] edges;
 	public ArrayList<Clickable> clickList;
+	public boolean doubleClick = false;
 
 	public Board(GameManager manager) {
 		GBPanel panel = addPanel(new GBPanel(){
@@ -286,7 +287,10 @@ public class Board extends GBFrame{
 		for (Clickable c : clickList){
 			if (c.isInRange(x, y)){
 				c.doOnClick();
-				clickList = null;
+				if (doubleClick)
+					doubleClick = false;
+				else
+					clickList = null;
 			}
 		}
 	}
