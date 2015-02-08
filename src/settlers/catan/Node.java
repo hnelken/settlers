@@ -6,8 +6,18 @@ public class Node extends Clickable {
 
 	// fields
 	public GameManager manager;
+<<<<<<< HEAD
 	public enum NodeStatus {EMPTY, SETTLEMENT, CITY}
 	public NodeStatus status;
+=======
+	
+
+	public enum NodeStatus {
+		EMPTY, SETTLEMENT, CITY;
+	}
+
+	private ArrayList<Tile> surrounding;
+>>>>>>> fe4e54ddb67b7a108dd2dd4bfe4435350c5cf86d
 	private Player owner;
 	private boolean available;
 	private ArrayList<Edge> edges;
@@ -18,6 +28,7 @@ public class Node extends Clickable {
 		owner = null;
 		status = NodeStatus.EMPTY;
 		edges = new ArrayList<Edge>(3);
+		surrounding = new ArrayList<Tile>();
 		this.xcord = xcord;
 		this.ycord = ycord;
 	}
@@ -39,6 +50,16 @@ public class Node extends Clickable {
 		edges.add(edge);
 	}
 	
+<<<<<<< HEAD
+=======
+	public void addTile(Tile tile) {
+		surrounding.add(tile);
+	}
+	
+	public ArrayList<Tile> getTiles() {
+		return surrounding;
+	}
+>>>>>>> fe4e54ddb67b7a108dd2dd4bfe4435350c5cf86d
 	/**
 	 * Decides if this node is available for settlement by a given player
 	 */

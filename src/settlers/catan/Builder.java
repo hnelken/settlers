@@ -62,7 +62,7 @@ public class Builder extends GBFrame {
 			if (gManager.getCurrPlayer().getResource(Resource.ADOBE) < 1
 					|| gManager.getCurrPlayer().getResource(Resource.BANTHA ) < 1 
 					|| gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 1
-					|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 1){
+					|| gManager.getCurrPlayer().getResource(Resource.BLUEMILK) < 1){
 				dispose();
 			}
 			else{

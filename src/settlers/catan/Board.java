@@ -134,6 +134,13 @@ public class Board extends GBFrame {
 			}
 			tiles[j].manager = manager;
 		}
+		
+		for (int i = 0; i < tiles.length; i++) {
+			for (int j = 0; j < tiles[i].getCorners().length; j++) {
+				Node node = tiles[i].getCorners()[j];
+				node.addTile(tiles[i]);
+			}
+		}
 
 		edges = new Edge[72];
 		index = 0;
