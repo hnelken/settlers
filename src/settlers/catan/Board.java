@@ -315,8 +315,17 @@ public class Board extends GBFrame {
 		for (Clickable c : clickList){
 			if (c.isInRange(x, y)){
 				c.doOnClick();
-				if (doubleClick)
+				if (doubleClick){
 					doubleClick = false;
+					if (clickList.get(0) instanceof Edge){
+						clickList = new ArrayList<Clickable>();
+						for (Edge e : getEdges()){
+							if (e.canBeRoad(manager.getCurrPlayer())){
+								clickList.add(e);
+							}
+						}
+					}
+				}
 				clickList.remove(c);
 			}
 			else{
