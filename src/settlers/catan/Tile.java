@@ -22,5 +22,17 @@ public class Tile extends Clickable {
 	public int rollNum(){
 		return rollNum;
 	}
+	
+	public int getXcord(){
+		return corners[0].getXcord();
+	}
+	
+	public int getYcord(){
+		return (corners[1].getYcord()+corners[2].getYcord())/2;
+	}
+	
+	public int getRadius(){
+		return 60;
+	}
 
 }
