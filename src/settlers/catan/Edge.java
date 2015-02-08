@@ -58,6 +58,8 @@ public class Edge extends Clickable {
 		if (getOwner() != null || 
 				(getNodes()[0].getOwner() != null && getNodes()[0].getOwner() != nodes[0].manager.getCurrPlayer())||
 				(getNodes()[1].getOwner() != null && getNodes()[1].getOwner() != nodes[0].manager.getCurrPlayer())){
+			return false;
+		}
 			road = getNodes()[0].getOwner() == nodes[0].manager.getCurrPlayer()
 					||getNodes()[1].getOwner() == nodes[0].manager.getCurrPlayer();
 			for (Node n : getNodes()){
@@ -66,7 +68,6 @@ public class Edge extends Clickable {
 						road = true;
 				}
 			}
-		}
 		return road;
 	}
 }
