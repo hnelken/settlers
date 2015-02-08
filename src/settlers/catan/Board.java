@@ -1,116 +1,188 @@
 package settlers.catan; 
 
-public class Board {
+import BreezySwing.*;
+import javax.swing.*;
+
+public class Board extends GBFrame{
 	
 	private GameManager manager;
 	private Tile[] tiles;
 
 	public Board(GameManager manager) {
+		JLabel label = addLabel("GAME TIME", 1, 1, 1, 1);
+		//Node node = (Node)addButton("PRESS", 1, 2, 3, 4);
 		this.manager = manager;
 		tiles = new Tile[19];
 		Resource[] resources = getTileTypes();
 		int[] nums = getTileNum(resources);
+		Node[] nodes = new Node[54];
+		int[] numNodes = {3,4,4,5,5,6,6,5,5,4,4,3};
+		int[][] coords = {{366,140},{273,199},{273,303},{175,360},{175,462},{83,519},{83,625},{180,677},{180,786},{275,840},{275,948},{372,999}};
+		int dist = 200;
+		int index = 0;
+		for (int i = 0; i < numNodes.length; i++){
+			for (int j =0; j < numNodes[i]; j++){
+				nodes[index] = new Node(coords[i][0]+dist*j,coords[i][1]);
+				index++;
+			}
+		}
 		for (int j = 0; j < 19; j++) {
 			Node[] tileNodes;
 			switch (j) {
 				case 0:
-					tileNodes = new Node[]{new Node(), new Node(), new Node(),
-							new Node(), new Node(), new Node()};
+					tileNodes = new Node[]{nodes[0],nodes[4],nodes[8],nodes[12],nodes[7],nodes[3]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 1:
-					tileNodes = new Node[]{new Node(), new Node(), new Node(),
-							new Node(), tiles[0].getCorners()[2], tiles[0].getCorners()[1]};
+					tileNodes = new Node[]{nodes[1],nodes[5],nodes[9],nodes[13],nodes[8],nodes[4]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 2:
-					tileNodes = new Node[]{new Node(), new Node(), new Node(),
-							new Node(), tiles[1].getCorners()[2], tiles[1].getCorners()[1]};
+					tileNodes = new Node[]{nodes[2],nodes[6],nodes[10],nodes[14],nodes[9],nodes[5]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 3:
-					tileNodes = new Node[]{tiles[0].getCorners()[4], tiles[0].getCorners()[3], new Node(),
-							new Node(), new Node(), new Node()};
+					tileNodes = new Node[]{nodes[7],nodes[12],nodes[17],nodes[22],nodes[16],nodes[11]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 4:
-					tileNodes = new Node[]{tiles[0].getCorners()[2], tiles[1].getCorners()[3], new Node(),
-							new Node(), tiles[3].getCorners()[2], tiles[3].getCorners()[1]};
+					tileNodes = new Node[]{nodes[8],nodes[13],nodes[18],nodes[23],nodes[17],nodes[12]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 5:
-					tileNodes = new Node[]{tiles[1].getCorners()[2], tiles[2].getCorners()[3], new Node(),
-							new Node(), tiles[4].getCorners()[2], tiles[4].getCorners()[1]};
+					tileNodes = new Node[]{nodes[9],nodes[14],nodes[19],nodes[24],nodes[18],nodes[13]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 6:
-					tileNodes = new Node[]{tiles[2].getCorners()[2], new Node(), new Node(),
-							new Node(), tiles[5].getCorners()[2], tiles[5].getCorners()[1]};
+					tileNodes = new Node[]{nodes[10],nodes[15],nodes[20],nodes[25],nodes[19],nodes[14]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 7:
-					tileNodes = new Node[]{tiles[3].getCorners()[4], tiles[3].getCorners()[3], new Node(),
-							new Node(), new Node(), new Node()};
+					tileNodes = new Node[]{nodes[16],nodes[22],nodes[28],nodes[33],nodes[27],nodes[21]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 8:
-					tileNodes = new Node[]{tiles[3].getCorners()[2], tiles[4].getCorners()[3], new Node(),
-							new Node(), tiles[7].getCorners()[2], tiles[7].getCorners()[1]};
+					tileNodes = new Node[]{nodes[17],nodes[23],nodes[29],nodes[34],nodes[28],nodes[22]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 9:
-					tileNodes = new Node[]{tiles[4].getCorners()[2], tiles[5].getCorners()[3], new Node(),
-							new Node(), tiles[8].getCorners()[2], tiles[8].getCorners()[1]};
+					tileNodes = new Node[]{nodes[18],nodes[22],nodes[30],nodes[35],nodes[29],nodes[23]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 10:
-					tileNodes = new Node[]{tiles[5].getCorners()[2], tiles[6].getCorners()[3], new Node(),
-							new Node(), tiles[9].getCorners()[2], tiles[9].getCorners()[1]};
+					tileNodes = new Node[]{nodes[19],nodes[23],nodes[31],nodes[36],nodes[30],nodes[24]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 11:
-					tileNodes = new Node[]{tiles[6].getCorners()[2], new Node(), new Node(),
-							new Node(), tiles[10].getCorners()[2], tiles[10].getCorners()[1]};
+					tileNodes = new Node[]{nodes[20],nodes[24],nodes[32],nodes[37],nodes[31],nodes[25]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 12:
-					tileNodes = new Node[]{tiles[7].getCorners()[2], tiles[8].getCorners()[3], new Node(),
-							new Node(), new Node(), tiles[7].getCorners()[3]};
+					tileNodes = new Node[]{nodes[28],nodes[34],nodes[39],nodes[43],nodes[38],nodes[33]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 13:
-					tileNodes = new Node[]{tiles[8].getCorners()[2], tiles[9].getCorners()[3], new Node(),
-							new Node(), tiles[12].getCorners()[2], tiles[12].getCorners()[1]};
+					tileNodes = new Node[]{nodes[29],nodes[35],nodes[40],nodes[44],nodes[39],nodes[34]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 14:
-					tileNodes = new Node[]{tiles[9].getCorners()[2], tiles[10].getCorners()[3], new Node(),
-							new Node(), tiles[13].getCorners()[2], tiles[13].getCorners()[1]};
+					tileNodes = new Node[]{nodes[30],nodes[36],nodes[41],nodes[45],nodes[40],nodes[35]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 15:
-					tileNodes = new Node[]{tiles[10].getCorners()[2], tiles[11].getCorners()[3], new Node(),
-							new Node(), tiles[14].getCorners()[2], tiles[14].getCorners()[1]};
+					tileNodes = new Node[]{nodes[31],nodes[37],nodes[42],nodes[46],nodes[41],nodes[36]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 16:
-					tileNodes = new Node[]{tiles[12].getCorners()[2], tiles[13].getCorners()[3], new Node(),
-							new Node(), new Node(), tiles[12].getCorners()[3]};
+					tileNodes = new Node[]{nodes[39],nodes[44],nodes[48],nodes[51],nodes[47],nodes[43]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 17:
-					tileNodes = new Node[]{tiles[13].getCorners()[2], tiles[14].getCorners()[3], new Node(),
-							new Node(), tiles[16].getCorners()[2], tiles[16].getCorners()[1]};
+					tileNodes = new Node[]{nodes[40],nodes[45],nodes[49],nodes[52],nodes[48],nodes[44]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 				case 18:
-					tileNodes = new Node[]{tiles[14].getCorners()[2], tiles[15].getCorners()[3], new Node(),
-							new Node(), tiles[17].getCorners()[2], tiles[17].getCorners()[1]};
+					tileNodes = new Node[]{nodes[41],nodes[46],nodes[50],nodes[53],nodes[49],nodes[45]};
 					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
 					break;
 			}
-		}		
-		
+		}
+		this.setSize(500, 500);
+		this.setVisible(true);
+		Edge edg;
+		for (int i = 0; i < 3; i++){
+			edg = new Edge(nodes[i],nodes[i+3]);
+			nodes[i].addEdge(edg);
+			nodes[i+3].addEdge(edg);
+			edg = new Edge(nodes[i],nodes[i+4]);
+			nodes[i].addEdge(edg);
+			nodes[i+4].addEdge(edg);
+		}
+		for (int i = 3; i < 7; i++){
+			edg = new Edge(nodes[i],nodes[i+4]);
+			nodes[i].addEdge(edg);
+			nodes[i+4].addEdge(edg);
+		}
+		for (int i = 7; i < 11; i++){
+			edg = new Edge(nodes[i],nodes[i+4]);
+			nodes[i].addEdge(edg);
+			nodes[i+4].addEdge(edg);
+			edg = new Edge(nodes[i],nodes[i+5]);
+			nodes[i].addEdge(edg);
+			nodes[i+5].addEdge(edg);
+		}
+		for (int i = 11; i < 16; i++){
+			edg = new Edge(nodes[i],nodes[i+5]);
+			nodes[i].addEdge(edg);
+			nodes[i+5].addEdge(edg);
+		}
+		for (int i = 16; i < 21; i++){
+			edg = new Edge(nodes[i],nodes[i+5]);
+			nodes[i].addEdge(edg);
+			nodes[i+5].addEdge(edg);
+			edg = new Edge(nodes[i],nodes[i+6]);
+			nodes[i].addEdge(edg);
+			nodes[i+6].addEdge(edg);
+		}
+		for (int i = 21; i < 27; i++){
+			edg = new Edge(nodes[i],nodes[i+6]);
+			nodes[i].addEdge(edg);
+			nodes[i+6].addEdge(edg);
+		}
+		for (int i = 51; i < 54; i++){
+			edg = new Edge(nodes[i],nodes[i-3]);
+			nodes[i].addEdge(edg);
+			nodes[i-3].addEdge(edg);
+			edg = new Edge(nodes[i],nodes[i-4]);
+			nodes[i].addEdge(edg);
+			nodes[i-4].addEdge(edg);
+		}
+		for (int i = 47; i < 51; i++){
+			edg = new Edge(nodes[i],nodes[i+4]);
+			nodes[i].addEdge(edg);
+			nodes[i-4].addEdge(edg);
+		}
+		for (int i = 38; i < 43; i++){
+			edg = new Edge(nodes[i],nodes[i-4]);
+			nodes[i].addEdge(edg);
+			nodes[i-4].addEdge(edg);
+			edg = new Edge(nodes[i],nodes[i-5]);
+			nodes[i].addEdge(edg);
+			nodes[i-5].addEdge(edg);
+		}
+		for (int i = 38; i < 43; i++){
+			edg = new Edge(nodes[i],nodes[i-5]);
+			nodes[i].addEdge(edg);
+			nodes[i-5].addEdge(edg);
+		}
+		for (int i = 34; i < 38; i++){
+			edg = new Edge(nodes[i],nodes[i-5]);
+			nodes[i].addEdge(edg);
+			nodes[i-5].addEdge(edg);
+			edg = new Edge(nodes[i],nodes[i-6]);
+			nodes[i].addEdge(edg);
+			nodes[i-6].addEdge(edg);
+		}
 	}
 
 	public Tile[] getTiles(){
