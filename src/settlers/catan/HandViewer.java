@@ -2,7 +2,9 @@ package settlers.catan;
 
 import java.awt.*;
 import java.util.ArrayList;
+
 import BreezySwing.*;
+
 import javax.swing.*;
 
 public class HandViewer extends GBFrame{
@@ -24,20 +26,11 @@ public class HandViewer extends GBFrame{
 		this.setSize(500, 600);
 		this.setVisible(true);
         		
-		int i = 0;
-		int x = 10;
-		int y = 10;
-		for (DevCard card : hand){
-			buttons[i] = addButton("Play", x , y, 10, 10);
-			labels[i] = addLabel(card.getName(), x + 10, y, 300, 30);
-			descriptions[i] = addLabel(card.getDescription(), x + 15, y + 15, 300, 10);
-			if (card.isPlayable()){
-				buttons[i].setEnabled(true);
-			} else {
-				buttons[i].setEnabled(false);
-			}
-			x = x + 20;
-			y = y + 20;
+		for (int i = 0; i < hand.size(); i++) {
+			buttons[i] = new JButton();
+			String filename = str[i]+".jpg";
+			buttons[i].setIcon(new ImageIcon(filename));
+			new JLabel(str[i]);
 		}
 	}
 	
