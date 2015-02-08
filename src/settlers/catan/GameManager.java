@@ -53,6 +53,8 @@ public class GameManager {
 			firstTurnOrder[index++] = players[i];
 		}
 		gameBoard.clickList = new ArrayList<Clickable>(Arrays.asList(gameBoard.getNodes()));
+		
+				//BEGIN SNAKE FORWARD
 		Edge[] edges = gameBoard.getEdges();
 		for (int i = 0; i < firstTurnOrder.length; i++) {
 						///Give resources for a civilization
@@ -87,7 +89,7 @@ public class GameManager {
 				}
 			}
 		}
-		
+				// SNAKE BACKWARDS
 		for (int i = players.length - 1; i >= 0; i--) {
 						///Give resources for a civilization
 			firstTurnOrder[i].modifyResource(Resource.ADOBE, 1);
@@ -97,6 +99,9 @@ public class GameManager {
 			
 			Builder builder = new Builder(this);	//Place a settlement
 			new MessageBox(gameBoard, "WARNING: DON'T CONTINUE UNTIL YOU ARE DONE BUILDING");
+			
+			Node settlement = (Node)gameBoard.lastClicked;
+			
 			gameBoard.clickList = new ArrayList<Clickable>();
 			
 			for (int j = 0; j < edges.length; j++) { 		//establish open edges
@@ -118,6 +123,10 @@ public class GameManager {
 				if (nodes[j].status == Node.NodeStatus.EMPTY) {
 					clickList.add(nodes[j]);
 				}
+			}
+			
+			for (int t = 0; t < settlement.getTiles().size(); t++) {
+				settlement.getOwner().addResource(settlement.getTiles().get(t).getResourceType());
 			}
 		}
 		

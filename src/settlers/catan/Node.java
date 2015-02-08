@@ -13,6 +13,7 @@ public class Node extends Clickable{
 		EMPTY, SETTLEMENT, CITY;
 	}
 
+	private ArrayList<Tile> surrounding;
 	private Player owner;
 	private boolean available;
 	private ArrayList<Edge> edges;
@@ -25,6 +26,7 @@ public class Node extends Clickable{
 		owner = null;
 		status = NodeStatus.EMPTY;
 		edges = new ArrayList<Edge>(3);
+		surrounding = new ArrayList<Tile>();
 		this.xcord = xcord;
 		this.ycord = ycord;
 	}
@@ -42,6 +44,14 @@ public class Node extends Clickable{
 
 	public void addEdge(Edge edge) {
 		edges.add(edge);
+	}
+	
+	public void addTile(Tile tile) {
+		surrounding.add(tile);
+	}
+	
+	public ArrayList<Tile> getTiles() {
+		return surrounding;
 	}
 	/**
 	 * Decides if this node is available for settlement by a given player
