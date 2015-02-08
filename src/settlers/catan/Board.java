@@ -1,11 +1,16 @@
 package settlers.catan; 
 
-public class Board {
+import BreezySwing.*;
+import javax.swing.*;
+
+public class Board extends GBFrame{
 	
 	private GameManager manager;
 	private Tile[] tiles;
 
 	public Board(GameManager manager) {
+		JLabel label = addLabel("GAME TIME", 1, 1, 1, 1);
+		//Node node = (Node)addButton("PRESS", 1, 2, 3, 4);
 		this.manager = manager;
 		tiles = new Tile[19];
 		Resource[] resources = getTileTypes();
@@ -110,7 +115,8 @@ public class Board {
 					break;
 			}
 		}		
-		
+		this.setSize(500, 500);
+		this.setVisible(true);
 	}
 
 	public Tile[] getTiles(){
