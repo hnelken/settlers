@@ -18,14 +18,18 @@ public class Node extends JButton{
 	private Player owner;
 	private boolean available;
 	private ArrayList<Edge> edges;
+	private int xcord;
+	private int ycord;
 
 	public NodeStatus status;
 
-	public Node() {
+	public Node(int xcord, int ycord) {
 		owner = null;
 		status = NodeStatus.EMPTY;
 		this.setEnabled(false);
 		edges = new ArrayList<Edge>(3);
+		this.xcord = xcord;
+		this.ycord = ycord;
 	}
 
 	public void settle(Player settler) {
@@ -109,5 +113,13 @@ public class Node extends JButton{
 		if (status == NodeStatus.CITY){
 			this.upgrade();
 		}
+	}
+	
+	public int getXcord(){
+		return xcord;
+	}
+	
+	public int getYcord(){
+		return ycord;
 	}
 }
