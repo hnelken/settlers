@@ -1,5 +1,6 @@
 package settlers.catan; 
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -19,7 +20,7 @@ public class Board extends GBFrame {
 	private Edge[] edges;
 	private JButton[] buttons = new JButton[4];		
 
-	public ArrayList<Clickable> clickList;
+	public ArrayList<Clickable> clickList = new ArrayList<Clickable>();
 	public boolean doubleClick = false;
 	public Clickable lastClicked = null;
 
@@ -29,7 +30,6 @@ public class Board extends GBFrame {
 		buttons[1] = addButton("Build", 5, 5, 1, 1);
 		buttons[2] = addButton("Play Card", 6, 5, 1, 1);
 		buttons[3] = addButton("End Turn", 7, 5, 1, 1);
-
 		GBPanel panel = addPanel(new GBPanel(){
 			public void mouseClicked(int x, int y){
 				Board.this.clickLoc(x,y);
@@ -244,14 +244,6 @@ public class Board extends GBFrame {
 			nodes[i].addEdge(edg);
 			nodes[i-6].addEdge(edg);
 		}
-
-		this.setSize(900, 600);
-		BufferedImage img = null;
-		try {
-		    img = ImageIO.read(new File("../../../boardmenu.jpg"));
-		} catch (IOException e) {
-		}
-		setIconImage((Image)img);
 		this.setSize(1296, 880);
 		this.setVisible(true);
 	}
@@ -341,7 +333,7 @@ public class Board extends GBFrame {
 			}
 			else{
 				lastClicked = c;
-				clickList = null;
+				clickList = new ArrayList<Clickable>();
 				for (JButton b : buttons){
 					b.setEnabled(true);
 				}
