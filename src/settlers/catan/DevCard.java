@@ -1,7 +1,5 @@
 package settlers.catan;
 
-import javax.swing.JButton;
-import java.util.ArrayList;
 public class DevCard {
 
 	// fields
@@ -11,13 +9,12 @@ public class DevCard {
 	private Type type;
 	private String name;
 	private String description;
-	private GameManager manager;
 
 	public enum Type {TROOPER, VP, SANDSTORM, SANDCRAWLER, TWINSUNS}
 
 	// constructors
 
-	public DevCard(Type type, GameManager manager) {
+	public DevCard(Type type) {
 		setOwner(null);
 		setPlayable(false);
 		this.type = type;
@@ -41,8 +38,6 @@ public class DevCard {
 		default:
 			// no default
 		}
-		this.setPlayable(false);
-		this.manager = manager;
 	}
 
 	public DevCard(String name){
@@ -54,6 +49,26 @@ public class DevCard {
 	}
 
 	// methods
+
+	public void play(){
+		switch (type) {
+			case TROOPER:
+				trooperPlay();
+				break;
+			case SANDCRAWLER:
+				break;
+			case SANDSTORM:
+				break;
+			case TWINSUNS:
+				break;
+			case VP:
+				break;
+		}
+	}
+
+	private void trooperPlay(){
+
+	}
 
 	public Player getOwner() {
 		return owner;
