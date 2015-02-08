@@ -1,10 +1,13 @@
 package settlers.catan;
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 
 import BreezySwing.GBFrame;
 
 import javax.swing.JButton;
+
+import settlers.catan.Node.NodeStatus;
 
 public class Builder extends GBFrame {
 
@@ -32,6 +35,7 @@ public class Builder extends GBFrame {
 			if (manager.getCurrPlayer().getResource(Resource.ADOBE) < 1
 					|| manager.getCurrPlayer().getResource(Resource.BANTHA )<1){
 				dispose();
+<<<<<<< HEAD
 			} else {
 				manager.getBoard().clickList = new ArrayList<Node>();
 				for (int i = 0; i < 72; i++) {
@@ -43,8 +47,26 @@ public class Builder extends GBFrame {
 						for (Node n : e.getNodes()) {
 							for (Edge e2: n.getEdges()) {
 								if (e2.getOwner() == manager.getCurrPlayer())
+=======
+			}
+			else{
+				gManager.getBoard().clickList = new ArrayList<Clickable>();
+				for (int i = 0; i < 72; i++){
+					Edge e = gManager.getBoard().getEdges()[i];
+					if (e.getOwner() != null || 
+					   (e.getNodes()[0].getOwner() != null && e.getNodes()[0].getOwner() != gManager.getCurrPlayer())||
+					   (e.getNodes()[1].getOwner() != null && e.getNodes()[1].getOwner() != gManager.getCurrPlayer())){
+						boolean road = (e.getNodes()[0].getOwner() == gManager.getCurrPlayer()
+								||e.getNodes()[1].getOwner() == gManager.getCurrPlayer());
+						for (Node n : e.getNodes()){
+							for (Edge e2: n.getEdges()){
+								if (e2.getOwner() == gManager.getCurrPlayer())
+>>>>>>> 4a4a400bf559877d0fe66ff1605be4da504bb294
 									road = true;
 							}
+						}
+						if (road){
+							gManager.getBoard().clickList.add((Clickable)e);
 						}
 					}
 				}
@@ -52,7 +74,12 @@ public class Builder extends GBFrame {
 		} else if (btn == buildSettlement) {
 			
 		} else if (btn == buildCity) {
-			
+			gManager.getBoard().clickList = new ArrayList<Clickable>();
+			for (Node n : gManager.getBoard().getNodes()){
+				if (n.getStatus() == Node.NodeStatus.SETTLEMENT && n.getOwner() == gManager.getCurrPlayer()){
+					gManager.getBoard().clickList.add((Clickable)n);
+				}
+			}
 		} else if (btn == buildDevCard) {
 			manager.getDeck().draw(manager.getCurrPlayer());
 		} else {// cancel

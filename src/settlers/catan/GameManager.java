@@ -184,5 +184,10 @@ public class GameManager {
 	public Deck getDeck() {
 		return deck;
 	}
+	
+	public Board getBoard(){
+		return gameBoard;
+	}
+	}
 
 }
