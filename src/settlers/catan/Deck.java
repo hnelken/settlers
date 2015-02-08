@@ -7,10 +7,12 @@ public class Deck {
 	
 	// fields
 	Stack<DevCard> deck;
+	private GameManager manager;
 	
 	// constructors
 	
-	public Deck() {
+	public Deck(GameManager g) {
+		manager = g;
 		deck = new Stack<DevCard>();
 		// instantiate 14 trooper cards
 		for (int i = 0; i < 14; i++) {
