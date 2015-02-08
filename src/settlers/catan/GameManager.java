@@ -84,14 +84,16 @@ public class GameManager {
 	}
 	
 	private void startLogicRoad() {
-		gameBoard.clickList = new ArrayList<Clickable>();
+		ArrayList<Clickable> clickList = new ArrayList<Clickable>();
 
 		Edge[] edges = gameBoard.getEdges();
-		for (int j = 0; j < edges.length; j++) { 		//establish open edges
+		Node last = (Node)gameBoard.lastClicked;
+		for (int j = 0; j < last.getEdges().size(); j++) { 		//establish open edges
 			if (!edges[j].isRoad()) {
-				gameBoard.clickList.add(edges[j]);
+				clickList.add(edges[j]);
 			}
 		}
+		gameBoard.clickList = clickList;
 		if (state == GameState.FTRFORWARD) {
 			//Give resources for a road
 			firstTurnOrder[firstTurn].addResource(Resource.ADOBE);
@@ -119,13 +121,15 @@ public class GameManager {
 	
 	private void setupNextPlayer() {
 		ArrayList<Clickable> clickList = new ArrayList<Clickable>();
-
+		
+		System.out.println(firstTurnOrder[firstTurn].getName());
 		Node[] nodes = gameBoard.getNodes();			//Establish open nodes
 		for (int j = 0; j < nodes.length; j++) {
 			if (nodes[j].status == Node.NodeStatus.EMPTY) {
 				clickList.add(nodes[j]);
 			}
 		}
+		gameBoard.clickList = clickList;
 		gameBoard.setPlayer(getFirstPlayer().getName());
 		startLogicSettle();
 	}
@@ -173,6 +177,7 @@ public class GameManager {
 		if (state == GameState.FTRFORWARD) {
 			if (firstTurn < players.length) {
 				System.out.println(GameState.FTSFORWARD);
+				System.out.println("Old: " + firstTurn);
 				firstTurn++;
 				state = GameState.FTSFORWARD;
 				setupNextPlayer();

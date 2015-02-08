@@ -43,8 +43,8 @@ public class Board extends GBFrame {
 		int[] nums = getTileNum(resources);
 		nodes = new Node[54];
 		int[] numNodes = {3,4,4,5,5,6,6,5,5,4,4,3};
-		int[][] coords = {{366,140},{273,199},{273,303},{175,360},{175,462},{83,519},{83,625},{180,677},{180,786},{275,840},{275,948},{372,999}};
-		int dist = 200;
+		int[][] coords = {{244,88},{177,128},{177,196},{108,234},{111,302},{46,344},{48,414},{116,447},{117,524},{178,560},{178,627},{246,666}};
+		int dist = 138;
 		int index = 0;
 		for (int i = 0; i < numNodes.length; i++){
 			for (int j =0; j < numNodes[i]; j++){
@@ -258,7 +258,7 @@ public class Board extends GBFrame {
 	}
 
 	public void setPlayer(String name) {
-		player = addLabel(name, 1, 5, 1, 1);
+		player.setText(name);
 	}
 	
 	public Tile[] getTiles(){
