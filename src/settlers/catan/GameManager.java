@@ -36,7 +36,6 @@ public class GameManager {
 	}
 
 	private void logic() {
-		while (!gameOver) {
 			/* Take Turn */
 			//Roll Dice
 			int roll = diceRoll();
@@ -49,15 +48,6 @@ public class GameManager {
 
 			//Free Choice
 			state = GameState.PLAYERTURNCHOICE;
-			//End Turn
-			endTurn();
-			//Check for 10 VP
-			state = GameState.WINCHECK;
-			checkForWin();
-
-			//Change player turn
-			nextPlayer();
-		}
 	}
 
 	private int diceRoll() {
@@ -85,8 +75,18 @@ public class GameManager {
 		}
 	}
 
-	private void endTurn() {
+	public void endTurn() {
 		players[turn].makePlayable();
+		
+		//Check for 10 VP
+		state = GameState.WINCHECK;
+		checkForWin();
+
+		//Change player turn
+		nextPlayer();
+		
+		state = GameState.PLAYERTURNROLL;
+		logic();
 	}
 
 	private void checkForWin() {

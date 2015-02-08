@@ -1,6 +1,7 @@
 package settlers.catan; 
 
 import BreezySwing.*;
+
 import javax.swing.*;
 
 public class Board extends GBFrame{
@@ -9,8 +10,15 @@ public class Board extends GBFrame{
 	private Tile[] tiles;
 	private Node[] nodes;
 	private Edge[] edges;
+	private JButton[] buttons = new JButton[4];
 
 	public Board(GameManager manager) {
+		
+		buttons[0] = new JButton("Trade", x, y, z, g);
+		buttons[1] = new JButton("Build", x, y, z, g);
+		buttons[2] = new JButton("Play Card", x, y, z, g);
+		buttons[3] = new JButton("End Turn", x, y, z, g);
+
 		GBPanel panel = addPanel(new GBPanel(), 1, 1, 1, 1);
 		this.manager = manager;
 		tiles = new Tile[19];
@@ -273,6 +281,26 @@ public class Board extends GBFrame{
 		}
 		return tileNum;
 	}
+	
+	public void buttonClicked(JButton btn){
+		if (btn == buttons[0]) 
+			trade();
+		else if (btn == buttons[1])
+			new Builder(manager);
+		else if (btn == buttons[2])
+			new HandViewer(manager);
+		else if (btn == buttons[3])
+			manager.endTurn();
+	}
+
+	private void trade() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
 	
 	
 
