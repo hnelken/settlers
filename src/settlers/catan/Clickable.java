@@ -9,5 +9,6 @@ public abstract class Clickable {
 				(xCord-getXcord())*(xCord-getXcord())+
 				(yCord-getYcord())*(yCord-getYcord()),.5) <= getRadius();
 	}
+	public abstract void doOnClick();
 
 }

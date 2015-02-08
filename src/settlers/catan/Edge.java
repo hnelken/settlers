@@ -46,4 +46,9 @@ public class Edge extends Clickable {
 		return 40;
 	}
 	
+	public void doOnClick(){
+		setRoad(true);
+		setOwner(nodes[0].manager.getCurrPlayer());
+	}
+	
 }

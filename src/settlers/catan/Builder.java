@@ -26,7 +26,28 @@ public class Builder extends GBFrame {
 	
 	public void buttonClicked(JButton btn) {
 		if (btn == buildRoad) {
-			
+			if (gManager.getCurrPlayer().getResource(Resource.ADOBE) < 1
+					|| gManager.getCurrPlayer().getResource(Resource.BANTHA )<1){
+				dispose();
+			}
+			else{
+				gManager.getBoard.clickList = new ArrayList<Node>();
+				for (int i = 0; i < 72; i++){
+					Edge e = gManager.getBoard().getEdges()[i];
+					if (e.getOwner() != null || 
+					   (e.getNodes()[0].getOwner() != null && e.getNodes()[0].getOwner() != gManager.getCurrPlayer())||
+					   (e.getNodes()[1].getOwner() != null && e.getNodes()[1].getOwner() != gManager.getCurrPlayer())){
+						boolean road = false;
+						for (Node n : e.getNodes()){
+							for (Edge e2: n.getEdges()){
+								if (e2.getOwner() == gManager.getCurrPlayer())
+									road = true;
+							}
+						}
+					}
+					
+				}
+			}
 		} else if (btn == buildSettlement) {
 			
 		} else if (btn == buildCity) {
