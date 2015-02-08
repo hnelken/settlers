@@ -56,6 +56,7 @@ public class GameManager {
 		}
 		gameBoard.clickList = new ArrayList<Clickable>(Arrays.asList(gameBoard.getNodes()));
 		firstTurn = 0;
+		gameBoard.setPlayer(getFirstPlayer().getName());
 		startLogicSettle();
 	}
 	
@@ -68,7 +69,7 @@ public class GameManager {
 			firstTurnOrder[firstTurn].addResource(Resource.BLUEMILK);
 			firstTurnOrder[firstTurn].addResource(Resource.MOISTURE);
 
-			Builder builder = new Builder(this);	//Place a settlement
+			Builder builder = new Builder(this, false);	//Place a settlement
 		}
 		else if (state == GameState.FTSBACK) {
 			// SNAKE BACKWARDS
@@ -78,7 +79,7 @@ public class GameManager {
 				firstTurnOrder[firstTurn].addResource(Resource.BLUEMILK);
 				firstTurnOrder[firstTurn].addResource(Resource.MOISTURE);
 
-				Builder builder = new Builder(this);	//Place a settlement
+				Builder builder = new Builder(this, false);	//Place a settlement
 		}
 	}
 	
@@ -96,7 +97,7 @@ public class GameManager {
 			firstTurnOrder[firstTurn].addResource(Resource.ADOBE);
 			firstTurnOrder[firstTurn].addResource(Resource.BANTHA);
 
-			Builder builder = new Builder(this);		//place a road
+			Builder builder = new Builder(this, false);		//place a road
 		}
 		else if (state == GameState.FTRBACK) {
 			settlement = (Node)gameBoard.lastClicked;
@@ -112,7 +113,7 @@ public class GameManager {
 			firstTurnOrder[firstTurn].modifyResource(Resource.ADOBE, 1);
 			firstTurnOrder[firstTurn].modifyResource(Resource.BANTHA, 1);
 
-			Builder builder = new Builder(this);		//place a road
+			Builder builder = new Builder(this, false);		//place a road
 		}
 	}
 	
@@ -125,7 +126,7 @@ public class GameManager {
 				clickList.add(nodes[j]);
 			}
 		}
-		
+		gameBoard.setPlayer(getFirstPlayer().getName());
 		startLogicSettle();
 	}
 	
@@ -238,6 +239,11 @@ public class GameManager {
 		else {
 			turn++;
 		}
+		gameBoard.setPlayer(getCurrPlayer().getName());
+	}
+	
+	public Player getFirstPlayer() {
+		return firstTurnOrder[firstTurn];
 	}
 	
 	public Player getCurrPlayer(){

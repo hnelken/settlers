@@ -1,5 +1,5 @@
 package settlers.catan;
 
 public enum Resource {
-	MOISTURE, BLUEMILK, DURASTEEL, ADOBE, BANTHA, DESERT;
+	ADOBE, BANTHA, BLUEMILK, MOISTURE, DURASTEEL, DESERT;
 }

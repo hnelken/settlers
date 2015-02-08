@@ -35,6 +35,12 @@ public class Builder extends GBFrame {
 		setVisible(true);
 	}
 	
+	public Builder(GameManager gManager,boolean dev){
+		for (JButton b : gManager.getBoard().getButtons()){
+			b.setEnabled(false);
+		}
+	}
+	
 	// methods
 	
 	public void buttonClicked(JButton btn) {
@@ -78,6 +84,7 @@ public class Builder extends GBFrame {
 						b.setEnabled(false);
 					}
 				}
+				dispose();
 			}
 		} 
 		else if (btn == buildCity) {
@@ -97,6 +104,7 @@ public class Builder extends GBFrame {
 						b.setEnabled(false);
 					}
 				}
+				dispose();
 			}
 		} 
 		else if (btn == buildDevCard) {
@@ -111,6 +119,7 @@ public class Builder extends GBFrame {
 				gManager.getCurrPlayer().modifyResource(Resource.MOISTURE, -1);
 				gManager.getCurrPlayer().modifyResource(Resource.BLUEMILK, -1);
 			}
+			dispose();
 		} 
 		else {// cancel
 			dispose();
