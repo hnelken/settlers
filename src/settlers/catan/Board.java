@@ -185,13 +185,13 @@ public class Board extends GBFrame{
 			nodes[i-4].addEdge(edg);
 		}
 		for (int i = 47; i < 51; i++){
-			edg = new Edge(nodes[i],nodes[i+4]);
+			edg = new Edge(nodes[i],nodes[i-4]);
 			edges[index] = edg;
 			index++;
 			nodes[i].addEdge(edg);
 			nodes[i-4].addEdge(edg);
 		}
-		for (int i = 38; i < 43; i++){
+		for (int i = 43; i < 47; i++){
 			edg = new Edge(nodes[i],nodes[i-4]);
 			edges[index] = edg;
 			index++;
@@ -207,10 +207,11 @@ public class Board extends GBFrame{
 			edg = new Edge(nodes[i],nodes[i-5]);
 			edges[index] = edg;
 			index++;
+			System.out.print(index);
 			nodes[i].addEdge(edg);
 			nodes[i-5].addEdge(edg);
 		}
-		for (int i = 34; i < 38; i++){
+		for (int i = 33; i < 38; i++){
 			edg = new Edge(nodes[i],nodes[i-5]);
 			edges[index] = edg;
 			index++;
