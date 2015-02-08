@@ -24,7 +24,7 @@ public class DevCard {
 		}
 		else if (type == Type.SANDSTORM){
 			this.setName("Sandstorm");
-			this.setDescription("When you play this card, you can select two resources of your choice from the bank.");
+			this.setDescription("When you play this card, all other players must give you all their resource cards of your chosen type.");
 		}
 		else if (type == Type.SANDCRAWLER){
 			this.setName("Sandcrawler");
