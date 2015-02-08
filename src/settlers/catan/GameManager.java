@@ -1,19 +1,15 @@
 package settlers.catan;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
+import java.util.*;
+import javax.swing.JButton;
 import BreezySwing.MessageBox;
 
-import javax.swing.JButton;
 public class GameManager {
 
 	//fields
 	private Board gameBoard;
 	private Player[] players;
-	private Player winner; //TODO
 	private int turn;
-	private boolean gameOver;
 	private GameState state; //TODO
 	private Deck deck;
 	private Smuggler smuggler; //TODO
@@ -29,8 +25,6 @@ public class GameManager {
 	public GameManager(Player[] players) {
 		gameBoard = new Board(this);
 		this.players = players;
-		gameOver = false;
-		winner = null;
 		deck = new Deck(this);
 		turn = (int)(players.length * Math.random());
 		Tile desert = null;
@@ -69,7 +63,7 @@ public class GameManager {
 			firstTurnOrder[firstTurn].addResource(Resource.BLUEMILK);
 			firstTurnOrder[firstTurn].addResource(Resource.MOISTURE);
 
-			Builder builder = new Builder(this, false);	//Place a settlement
+			new Builder(this, false);	//Place a settlement
 		}
 		else if (state == GameState.FTSBACK) {
 			// SNAKE BACKWARDS
@@ -79,7 +73,7 @@ public class GameManager {
 				firstTurnOrder[firstTurn].addResource(Resource.BLUEMILK);
 				firstTurnOrder[firstTurn].addResource(Resource.MOISTURE);
 
-				Builder builder = new Builder(this, false);	//Place a settlement
+				new Builder(this, false);	//Place a settlement
 		}
 	}
 	
@@ -99,7 +93,7 @@ public class GameManager {
 			firstTurnOrder[firstTurn].addResource(Resource.ADOBE);
 			firstTurnOrder[firstTurn].addResource(Resource.BANTHA);
 
-			Builder builder = new Builder(this, false);		//place a road
+			new Builder(this, false);		//place a road
 		}
 		else if (state == GameState.FTRBACK) {
 			settlement = (Node)gameBoard.lastClicked;
@@ -115,7 +109,7 @@ public class GameManager {
 			firstTurnOrder[firstTurn].modifyResource(Resource.ADOBE, 1);
 			firstTurnOrder[firstTurn].modifyResource(Resource.BANTHA, 1);
 
-			Builder builder = new Builder(this, false);		//place a road
+			new Builder(this, false);		//place a road
 		}
 	}
 	
@@ -236,8 +230,6 @@ public class GameManager {
 		for (int i = 0; i < players.length; i++) {
 			if (players[i].getVictoryPoints() == 10) {
 				state = GameState.GAMEOVER;
-				gameOver = true;
-				winner = players[i];
 			}
 		}
 	}
