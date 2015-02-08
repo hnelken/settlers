@@ -166,7 +166,7 @@ public class GameManager {
 	}
 
 	//move the smuggler around
-	private void moveSmuggler() {
+	public void moveSmuggler(Tile t) {
 		
 	}
 	

@@ -71,20 +71,58 @@ public class Builder extends GBFrame {
 					}
 				}
 			}
-		} else if (btn == buildSettlement) {
-			
-		} else if (btn == buildCity) {
-			gManager.getBoard().clickList = new ArrayList<Clickable>();
-			for (Node n : gManager.getBoard().getNodes()){
-				if (n.getStatus() == Node.NodeStatus.SETTLEMENT && n.getOwner() == gManager.getCurrPlayer()){
-					gManager.getBoard().clickList.add((Clickable)n);
+		} 
+		else if (btn == buildSettlement) {
+			if (gManager.getCurrPlayer().getResource(Resource.ADOBE) < 1
+					|| gManager.getCurrPlayer().getResource(Resource.BANTHA ) < 1 
+					|| (gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 1
+					|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 1)){
+				dispose();
+			}
+			else{
+				gManager.getBoard().clickList = new ArrayList<Clickable>();
+				for (Node n : gManager.getBoard().getNodes()){
+					n.availabilityCheck(gManager.getCurrPlayer());
+					if (n.isAvailable()){
+						gManager.getBoard().clickList.add((Clickable)n);
+					}
 				}
 			}
+<<<<<<< HEAD
 		} else if (btn == buildDevCard) {
 			manager.getDeck().draw(manager.getCurrPlayer());
 		} else {// cancel
+=======
+		} 
+		else if (btn == buildCity) {
+			if (gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 2
+					|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 3){
+				dispose();
+			}
+			else{
+				gManager.getBoard().clickList = new ArrayList<Clickable>();
+				for (Node n : gManager.getBoard().getNodes()){
+					if (n.getStatus() == Node.NodeStatus.SETTLEMENT && n.getOwner() == gManager.getCurrPlayer()){
+						gManager.getBoard().clickList.add((Clickable)n);
+					}
+				}
+			}
+		} 
+		else if (btn == buildDevCard) {
+			if (gManager.getCurrPlayer().getResource(Resource.BLUEMILK) < 1
+					|| (gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 1
+					|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 1)){ 
+				dispose();
+			}
+			else{
+				gManager.getDeck().draw(gManager.getCurrPlayer());
+			}
+		} 
+		else {// cancel
+>>>>>>> 6aca438e01cb7976a0042b07fb98673a223d09cb
 			dispose();
 		}
+		dispose();
 	}
 		
 }
