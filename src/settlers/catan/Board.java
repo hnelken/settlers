@@ -306,8 +306,12 @@ public class Board extends GBFrame {
 
 	public void buttonClicked(JButton btn){
 		if (btn == buttons[0]){ 
+			if (manager.getCurrPlayer().getResource(0) > 4 || manager.getCurrPlayer().getResource(1) > 4 || 
+					manager.getCurrPlayer().getResource(2) > 4 || manager.getCurrPlayer().getResource(3) > 4 || 
+					manager.getCurrPlayer().getResource(4) > 4){
 			new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGAWAY, "Select a resource you would like to trade away.");
 			new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGFOR, "Select a resource you would like.");
+			}
 		}
 		else if (btn == buttons[1])
 			new Builder(manager);
