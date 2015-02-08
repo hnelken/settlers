@@ -30,6 +30,7 @@ public class Board extends GBFrame {
 		buttons[1] = addButton("Build", 5, 5, 1, 1);
 		buttons[2] = addButton("Play Card", 6, 5, 1, 1);
 		buttons[3] = addButton("End Turn", 7, 5, 1, 1);
+
 		GBPanel panel = addPanel(new GBPanel(){
 			public void mouseClicked(int x, int y){
 				Board.this.clickLoc(x,y);

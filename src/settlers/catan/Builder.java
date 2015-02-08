@@ -17,20 +17,20 @@ public class Builder extends GBFrame {
 		setSize(300, 400);
 		this.gManager = gManager;
 		buildRoad = addButton("Road", 1, 1, 1, 1);
-		buildRoad.setEnabled(gManager.getCurrPlayer().getResource(Resource.ADOBE) < 1
-					|| gManager.getCurrPlayer().getResource(Resource.BANTHA )<1);
-		buildSettlement = addButton("Settlement", 2, 1, 1, 1);
-		buildSettlement.setEnabled(gManager.getCurrPlayer().getResource(Resource.ADOBE) < 1
-				|| gManager.getCurrPlayer().getResource(Resource.BANTHA ) < 1 
-				|| gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 1
-				|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 1);
+		buildRoad.setEnabled(gManager.getCurrPlayer().getResource(Resource.ADOBE) >= 1
+					&& gManager.getCurrPlayer().getResource(Resource.BANTHA ) >= 1);
+		buildSettlement = addButton("Settlement", 2, 1, 1, 1); 
+		buildSettlement.setEnabled(gManager.getCurrPlayer().getResource(Resource.ADOBE) >= 1
+				&& gManager.getCurrPlayer().getResource(Resource.BANTHA ) >= 1 
+				&& gManager.getCurrPlayer().getResource(Resource.MOISTURE) >= 1
+				&& gManager.getCurrPlayer().getResource(Resource.BLUEMILK) >= 1);
 		buildCity = addButton("Upgrade to City", 3, 1, 1, 1);
-		buildCity.setEnabled(gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 2
-				|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 3);
+		buildCity.setEnabled(gManager.getCurrPlayer().getResource(Resource.MOISTURE) >= 2
+				&& gManager.getCurrPlayer().getResource(Resource.DURASTEEL) > 3);
 		buildDevCard = addButton("Development Card", 4, 1, 1, 1);
-		buildDevCard.setEnabled(gManager.getCurrPlayer().getResource(Resource.BLUEMILK) < 1
-				|| gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 1
-				|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 1);
+		buildDevCard.setEnabled(gManager.getCurrPlayer().getResource(Resource.BLUEMILK) >= 1
+				&& gManager.getCurrPlayer().getResource(Resource.MOISTURE) >= 1
+				&& gManager.getCurrPlayer().getResource(Resource.DURASTEEL) >= 1);
 		addButton("Cancel", 5, 1, 1, 1);
 		setVisible(true);
 	}
