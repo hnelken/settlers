@@ -1,5 +1,10 @@
 package settlers.catan;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import BreezySwing.MessageBox;
+
 public class GameManager {
 
 	//fields
@@ -25,9 +30,11 @@ public class GameManager {
 		deck = new Deck();
 		turn = (int)(players.length * Math.random());
 		Tile desert = null;
-		for (int i = 0; i < gameBoard.getTiles().length; i++)
-			if (gameBoard.getTiles()[i].getResourceType() == Resource.DESERT)
+		for (int i = 0; i < gameBoard.getTiles().length; i++) {
+			if (gameBoard.getTiles()[i].getResourceType() == Resource.DESERT) {
 				desert = gameBoard.getTiles()[i];
+			} //end if
+		} //end for
 		smuggler = new Smuggler(desert);
 		state = GameState.FIRSTTURN;
 		startLogic();
@@ -36,15 +43,85 @@ public class GameManager {
 	// methods
 	
 	private void startLogic() {
-		for (int i = 0; i < players.length; i++) {
-			players[i].modifyResource(Resource.ADOBE, 2);
-			players[i].modifyResource(Resource.BANTHA, 2);
-			players[i].modifyResource(Resource.BLUEMILK, 2);
-			players[i].modifyResource(Resource.MOISTURE, 2);
-			Builder builder = new Builder(this);
-			builder = new Builder(this);
+		Player[] firstTurnOrder = new Player[players.length];
+		int index = 0;
+		for (int player = turn; player < players.length; player++) {
+			firstTurnOrder[index++] = players[player];
+		}
+		for (int i = 0; index < players.length; i++) {
+			firstTurnOrder[index++] = players[i];
+		}
+		gameBoard.clickList = new ArrayList<Clickable>(Arrays.asList(gameBoard.getNodes()));
+		Edge[] edges = gameBoard.getEdges();
+		for (int i = 0; i < firstTurnOrder.length; i++) {
+						///Give resources for a civilization
+			firstTurnOrder[i].modifyResource(Resource.ADOBE, 1);
+			firstTurnOrder[i].modifyResource(Resource.BANTHA, 1);
+			firstTurnOrder[i].modifyResource(Resource.BLUEMILK, 1);
+			firstTurnOrder[i].modifyResource(Resource.MOISTURE, 1);
+			
+			Builder builder = new Builder(this);	//Place a settlement
+			
+			gameBoard.clickList = new ArrayList<Clickable>();
+			new MessageBox(gameBoard, "WARNING: DON'T CONTINUE UNTIL YOU ARE DONE BUILDING");
+			
+			for (int j = 0; j < edges.length; j++) { 		//establish open edges
+				if (!edges[j].isRoad()) {
+					gameBoard.clickList.add(edges[j]);
+				}
+			}
+						//Give resources for a road
+			firstTurnOrder[i].modifyResource(Resource.ADOBE, 1);
+			firstTurnOrder[i].modifyResource(Resource.BANTHA, 1);
+			
+			builder = new Builder(this);		//place a road
+			new MessageBox(gameBoard, "WARNING: DON'T CONTINUE UNTIL YOU ARE DONE BUILDING");
+			
+			ArrayList<Clickable> clickList = new ArrayList<Clickable>();
+			
+			Node[] nodes = gameBoard.getNodes();			//Establish open nodes
+			for (int j = 0; j < nodes.length; j++) {
+				if (nodes[j].status == Node.NodeStatus.EMPTY) {
+					clickList.add(nodes[j]);
+				}
+			}
 		}
 		
+		for (int i = players.length - 1; i >= 0; i--) {
+						///Give resources for a civilization
+			firstTurnOrder[i].modifyResource(Resource.ADOBE, 1);
+			firstTurnOrder[i].modifyResource(Resource.BANTHA, 1);
+			firstTurnOrder[i].modifyResource(Resource.BLUEMILK, 1);
+			firstTurnOrder[i].modifyResource(Resource.MOISTURE, 1);
+			
+			Builder builder = new Builder(this);	//Place a settlement
+			new MessageBox(gameBoard, "WARNING: DON'T CONTINUE UNTIL YOU ARE DONE BUILDING");
+			gameBoard.clickList = new ArrayList<Clickable>();
+			
+			for (int j = 0; j < edges.length; j++) { 		//establish open edges
+				if (!edges[j].isRoad()) {
+					gameBoard.clickList.add(edges[j]);
+				}
+			}
+						//Give resources for a road
+			firstTurnOrder[i].modifyResource(Resource.ADOBE, 1);
+			firstTurnOrder[i].modifyResource(Resource.BANTHA, 1);
+			
+			builder = new Builder(this);		//place a road
+			new MessageBox(gameBoard, "WARNING: DON'T CONTINUE UNTIL YOU ARE DONE BUILDING");
+			
+			ArrayList<Clickable> clickList = new ArrayList<Clickable>();
+			
+			Node[] nodes = gameBoard.getNodes();			//Establish open nodes
+			for (int j = 0; j < nodes.length; j++) {
+				if (nodes[j].status == Node.NodeStatus.EMPTY) {
+					clickList.add(nodes[j]);
+				}
+			}
+		}
+		
+		state = GameState.PLAYERTURNROLL;
+		stdLogic();
 	}
 	
 	private void stdLogic() {
@@ -128,12 +205,12 @@ public class GameManager {
 		if (players[turn].getHand().get(i).getType() == DevCard.Type.TROOPER){
 			this.trooperPlay();
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDSTORM){
-			/*ResourcePicker picker = */new ResourcePicker(this, DevCard.Type.SANDSTORM, "Pick a resource to monopolize."); //TODO
+			/*ResourcePicker picker = */new ResourcePicker(this, DevCard.Type.SANDSTORM, "Pick a resource to monopolize.");
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDCRAWLER){
 			this.sandcrawlerPlay();
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.TWINSUNS){
 			/*ResourcePicker picker = */new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a resource you want from the bank."); //TODO
-			/*picker = */new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a second resource you want from the bank."); //TODO
+			/*picker = */new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a second resource you want from the bank.");
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.VP){
 			this.vpPlay();
 		}
