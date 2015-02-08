@@ -34,21 +34,7 @@ public class GameManager {
 		state = GameState.PLAYERTURNROLL;
 	}
 
-	public void main(String... args) {
-		/* Game Logic
-		 * 1. Take turn
-		 * 		- Roll Dice
-		 * 		- Dole out resources
-		 * 		- Free Choice
-		 * 			- Build
-		 * 			- Play Card
-		 * 			- Trade
-		 * 		- End turn
-		 * 2. Check for 10 VP
-		 * 3. Change player turn
-		 * 4. Repeat from Step 3
-		 */
-
+	public void logic() {
 		while (!gameOver) {
 			/* Take Turn */
 			//Roll Dice
@@ -73,7 +59,6 @@ public class GameManager {
 			nextPlayer();
 		}
 	}
-
 	private void takePlayerActionInput() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("What do you want to do?");
