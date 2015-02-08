@@ -12,9 +12,17 @@ public class Board extends GBFrame{
 	private Tile[] tiles;
 	private Node[] nodes;
 	private Edge[] edges;
+	private JButton[] buttons = new JButton[4];		
+
 	public ArrayList<Clickable> clickList;
 
 	public Board(GameManager manager) {
+		
+		buttons[0] = addButton("Trade", 1, 1, 1, 1);
+		buttons[1] = addButton("Build", 1, 1, 1, 1);
+		buttons[2] = addButton("Play Card", 1, 1, 1, 1);
+		buttons[3] = addButton("End Turn", 1, 1, 1, 1);
+		
 		GBPanel panel = addPanel(new GBPanel(){
 			public void mouseClicked(int x, int y){
 				Board.this.clickLoc(x,y);
@@ -280,6 +288,22 @@ public class Board extends GBFrame{
 			tileNum[index] = k;
 		}
 		return tileNum;
+	}
+	
+	public void buttonClicked(JButton btn){
+		if (btn == buttons[0]) 
+			trade();
+		else if (btn == buttons[1])
+			new Builder(manager);
+		else if (btn == buttons[2])
+			new HandViewer(manager);
+		else if (btn == buttons[3])
+			manager.endTurn();
+	}
+
+	private void trade() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	public void clickLoc(int x, int y){

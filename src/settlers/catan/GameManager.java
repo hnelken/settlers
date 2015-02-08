@@ -35,33 +35,21 @@ public class GameManager {
 
 	// methods
 	
-	public Board getBoard() {
-		return gameBoard;
-	}
+
 	
 	private void logic() {
-		while (!gameOver) {
 			/* Take Turn */
 			//Roll Dice
 			int roll = diceRoll();
 			
 			if (roll == 7){
 				this.discardAll();
-				this.moveSmuggler();
+				this.moveSmuggler(null);
 			} else
 				distributeResources(roll);
 
 			//Free Choice
 			state = GameState.PLAYERTURNCHOICE;
-			//End Turn
-			endTurn();
-			//Check for 10 VP
-			state = GameState.WINCHECK;
-			checkForWin();
-
-			//Change player turn
-			nextPlayer();
-		}
 	}
 
 	private int diceRoll() {
@@ -88,8 +76,18 @@ public class GameManager {
 		}
 	}
 
-	private void endTurn() {
+	public void endTurn() {
 		players[turn].makePlayable();
+		
+		//Check for 10 VP
+		state = GameState.WINCHECK;
+		checkForWin();
+
+		//Change player turn
+		nextPlayer();
+		
+		state = GameState.PLAYERTURNROLL;
+		logic();
 	}
 
 	private void checkForWin() {
@@ -133,7 +131,7 @@ public class GameManager {
 	}
 
 	private void trooperPlay(){
-		this.moveSmuggler();
+		this.moveSmuggler(null);
 		players[turn].addTrooper();
 	}
 
@@ -167,7 +165,7 @@ public class GameManager {
 
 	//move the smuggler around
 	public void moveSmuggler(Tile t) {
-		
+		smuggler.setLocation(t);
 	}
 	
 	private void discardAll(){
@@ -187,7 +185,6 @@ public class GameManager {
 	
 	public Board getBoard(){
 		return gameBoard;
-	}
 	}
 
 }
