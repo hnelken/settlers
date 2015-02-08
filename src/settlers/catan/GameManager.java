@@ -147,7 +147,10 @@ public class GameManager {
 
 	private void sandstormPlay(Resource resource){
 		for(Player player : players){
-			
+			if (!player.equals(players[turn])){
+				players[turn].modifyResource(resource, player.getResource(resource));
+				player.modifyResource(resource, -(player.getResource(resource)));
+			}
 		}
 	}
 	
