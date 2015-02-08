@@ -1,8 +1,6 @@
 package settlers.catan;
 
 import java.util.*;
-import javax.swing.JButton;
-import BreezySwing.MessageBox;
 
 public class GameManager {
 
@@ -25,7 +23,7 @@ public class GameManager {
 	public GameManager(Player[] players) {
 		gameBoard = new Board(this);
 		this.players = players;
-		deck = new Deck(this);
+		deck = new Deck();
 		turn = (int)(players.length * Math.random());
 		Tile desert = null;
 		for (int i = 0; i < gameBoard.getTiles().length; i++) {
