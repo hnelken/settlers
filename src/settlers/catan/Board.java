@@ -7,7 +7,7 @@ import BreezySwing.*;
 import javax.swing.*;
 
 public class Board extends GBFrame{
-	
+
 	private GameManager manager;
 	private Tile[] tiles;
 	private Node[] nodes;
@@ -15,14 +15,15 @@ public class Board extends GBFrame{
 	private JButton[] buttons = new JButton[4];		
 
 	public ArrayList<Clickable> clickList;
+	public boolean doubleClick = false;
 
 	public Board(GameManager manager) {
-		
+
 		buttons[0] = addButton("Trade", 1, 1, 1, 1);
 		buttons[1] = addButton("Build", 1, 1, 1, 1);
 		buttons[2] = addButton("Play Card", 1, 1, 1, 1);
 		buttons[3] = addButton("End Turn", 1, 1, 1, 1);
-		
+
 		GBPanel panel = addPanel(new GBPanel(){
 			public void mouseClicked(int x, int y){
 				Board.this.clickLoc(x,y);
@@ -47,86 +48,86 @@ public class Board extends GBFrame{
 		for (int j = 0; j < 19; j++) {
 			Node[] tileNodes;
 			switch (j) {
-				case 0:
-					tileNodes = new Node[]{nodes[0],nodes[4],nodes[8],nodes[12],nodes[7],nodes[3]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 1:
-					tileNodes = new Node[]{nodes[1],nodes[5],nodes[9],nodes[13],nodes[8],nodes[4]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 2:
-					tileNodes = new Node[]{nodes[2],nodes[6],nodes[10],nodes[14],nodes[9],nodes[5]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 3:
-					tileNodes = new Node[]{nodes[7],nodes[12],nodes[17],nodes[22],nodes[16],nodes[11]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 4:
-					tileNodes = new Node[]{nodes[8],nodes[13],nodes[18],nodes[23],nodes[17],nodes[12]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 5:
-					tileNodes = new Node[]{nodes[9],nodes[14],nodes[19],nodes[24],nodes[18],nodes[13]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 6:
-					tileNodes = new Node[]{nodes[10],nodes[15],nodes[20],nodes[25],nodes[19],nodes[14]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 7:
-					tileNodes = new Node[]{nodes[16],nodes[22],nodes[28],nodes[33],nodes[27],nodes[21]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 8:
-					tileNodes = new Node[]{nodes[17],nodes[23],nodes[29],nodes[34],nodes[28],nodes[22]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 9:
-					tileNodes = new Node[]{nodes[18],nodes[22],nodes[30],nodes[35],nodes[29],nodes[23]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 10:
-					tileNodes = new Node[]{nodes[19],nodes[23],nodes[31],nodes[36],nodes[30],nodes[24]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 11:
-					tileNodes = new Node[]{nodes[20],nodes[24],nodes[32],nodes[37],nodes[31],nodes[25]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 12:
-					tileNodes = new Node[]{nodes[28],nodes[34],nodes[39],nodes[43],nodes[38],nodes[33]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 13:
-					tileNodes = new Node[]{nodes[29],nodes[35],nodes[40],nodes[44],nodes[39],nodes[34]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 14:
-					tileNodes = new Node[]{nodes[30],nodes[36],nodes[41],nodes[45],nodes[40],nodes[35]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 15:
-					tileNodes = new Node[]{nodes[31],nodes[37],nodes[42],nodes[46],nodes[41],nodes[36]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 16:
-					tileNodes = new Node[]{nodes[39],nodes[44],nodes[48],nodes[51],nodes[47],nodes[43]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 17:
-					tileNodes = new Node[]{nodes[40],nodes[45],nodes[49],nodes[52],nodes[48],nodes[44]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
-				case 18:
-					tileNodes = new Node[]{nodes[41],nodes[46],nodes[50],nodes[53],nodes[49],nodes[45]};
-					tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
-					break;
+			case 0:
+				tileNodes = new Node[]{nodes[0],nodes[4],nodes[8],nodes[12],nodes[7],nodes[3]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 1:
+				tileNodes = new Node[]{nodes[1],nodes[5],nodes[9],nodes[13],nodes[8],nodes[4]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 2:
+				tileNodes = new Node[]{nodes[2],nodes[6],nodes[10],nodes[14],nodes[9],nodes[5]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 3:
+				tileNodes = new Node[]{nodes[7],nodes[12],nodes[17],nodes[22],nodes[16],nodes[11]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 4:
+				tileNodes = new Node[]{nodes[8],nodes[13],nodes[18],nodes[23],nodes[17],nodes[12]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 5:
+				tileNodes = new Node[]{nodes[9],nodes[14],nodes[19],nodes[24],nodes[18],nodes[13]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 6:
+				tileNodes = new Node[]{nodes[10],nodes[15],nodes[20],nodes[25],nodes[19],nodes[14]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 7:
+				tileNodes = new Node[]{nodes[16],nodes[22],nodes[28],nodes[33],nodes[27],nodes[21]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 8:
+				tileNodes = new Node[]{nodes[17],nodes[23],nodes[29],nodes[34],nodes[28],nodes[22]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 9:
+				tileNodes = new Node[]{nodes[18],nodes[22],nodes[30],nodes[35],nodes[29],nodes[23]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 10:
+				tileNodes = new Node[]{nodes[19],nodes[23],nodes[31],nodes[36],nodes[30],nodes[24]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 11:
+				tileNodes = new Node[]{nodes[20],nodes[24],nodes[32],nodes[37],nodes[31],nodes[25]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 12:
+				tileNodes = new Node[]{nodes[28],nodes[34],nodes[39],nodes[43],nodes[38],nodes[33]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 13:
+				tileNodes = new Node[]{nodes[29],nodes[35],nodes[40],nodes[44],nodes[39],nodes[34]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 14:
+				tileNodes = new Node[]{nodes[30],nodes[36],nodes[41],nodes[45],nodes[40],nodes[35]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 15:
+				tileNodes = new Node[]{nodes[31],nodes[37],nodes[42],nodes[46],nodes[41],nodes[36]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 16:
+				tileNodes = new Node[]{nodes[39],nodes[44],nodes[48],nodes[51],nodes[47],nodes[43]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 17:
+				tileNodes = new Node[]{nodes[40],nodes[45],nodes[49],nodes[52],nodes[48],nodes[44]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
+			case 18:
+				tileNodes = new Node[]{nodes[41],nodes[46],nodes[50],nodes[53],nodes[49],nodes[45]};
+				tiles[j] = new Tile(tileNodes, resources[j], nums[j]);
+				break;
 			}
 			tiles[j].manager = manager;
 		}
-		
+
 		edges = new Edge[72];
 		index = 0;
 		Edge edg;
@@ -237,7 +238,7 @@ public class Board extends GBFrame{
 			nodes[i].addEdge(edg);
 			nodes[i-6].addEdge(edg);
 		}
-		
+
 		this.setSize(900, 600);
 		this.setVisible(true);
 	}
@@ -245,13 +246,13 @@ public class Board extends GBFrame{
 	public Tile[] getTiles(){
 		return tiles;
 	}
-	
+
 	public Edge[] getEdges(){
 		return edges;
 	}
-	
+
 	public Node[] getNodes(){
-			return nodes;
+		return nodes;
 	}
 
 	private Resource[] getTileTypes(){
@@ -289,7 +290,7 @@ public class Board extends GBFrame{
 		}
 		return tileNum;
 	}
-	
+
 	public void buttonClicked(JButton btn){
 		if (btn == buttons[0]) 
 			trade();
@@ -303,16 +304,27 @@ public class Board extends GBFrame{
 
 	private void trade() {
 		// TODO Auto-generated method stub
-		
+
 	}
 	
+	public JButton[] getButtons(){
+		return buttons;
+	}
+
 	public void clickLoc(int x, int y){
 		for (Clickable c : clickList){
 			if (c.isInRange(x, y)){
 				c.doOnClick();
+				if (doubleClick)
+					doubleClick = false;
+				clickList.remove(c);
+			}
+			else{
 				clickList = null;
+				for (JButton b : buttons){
+					b.setEnabled(true);
+				}
 			}
 		}
 	}
-
 }
