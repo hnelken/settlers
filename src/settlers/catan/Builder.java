@@ -78,6 +78,7 @@ public class Builder extends GBFrame {
 						b.setEnabled(false);
 					}
 				}
+				dispose();
 			}
 		} 
 		else if (btn == buildCity) {
@@ -97,6 +98,7 @@ public class Builder extends GBFrame {
 						b.setEnabled(false);
 					}
 				}
+				dispose();
 			}
 		} 
 		else if (btn == buildDevCard) {
@@ -111,6 +113,7 @@ public class Builder extends GBFrame {
 				gManager.getCurrPlayer().modifyResource(Resource.MOISTURE, -1);
 				gManager.getCurrPlayer().modifyResource(Resource.BLUEMILK, -1);
 			}
+			dispose();
 		} 
 		else {// cancel
 			dispose();

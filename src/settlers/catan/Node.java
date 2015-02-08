@@ -59,7 +59,7 @@ public class Node extends Clickable{
 	public void availabilityCheck(Player currPlayer) {
 		for (int edge = 0; edge < edges.size(); edge++) {
 			Edge e = edges.get(edge);
-			if (e.getOwner().equals(currPlayer)) {
+			if (currPlayer.equals(getOwner())) {
 				if (e.getNodes()[0].equals(this)) {
 					checkSurroundingNodes(e.getNodes()[1], currPlayer);
 				}
