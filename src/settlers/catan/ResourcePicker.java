@@ -23,11 +23,10 @@ public class ResourcePicker extends GBFrame {
 		setSize(600, 300);
 		String[] str = {"Adobe", "Bantha", "Blue Milk", "Moisture", "Durasteel"};
 		for (int i = 0; i < 5; i++) {
-			buttons[i] = addButton("", 2, i + 1, 1, 1);
+			buttons[i] = addButton("", 2, i+1, 1, 1);
 			String filename = str[i]+".jpg";
 			buttons[i].setIcon(new ImageIcon(filename));
-			new JLabel(str[i]);
-			
+			addLabel(str[i], 3, i+1, 1, 1);
 		}
 		setVisible(true);
 	}
