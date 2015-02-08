@@ -183,9 +183,9 @@ public class GameManager {
 				setupNextPlayer();
 			}
 			else {
-				System.out.println(GameState.FTRBACK);
+				System.out.println(GameState.FTSBACK);
 				firstTurn--;
-				state = GameState.FTRBACK;
+				state = GameState.FTSBACK;
 				setupNextPlayer();
 			}
 		}
