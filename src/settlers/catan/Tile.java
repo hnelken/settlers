@@ -4,6 +4,7 @@ public class Tile extends Clickable {
 	private Node[] corners; //Order is {N, NE, SE, S, SW, NW}
 	private Resource resourceType;
 	private int rollNum;
+	public GameManager manager;
 
 	public Tile(Node[] corners, Resource resourceType, int rollNum) {
 		this.corners = corners;

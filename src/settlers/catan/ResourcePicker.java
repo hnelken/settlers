@@ -13,9 +13,10 @@ public class ResourcePicker extends GBFrame {
 	private JButton[] buttons = new JButton[5];
 
 	// constructor
-	public ResourcePicker(GameManager manager, DevCard.Type type) {
+	public ResourcePicker(GameManager manager, DevCard.Type type, String message) {
 		this.manager = manager;
 		this.type = type;
+		JLabel msg = addLabel(message, 1, 3, 1, 2);
 		setSize(600, 300);
 		String[] str = {"Adobe", "Bantha", "Blue Milk", "Moisture", "Durasteel"};
 		for (int i = 0; i < 5; i++) {
