@@ -1,8 +1,7 @@
 package settlers.catan;
-import java.util.ArrayList;
 
 import BreezySwing.GBFrame;
-
+import java.util.ArrayList;
 import javax.swing.JButton;
 
 public class Builder extends GBFrame {
@@ -36,9 +35,7 @@ public class Builder extends GBFrame {
 	}
 
 	public Builder(GameManager gManager,boolean dev){
-		for (JButton b : gManager.getBoard().getButtons()){
-			b.setEnabled(false);
-		}
+		// do nothing
 	}
 
 	// methods
@@ -52,11 +49,6 @@ public class Builder extends GBFrame {
 					gManager.getBoard().clickList.add((Clickable)e);
 				}
 			}
-			if (!gManager.getBoard().clickList.isEmpty()){
-				for (JButton b : gManager.getBoard().getButtons()){
-					b.setEnabled(false);
-				}
-			}
 		}
 		else if (btn == buildSettlement) {
 			gManager.getBoard().clickList = new ArrayList<Clickable>();
@@ -66,11 +58,6 @@ public class Builder extends GBFrame {
 					gManager.getBoard().clickList.add((Clickable)n);
 				}
 			}
-			if (!gManager.getBoard().clickList.isEmpty()){
-				for (JButton b : gManager.getBoard().getButtons()){
-					b.setEnabled(false);
-				}
-			}
 			dispose();
 		}
 		else if (btn == buildCity) {
@@ -78,11 +65,6 @@ public class Builder extends GBFrame {
 			for (Node n : gManager.getBoard().getNodes()){
 				if (n.getStatus() == Node.NodeStatus.SETTLEMENT && n.getOwner() == gManager.getCurrPlayer()){
 					gManager.getBoard().clickList.add((Clickable)n);
-				}
-			}
-			if (!gManager.getBoard().clickList.isEmpty()){
-				for (JButton b : gManager.getBoard().getButtons()){
-					b.setEnabled(false);
 				}
 			}
 		} 

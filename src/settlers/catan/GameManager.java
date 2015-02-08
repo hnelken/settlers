@@ -279,9 +279,6 @@ public class GameManager {
 
 	private void trooperPlay(){
 		players[turn].addTrooper();
-		for (JButton b : getBoard().getButtons()){
-			b.setEnabled(false);
-		}
 		getBoard().clickList = new ArrayList<Clickable>();
 		for (Tile t : getBoard().getTiles()){
 			if (t != getSmuggler().getLocation())
@@ -298,9 +295,6 @@ public class GameManager {
 	}
 
 	private void sandcrawlerPlay(){
-		for (JButton b : getBoard().getButtons()){
-			b.setEnabled(false);
-		}
 		getCurrPlayer().modifyResource(Resource.ADOBE, 2);
 		getCurrPlayer().modifyResource(Resource.BANTHA, 2);
 		getBoard().doubleClick = true;
