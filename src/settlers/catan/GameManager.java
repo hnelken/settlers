@@ -13,7 +13,7 @@ public class GameManager {
 	private Smuggler smuggler; //TODO
 	
 	private enum GameState {
-		PLAYERTURNROLL, PLAYERTURNCHOICE, WINCHECK, GAMEOVER
+		FIRSTTURN, PLAYERTURNROLL, PLAYERTURNCHOICE, WINCHECK, GAMEOVER
 	}
 
 	// constructor
@@ -29,15 +29,25 @@ public class GameManager {
 			if (gameBoard.getTiles()[i].getResourceType() == Resource.DESERT)
 				desert = gameBoard.getTiles()[i];
 		smuggler = new Smuggler(desert);
-		state = GameState.PLAYERTURNROLL;
-		logic();
+		state = GameState.FIRSTTURN;
+		startLogic();
 	}
 
 	// methods
 	
-
+	private void startLogic() {
+		for (int i = 0; i < players.length; i++) {
+			players[i].modifyResource(Resource.ADOBE, 2);
+			players[i].modifyResource(Resource.BANTHA, 2);
+			players[i].modifyResource(Resource.BLUEMILK, 2);
+			players[i].modifyResource(Resource.MOISTURE, 2);
+			Builder builder = new Builder(this);
+			builder = new Builder(this);
+		}
+		
+	}
 	
-	private void logic() {
+	private void stdLogic() {
 			/* Take Turn */
 			//Roll Dice
 			int roll = diceRoll();
@@ -87,7 +97,7 @@ public class GameManager {
 		nextPlayer();
 		
 		state = GameState.PLAYERTURNROLL;
-		logic();
+		stdLogic();
 	}
 
 	private void checkForWin() {

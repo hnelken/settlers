@@ -3,56 +3,61 @@ package settlers.catan;
 public class DevCard {
 
 	// fields
+	
 	private Player owner;
 	private boolean playable;
+	private Type type;
 	private String name;
 	private String description;
 
-	public enum Type {
-		TROOPER, VP, SANDSTORM, SANDCRAWLER, TWINSUNS
-	}
-
-	private Type type;
+	public enum Type {TROOPER, VP, SANDSTORM, SANDCRAWLER, TWINSUNS}
 
 	// constructors
 
 	public DevCard(Type type) {
-		this.owner = null;
-		if (type == Type.TROOPER){
-			this.setName("Stormtrooper");
-			this.setDescription("Move the robber. Steal 1 resource card from the owner of an adjacent settlement or city.");
+		setOwner(null);
+		setPlayable(false);
+		this.type = type;
+		switch (type) {
+		case TROOPER:
+			setName("Stormtrooper");
+			setDescription("Move the robber. Steal 1 resource card from the owner of an adjacent settlement or city.");
+			break;
+		case SANDSTORM:
+			setName("Sandstorm");
+			setDescription("When you play this card, all other players must give you all their resource cards of your chosen type.");
+			break;
+		case SANDCRAWLER:
+			setName("Sandcrawler");
+			setDescription("Place two new roads as if you had just built them.");
+			break;
+		case TWINSUNS:
+			setName("Twin Suns");
+			setDescription("When you play this card, you can select 2 resources of your choice from the bank.");
+			break;
+		default:
+			// no default
 		}
-		else if (type == Type.SANDSTORM){
-			this.setName("Sandstorm");
-			this.setDescription("When you play this card, all other players must give you all their resource cards of your chosen type.");
-		}
-		else if (type == Type.SANDCRAWLER){
-			this.setName("Sandcrawler");
-			this.setDescription("Place two new roads as if you had just built them.");
-		}
-		else if (type == Type.TWINSUNS){
-			this.setName("Twin Suns");
-			this.setDescription("When you play this card, you can select 2 resources of your choice from the bank.");
-		}
-		this.setPlayable(false);
 	}
 
 	public DevCard(String name){
-		this.setName(name);
-		this.type = Type.VP;
-		this.setDescription("1 Victory Point!");
-		this.owner = null;
+		setOwner(null);
+		setPlayable(false);
+		setType(Type.VP);
+		setName(name);
+		setDescription("1 Victory Point!");
 	}
 
+	// methods
 
 	public void play(){
 		switch (type) {
 			case TROOPER:
 				trooperPlay();
 				break;
-			case SANDSTORM:
-				break;
 			case SANDCRAWLER:
+				break;
+			case SANDSTORM:
 				break;
 			case TWINSUNS:
 				break;
