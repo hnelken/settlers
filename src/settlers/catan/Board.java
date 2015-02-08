@@ -18,14 +18,15 @@ public class Board extends GBFrame {
 	private Tile[] tiles;
 	private Node[] nodes;
 	private Edge[] edges;
-	private JButton[] buttons = new JButton[4];		
+	private JButton[] buttons = new JButton[4];	
+	private JLabel player;
 
 	public ArrayList<Clickable> clickList = new ArrayList<Clickable>();
 	public boolean doubleClick = false;
 	public Clickable lastClicked = null;
 
 	public Board(GameManager manager) {
-
+		player = addLabel("", 1, 5, 2, 2);		//FIX THESE NUMBERs
 		buttons[0] = addButton("Trade", 4, 5, 1, 1);
 		buttons[1] = addButton("Build", 5, 5, 1, 1);
 		buttons[2] = addButton("Play Card", 6, 5, 1, 1);
@@ -256,6 +257,10 @@ public class Board extends GBFrame {
 		this.setVisible(true);
 	}
 
+	public void setPlayer(String name) {
+		player = addLabel(name, 1, 5, 1, 1);
+	}
+	
 	public Tile[] getTiles(){
 		return tiles;
 	}
