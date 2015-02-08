@@ -289,6 +289,8 @@ public class Board extends GBFrame{
 				c.doOnClick();
 				if (doubleClick)
 					doubleClick = false;
+				clickList.remove(c);
+			}
 				else
 					clickList = null;
 			}
