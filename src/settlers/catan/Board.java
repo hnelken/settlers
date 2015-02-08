@@ -258,7 +258,7 @@ public class Board extends GBFrame {
 	}
 
 	public void setPlayer(String name) {
-		player = addLabel(name, 1, 5, 1, 1);
+		player.setText(name);
 	}
 	
 	public Tile[] getTiles(){
