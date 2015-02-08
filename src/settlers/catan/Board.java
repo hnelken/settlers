@@ -1,9 +1,14 @@
 package settlers.catan; 
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import BreezySwing.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Board extends GBFrame {
@@ -20,10 +25,10 @@ public class Board extends GBFrame {
 
 	public Board(GameManager manager) {
 
-		buttons[0] = addButton("Trade", 1, 1, 1, 1);
-		buttons[1] = addButton("Build", 1, 1, 1, 1);
-		buttons[2] = addButton("Play Card", 1, 1, 1, 1);
-		buttons[3] = addButton("End Turn", 1, 1, 1, 1);
+		buttons[0] = addButton("Trade", 4, 5, 1, 1);
+		buttons[1] = addButton("Build", 5, 5, 1, 1);
+		buttons[2] = addButton("Play Card", 6, 5, 1, 1);
+		buttons[3] = addButton("End Turn", 7, 5, 1, 1);
 
 		GBPanel panel = addPanel(new GBPanel(){
 			public void mouseClicked(int x, int y){
@@ -240,6 +245,13 @@ public class Board extends GBFrame {
 			nodes[i-6].addEdge(edg);
 		}
 
+		this.setSize(900, 600);
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File("../../../boardmenu.jpg"));
+		} catch (IOException e) {
+		}
+		setIconImage((Image)img);
 		this.setSize(1296, 880);
 		this.setVisible(true);
 	}

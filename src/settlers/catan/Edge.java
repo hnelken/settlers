@@ -69,5 +69,4 @@ public class Edge extends Clickable {
 		}
 		return road;
 	}
-
 }
