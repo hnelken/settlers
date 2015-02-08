@@ -6,7 +6,7 @@ import BreezySwing.*;
 
 import javax.swing.*;
 
-public class Board extends GBFrame{
+public class Board extends GBFrame {
 
 	private GameManager manager;
 	private Tile[] tiles;
