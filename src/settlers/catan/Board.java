@@ -338,6 +338,7 @@ public class Board extends GBFrame {
 					}
 				}
 				clickList.remove(c);
+				break;
 			}
 			else{
 				lastClicked = c;
