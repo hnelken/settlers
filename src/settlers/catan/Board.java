@@ -110,9 +110,8 @@ public class Board extends GBFrame{
 			}
 			tiles[j].manager = manager;
 		}
-		this.setSize(500, 500);
-		this.setVisible(true);
-		edges = new Edge[66];
+		
+		edges = new Edge[72];
 		index = 0;
 		Edge edg;
 		for (int i = 0; i < 3; i++){
@@ -207,7 +206,6 @@ public class Board extends GBFrame{
 			edg = new Edge(nodes[i],nodes[i-5]);
 			edges[index] = edg;
 			index++;
-			System.out.print(index);
 			nodes[i].addEdge(edg);
 			nodes[i-5].addEdge(edg);
 		}
@@ -223,6 +221,9 @@ public class Board extends GBFrame{
 			nodes[i].addEdge(edg);
 			nodes[i-6].addEdge(edg);
 		}
+		
+		this.setSize(900, 600);
+		this.setVisible(true);
 	}
 
 	public Tile[] getTiles(){
