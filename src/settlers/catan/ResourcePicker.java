@@ -24,6 +24,7 @@ public class ResourcePicker extends GBFrame {
 		String[] str = {"Moisture", "Blue Milk", "Durasteel", "Adobe", "Bantha"};
 		for (int i = 0; i < 5; i++) {
 			buttons[i] = addButton("", 2, i+1, 1, 1);
+			buttons[i].setEnabled(true);
 			String filename = str[i]+".jpg";
 			buttons[i].setIcon(new ImageIcon(filename));
 			addLabel(str[i], 3, i+1, 1, 1);

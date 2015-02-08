@@ -56,6 +56,7 @@ public class GameManager {
 		}
 		gameBoard.clickList = new ArrayList<Clickable>(Arrays.asList(gameBoard.getNodes()));
 		firstTurn = 0;
+		this.getBoard().messageBox("It's " + players[turn].getName() + "'s turn!");
 		startLogicSettle();
 	}
 	
@@ -68,7 +69,7 @@ public class GameManager {
 			firstTurnOrder[firstTurn].addResource(Resource.BLUEMILK);
 			firstTurnOrder[firstTurn].addResource(Resource.MOISTURE);
 
-			Builder builder = new Builder(this);	//Place a settlement
+			Builder builder = new Builder(this, false);	//Place a settlement
 		}
 		else if (state == GameState.FTSBACK) {
 			// SNAKE BACKWARDS
@@ -78,25 +79,27 @@ public class GameManager {
 				firstTurnOrder[firstTurn].addResource(Resource.BLUEMILK);
 				firstTurnOrder[firstTurn].addResource(Resource.MOISTURE);
 
-				Builder builder = new Builder(this);	//Place a settlement
+				Builder builder = new Builder(this, false);	//Place a settlement
 		}
 	}
 	
 	private void startLogicRoad() {
-		gameBoard.clickList = new ArrayList<Clickable>();
+		ArrayList<Clickable> clickList = new ArrayList<Clickable>();
 
 		Edge[] edges = gameBoard.getEdges();
-		for (int j = 0; j < edges.length; j++) { 		//establish open edges
+		Node last = (Node)gameBoard.lastClicked;
+		for (int j = 0; j < last.getEdges().size(); j++) { 		//establish open edges
 			if (!edges[j].isRoad()) {
-				gameBoard.clickList.add(edges[j]);
+				clickList.add(edges[j]);
 			}
 		}
+		gameBoard.clickList = clickList;
 		if (state == GameState.FTRFORWARD) {
 			//Give resources for a road
 			firstTurnOrder[firstTurn].addResource(Resource.ADOBE);
 			firstTurnOrder[firstTurn].addResource(Resource.BANTHA);
 
-			Builder builder = new Builder(this);		//place a road
+			Builder builder = new Builder(this, false);		//place a road
 		}
 		else if (state == GameState.FTRBACK) {
 			settlement = (Node)gameBoard.lastClicked;
@@ -112,26 +115,30 @@ public class GameManager {
 			firstTurnOrder[firstTurn].modifyResource(Resource.ADOBE, 1);
 			firstTurnOrder[firstTurn].modifyResource(Resource.BANTHA, 1);
 
-			Builder builder = new Builder(this);		//place a road
+			Builder builder = new Builder(this, false);		//place a road
 		}
 	}
 	
 	private void setupNextPlayer() {
+		this.getBoard().messageBox("It's going to be " + getFirstPlayer().getName() + "'s turn!");
+		
 		ArrayList<Clickable> clickList = new ArrayList<Clickable>();
-
+		
+		System.out.println(firstTurnOrder[firstTurn].getName());
 		Node[] nodes = gameBoard.getNodes();			//Establish open nodes
 		for (int j = 0; j < nodes.length; j++) {
 			if (nodes[j].status == Node.NodeStatus.EMPTY) {
 				clickList.add(nodes[j]);
 			}
 		}
-		
+		gameBoard.clickList = clickList;
 		startLogicSettle();
 	}
 	
 	private void stdLogic() {
 			/* Take Turn */
 			//Roll Dice
+		
 			int roll = diceRoll();
 			
 			if (roll == 7){
@@ -171,20 +178,22 @@ public class GameManager {
 	public void endTurn() {
 		if (state == GameState.FTRFORWARD) {
 			if (firstTurn < players.length) {
+				System.out.println(GameState.FTSFORWARD);
+				System.out.println("Old: " + firstTurn);
 				firstTurn++;
 				state = GameState.FTSFORWARD;
 				setupNextPlayer();
-				startLogicSettle();
 			}
 			else {
+				System.out.println(GameState.FTSBACK);
 				firstTurn--;
-				state = GameState.FTRBACK;
+				state = GameState.FTSBACK;
 				setupNextPlayer();
-				startLogicSettle();
 			}
 		}
 		else if (state == GameState.FTRBACK) {
 			if (firstTurn >= 0) {
+				System.out.println(GameState.FTSBACK);
 				firstTurn--;
 				state = GameState.FTSBACK;
 				//Add resultant resources from settlement placement
@@ -199,10 +208,12 @@ public class GameManager {
 			}
 		}
 		else if (state == GameState.FTSFORWARD){
+			System.out.println(GameState.FTRFORWARD);
 			state = GameState.FTRFORWARD;
 			startLogicRoad();
 		}
 		else if (state == GameState.FTSBACK) {
+			System.out.println(GameState.FTRBACK);
 			state = GameState.FTRBACK;
 			startLogicRoad();
 		}
@@ -238,6 +249,11 @@ public class GameManager {
 		else {
 			turn++;
 		}
+		this.getBoard().messageBox("It's " + getCurrPlayer().getName() + "'s turn!");
+	}
+	
+	public Player getFirstPlayer() {
+		return firstTurnOrder[firstTurn];
 	}
 	
 	public Player getCurrPlayer(){

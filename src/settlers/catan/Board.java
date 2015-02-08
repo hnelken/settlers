@@ -4,10 +4,8 @@ import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import BreezySwing.*;
 
 public class Board extends GBFrame {
@@ -32,6 +30,11 @@ public class Board extends GBFrame {
 		buttons[1] = addButton("Build", 5, 5, 1, 1);
 		buttons[2] = addButton("Play Card", 6, 5, 1, 1);
 		buttons[3] = addButton("End Turn", 7, 5, 1, 1);
+		buttons[0] = addButton("Trade", 20, 5, 1, 1);
+		buttons[1] = addButton("Build", 21, 5, 1, 1);
+		buttons[2] = addButton("Play Card", 22, 5, 1, 1);
+		buttons[3] = addButton("End Turn", 23, 5, 1, 1);
+
 		GBPanel panel = addPanel(new GBPanel(){
 			public void mouseClicked(int x, int y){
 				Board.this.clickLoc(x,y);
@@ -43,8 +46,8 @@ public class Board extends GBFrame {
 		int[] nums = getTileNum(resources);
 		nodes = new Node[54];
 		int[] numNodes = {3,4,4,5,5,6,6,5,5,4,4,3};
-		int[][] coords = {{366,140},{273,199},{273,303},{175,360},{175,462},{83,519},{83,625},{180,677},{180,786},{275,840},{275,948},{372,999}};
-		int dist = 200;
+		int[][] coords = {{244,88},{177,128},{177,196},{108,234},{111,302},{46,344},{48,414},{116,447},{117,524},{178,560},{178,627},{246,666}};
+		int dist = 138;
 		int index = 0;
 		for (int i = 0; i < numNodes.length; i++){
 			for (int j =0; j < numNodes[i]; j++){
@@ -255,9 +258,10 @@ public class Board extends GBFrame {
 		}
 		// finish constructing gui
 		this.setSize(1296, 880);
+		this.setSize(1366, 768);
 		this.setVisible(true);
 	}
-
+	
 	public Tile[] getTiles(){
 		return tiles;
 	}
@@ -308,8 +312,12 @@ public class Board extends GBFrame {
 
 	public void buttonClicked(JButton btn){
 		if (btn == buttons[0]){ 
+			if (manager.getCurrPlayer().getResource(0) > 4 || manager.getCurrPlayer().getResource(1) > 4 || 
+					manager.getCurrPlayer().getResource(2) > 4 || manager.getCurrPlayer().getResource(3) > 4 || 
+					manager.getCurrPlayer().getResource(4) > 4){
 			new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGAWAY, "Select a resource you would like to trade away.");
 			new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGFOR, "Select a resource you would like.");
+			}
 		}
 		else if (btn == buttons[1])
 			new Builder(manager);
@@ -340,6 +348,7 @@ public class Board extends GBFrame {
 					}
 				}
 				clickList.remove(c);
+				break;
 			}
 			else{
 				lastClicked = c;

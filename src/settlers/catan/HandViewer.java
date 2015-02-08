@@ -39,6 +39,9 @@ public class HandViewer extends GBFrame {
 		}
 		setSize(500, 600);
 		setVisible(true);
+		if (hand.size() == 0){
+			dispose();
+		}
 	}
 	
 	public void buttonClicked(JButton btn){
