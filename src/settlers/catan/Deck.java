@@ -16,7 +16,7 @@ public class Deck {
 		deck = new Stack<DevCard>();
 		// instantiate 14 trooper cards
 		for (int i = 0; i < 14; i++) {
-			deck.push(new DevCard(DevCard.Type.TROOPER,manager));
+			deck.push(new DevCard(DevCard.Type.TROOPER));
 		}
 		// instantiate 5 unique victory-point cards
 		deck.push(new DevCard("Cantina Band"));
@@ -26,15 +26,15 @@ public class Deck {
 		deck.push(new DevCard("Sarlacc Pit"));
 		// instantiate 2 blue harvest effect cards
 		for (int i = 0; i < 2; i++) {
-			deck.push(new DevCard(DevCard.Type.TWINSUNS,manager));
+			deck.push(new DevCard(DevCard.Type.TWINSUNS));
 		}
 		// instantiate 2 sandcrawler effect cards
 		for (int i = 0; i < 2; i++) {
-			deck.push(new DevCard(DevCard.Type.SANDCRAWLER,manager));
+			deck.push(new DevCard(DevCard.Type.SANDCRAWLER));
 		}
 		// instantiate 2 sandstorm effect cards
 		for (int i = 0; i < 2; i++) {
-			deck.push(new DevCard(DevCard.Type.SANDSTORM,manager));
+			deck.push(new DevCard(DevCard.Type.SANDSTORM));
 		}
 		// shuffle deck
 		shuffle();
