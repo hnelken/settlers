@@ -16,6 +16,7 @@ public class Board extends GBFrame {
 
 	public ArrayList<Clickable> clickList;
 	public boolean doubleClick = false;
+	public Clickable lastClicked = null;
 
 	public Board(GameManager manager) {
 
@@ -317,6 +318,7 @@ public class Board extends GBFrame {
 				c.doOnClick();
 				if (doubleClick){
 					doubleClick = false;
+					lastClicked = c;
 					if (clickList.get(0) instanceof Edge){
 						clickList = new ArrayList<Clickable>();
 						for (Edge e : getEdges()){
@@ -329,6 +331,7 @@ public class Board extends GBFrame {
 				clickList.remove(c);
 			}
 			else{
+				lastClicked = c;
 				clickList = null;
 				for (JButton b : buttons){
 					b.setEnabled(true);
