@@ -257,7 +257,7 @@ public class Board extends GBFrame {
 			nodes[i-6].addEdge(edg);
 		}
 		// finish constructing gui
-		this.setSize(1296, 880);
+		this.setResizable(false);
 		this.setSize(1366, 768);
 		this.setVisible(true);
 	}
