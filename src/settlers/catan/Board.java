@@ -26,7 +26,7 @@ public class Board extends GBFrame {
 	public Clickable lastClicked = null;
 
 	public Board(GameManager manager) {
-		player = addLabel("", 7, 5, 1, 1);		//FIX THESE NUMBERs
+		player = addLabel("", 1, 5, 2, 2);		//FIX THESE NUMBERs
 		buttons[0] = addButton("Trade", 4, 5, 1, 1);
 		buttons[1] = addButton("Build", 5, 5, 1, 1);
 		buttons[2] = addButton("Play Card", 6, 5, 1, 1);

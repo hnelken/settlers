@@ -172,20 +172,21 @@ public class GameManager {
 	public void endTurn() {
 		if (state == GameState.FTRFORWARD) {
 			if (firstTurn < players.length) {
+				System.out.println(GameState.FTSFORWARD);
 				firstTurn++;
 				state = GameState.FTSFORWARD;
 				setupNextPlayer();
-				startLogicSettle();
 			}
 			else {
+				System.out.println(GameState.FTRBACK);
 				firstTurn--;
 				state = GameState.FTRBACK;
 				setupNextPlayer();
-				startLogicSettle();
 			}
 		}
 		else if (state == GameState.FTRBACK) {
 			if (firstTurn >= 0) {
+				System.out.println(GameState.FTSBACK);
 				firstTurn--;
 				state = GameState.FTSBACK;
 				//Add resultant resources from settlement placement
@@ -200,10 +201,12 @@ public class GameManager {
 			}
 		}
 		else if (state == GameState.FTSFORWARD){
+			System.out.println(GameState.FTRFORWARD);
 			state = GameState.FTRFORWARD;
 			startLogicRoad();
 		}
 		else if (state == GameState.FTSBACK) {
+			System.out.println(GameState.FTRBACK);
 			state = GameState.FTRBACK;
 			startLogicRoad();
 		}
