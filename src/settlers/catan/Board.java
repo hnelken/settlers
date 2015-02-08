@@ -1,9 +1,14 @@
 package settlers.catan; 
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import BreezySwing.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Board extends GBFrame {
@@ -240,6 +245,13 @@ public class Board extends GBFrame {
 			nodes[i-6].addEdge(edg);
 		}
 
+		this.setSize(900, 600);
+		BufferedImage img = null;
+		try {
+		    img = ImageIO.read(new File("../../../boardmenu.jpg"));
+		} catch (IOException e) {
+		}
+		setIconImage((Image)img);
 		this.setSize(1296, 880);
 		this.setVisible(true);
 	}
