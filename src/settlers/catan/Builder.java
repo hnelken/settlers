@@ -11,14 +11,14 @@ public class Builder extends GBFrame {
 	private static final long serialVersionUID = 1L;
 	private JButton buildRoad, buildSettlement, buildCity, buildDevCard;
 	private GameManager gManager;
-	
+
 	// constructor
 	public Builder(GameManager gManager) {
 		setSize(300, 400);
 		this.gManager = gManager;
 		buildRoad = addButton("Road", 1, 1, 1, 1);
 		buildRoad.setEnabled(gManager.getCurrPlayer().getResource(Resource.ADOBE) >= 1
-					&& gManager.getCurrPlayer().getResource(Resource.BANTHA ) >= 1);
+				&& gManager.getCurrPlayer().getResource(Resource.BANTHA ) >= 1);
 		buildSettlement = addButton("Settlement", 2, 1, 1, 1); 
 		buildSettlement.setEnabled(gManager.getCurrPlayer().getResource(Resource.ADOBE) >= 1
 				&& gManager.getCurrPlayer().getResource(Resource.BANTHA ) >= 1 
@@ -34,91 +34,64 @@ public class Builder extends GBFrame {
 		addButton("Cancel", 5, 1, 1, 1);
 		setVisible(true);
 	}
-	
+
 	public Builder(GameManager gManager,boolean dev){
 		for (JButton b : gManager.getBoard().getButtons()){
 			b.setEnabled(false);
 		}
 	}
-	
+
 	// methods
-	
+
 	public void buttonClicked(JButton btn) {
 		if (btn == buildRoad) {
-			if (gManager.getCurrPlayer().getResource(Resource.ADOBE) < 1
-					|| gManager.getCurrPlayer().getResource(Resource.BANTHA )<1){
-				dispose();
-			}
-			else{
-				gManager.getBoard().clickList = new ArrayList<Clickable>();
-				for (int i = 0; i < 72; i++){
-					Edge e = gManager.getBoard().getEdges()[i];
-					if (e.canBeRoad(gManager.getCurrPlayer())){
-							gManager.getBoard().clickList.add((Clickable)e);
-					}
-				}
-				if (!gManager.getBoard().clickList.isEmpty()){
-					for (JButton b : gManager.getBoard().getButtons()){
-						b.setEnabled(false);
-					}
+			gManager.getBoard().clickList = new ArrayList<Clickable>();
+			for (int i = 0; i < 72; i++){
+				Edge e = gManager.getBoard().getEdges()[i];
+				if (e.canBeRoad(gManager.getCurrPlayer())){
+					gManager.getBoard().clickList.add((Clickable)e);
 				}
 			}
-		} 
+			if (!gManager.getBoard().clickList.isEmpty()){
+				for (JButton b : gManager.getBoard().getButtons()){
+					b.setEnabled(false);
+				}
+			}
+		}
 		else if (btn == buildSettlement) {
-			if (gManager.getCurrPlayer().getResource(Resource.ADOBE) < 1
-					|| gManager.getCurrPlayer().getResource(Resource.BANTHA ) < 1 
-					|| gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 1
-					|| gManager.getCurrPlayer().getResource(Resource.BLUEMILK) < 1){
-				dispose();
-			}
-			else{
-				gManager.getBoard().clickList = new ArrayList<Clickable>();
-				for (Node n : gManager.getBoard().getNodes()){
-					n.availabilityCheck(gManager.getCurrPlayer());
-					if (n.isAvailable()){
-						gManager.getBoard().clickList.add((Clickable)n);
-					}
+			gManager.getBoard().clickList = new ArrayList<Clickable>();
+			for (Node n : gManager.getBoard().getNodes()){
+				n.availabilityCheck(gManager.getCurrPlayer());
+				if (n.isAvailable()){
+					gManager.getBoard().clickList.add((Clickable)n);
 				}
-				if (!gManager.getBoard().clickList.isEmpty()){
-					for (JButton b : gManager.getBoard().getButtons()){
-						b.setEnabled(false);
-					}
-				}
-				dispose();
 			}
-		} 
+			if (!gManager.getBoard().clickList.isEmpty()){
+				for (JButton b : gManager.getBoard().getButtons()){
+					b.setEnabled(false);
+				}
+			}
+			dispose();
+		}
 		else if (btn == buildCity) {
-			if (gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 2
-					|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 3){
-				dispose();
+			gManager.getBoard().clickList = new ArrayList<Clickable>();
+			for (Node n : gManager.getBoard().getNodes()){
+				if (n.getStatus() == Node.NodeStatus.SETTLEMENT && n.getOwner() == gManager.getCurrPlayer()){
+					gManager.getBoard().clickList.add((Clickable)n);
+				}
 			}
-			else{
-				gManager.getBoard().clickList = new ArrayList<Clickable>();
-				for (Node n : gManager.getBoard().getNodes()){
-					if (n.getStatus() == Node.NodeStatus.SETTLEMENT && n.getOwner() == gManager.getCurrPlayer()){
-						gManager.getBoard().clickList.add((Clickable)n);
-					}
+			if (!gManager.getBoard().clickList.isEmpty()){
+				for (JButton b : gManager.getBoard().getButtons()){
+					b.setEnabled(false);
 				}
-				if (!gManager.getBoard().clickList.isEmpty()){
-					for (JButton b : gManager.getBoard().getButtons()){
-						b.setEnabled(false);
-					}
-				}
-				dispose();
 			}
 		} 
 		else if (btn == buildDevCard) {
-			if (gManager.getCurrPlayer().getResource(Resource.BLUEMILK) < 1
-					|| gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 1
-					|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 1){ 
-				dispose();
-			}
-			else{
-				gManager.getDeck().draw(gManager.getCurrPlayer());
-				gManager.getCurrPlayer().modifyResource(Resource.DURASTEEL, -1);
-				gManager.getCurrPlayer().modifyResource(Resource.MOISTURE, -1);
-				gManager.getCurrPlayer().modifyResource(Resource.BLUEMILK, -1);
-			}
+
+			gManager.getDeck().draw(gManager.getCurrPlayer());
+			gManager.getCurrPlayer().modifyResource(Resource.DURASTEEL, -1);
+			gManager.getCurrPlayer().modifyResource(Resource.MOISTURE, -1);
+			gManager.getCurrPlayer().modifyResource(Resource.BLUEMILK, -1);
 			dispose();
 		} 
 		else {// cancel
