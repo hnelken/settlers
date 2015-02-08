@@ -1,22 +1,22 @@
 package settlers.catan;
 
-import java.util.Scanner;
-
 public class GameManager {
 
+	//fields
 	private Board gameBoard;
 	private Player[] players;
-	private Player winner;
+	private Player winner; //TODO
 	private int turn;
 	private boolean gameOver;
-	private GameState state;
+	private GameState state; //TODO
 	private Deck deck;
-	private Smuggler smuggler;
+	private Smuggler smuggler; //TODO
 	
 	private enum GameState {
 		PLAYERTURNROLL, PLAYERTURNCHOICE, WINCHECK, GAMEOVER
 	}
 
+	// constructor
 	public GameManager(Player[] players) {
 		gameBoard = new Board(this);
 		this.players = players;
@@ -25,16 +25,20 @@ public class GameManager {
 		deck = new Deck();
 		turn = (int)(players.length * Math.random());
 		Tile desert = null;
-		for (int i = 0; i < gameBoard.getTiles().length; i++) {
-			if (gameBoard.getTiles()[i].getResourceType() == Resource.DESERT) {
+		for (int i = 0; i < gameBoard.getTiles().length; i++)
+			if (gameBoard.getTiles()[i].getResourceType() == Resource.DESERT)
 				desert = gameBoard.getTiles()[i];
-			}
-		}
 		smuggler = new Smuggler(desert);
 		state = GameState.PLAYERTURNROLL;
 		logic();
 	}
 
+	// methods
+	
+	public Board getBoard() {
+		return gameBoard;
+	}
+	
 	private void logic() {
 		while (!gameOver) {
 			/* Take Turn */
@@ -76,9 +80,8 @@ public class GameManager {
 					Player owner = corners[corner].getOwner();
 					if (null != owner) {
 						owner.addResource(tiles[tile].getResourceType());
-						if (corners[corner].status == Node.NodeStatus.CITY) {
+						if (corners[corner].status == Node.NodeStatus.CITY)
 							owner.addResource(tiles[tile].getResourceType());
-						}
 					}
 				}
 			}
@@ -117,12 +120,12 @@ public class GameManager {
 		if (players[turn].getHand().get(i).getType() == DevCard.Type.TROOPER){
 			this.trooperPlay();
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDSTORM){
-			ResourcePicker picker = new ResourcePicker(this, DevCard.Type.SANDSTORM, "Pick a resource to monopolize.");
+			/*ResourcePicker picker = */new ResourcePicker(this, DevCard.Type.SANDSTORM, "Pick a resource to monopolize."); //TODO
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.SANDCRAWLER){
 			this.sandcrawlerPlay();
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.TWINSUNS){
-			ResourcePicker picker = new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a resource you want from the bank.");
-			picker = new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a second resource you want from the bank.");
+			/*ResourcePicker picker = */new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a resource you want from the bank."); //TODO
+			/*picker = */new ResourcePicker(this, DevCard.Type.TWINSUNS, "Pick a second resource you want from the bank."); //TODO
 		} else if (players[turn].getHand().get(i).getType() == DevCard.Type.VP){
 			this.vpPlay();
 		}
