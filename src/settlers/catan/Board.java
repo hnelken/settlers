@@ -271,5 +271,7 @@ public class Board extends GBFrame{
 		}
 		return tileNum;
 	}
+	
+	
 
 }
