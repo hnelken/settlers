@@ -1,29 +1,35 @@
 package settlers.catan;
 
-import java.awt.*;
 import BreezySwing.*;
 import javax.swing.*;
 
 public class ResourcePicker extends GBFrame {
 	
 	// fields
+	public enum PickerType {
+		TWINSUNS, SANDSTORM, TRADINGAWAY, TRADINGFOR;
+	}
+	
 	private static final long serialVersionUID = 1L;
 	private GameManager manager;
-	private DevCard.Type type;
+	private PickerType type;
 	private JButton[] buttons = new JButton[5];
 
 	// constructor
-	public ResourcePicker(GameManager manager, DevCard.Type type, String message) {
+	public ResourcePicker(GameManager manager, PickerType type, String message) {
 		this.manager = manager;
 		this.type = type;
-		JLabel msg = addLabel(message, 1, 3, 1, 2);
-		setSize(600, 300);
-		String[] str = {"Adobe", "Bantha", "Blue Milk", "Moisture", "Durasteel"};
+		addLabel(message, 1, 1, 5, 1);
+		setSize(1300, 500);
+		String[] str = {"Moisture", "Blue Milk", "Durasteel", "Adobe", "Bantha"};
 		for (int i = 0; i < 5; i++) {
-			buttons[i] = new JButton();
+			buttons[i] = addButton("", 2, i+1, 1, 1);
 			String filename = str[i]+".jpg";
 			buttons[i].setIcon(new ImageIcon(filename));
-			new JLabel(str[i]);
+			addLabel(str[i], 3, i+1, 1, 1);
+			if (type == PickerType.TRADINGAWAY && manager.getCurrPlayer().getResource(i) < 4){
+				buttons[i].setEnabled(false);
+			}
 		}
 		setVisible(true);
 	}
@@ -34,15 +40,15 @@ public class ResourcePicker extends GBFrame {
 		// Determine resource type
 		Resource res;
 		if (btn == buttons[0]) // adobe
-			res = Resource.ADOBE;
-		else if (btn == buttons[1]) // bantha
-			res = Resource.BANTHA;
-		else if (btn == buttons[2]) // blue milk
-			res = Resource.BLUEMILK;
-		else if (btn == buttons[3]) // moisture
 			res = Resource.MOISTURE;
-		else // durasteel
+		else if (btn == buttons[1]) // bantha
+			res = Resource.BLUEMILK;
+		else if (btn == buttons[2]) // blue milk
 			res = Resource.DURASTEEL;
+		else if (btn == buttons[3]) // moisture
+			res = Resource.ADOBE;
+		else 
+			res = Resource.BANTHA;
 		// Report resource chosen to game manager class
 		manager.resourceChosen(res, type);
 		dispose();

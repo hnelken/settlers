@@ -1,9 +1,15 @@
 package settlers.catan; 
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import BreezySwing.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Board extends GBFrame {
@@ -14,16 +20,16 @@ public class Board extends GBFrame {
 	private Edge[] edges;
 	private JButton[] buttons = new JButton[4];		
 
-	public ArrayList<Clickable> clickList;
+	public ArrayList<Clickable> clickList = new ArrayList<Clickable>();
 	public boolean doubleClick = false;
 	public Clickable lastClicked = null;
 
 	public Board(GameManager manager) {
 
-		buttons[0] = addButton("Trade", 1, 1, 1, 1);
-		buttons[1] = addButton("Build", 1, 1, 1, 1);
-		buttons[2] = addButton("Play Card", 1, 1, 1, 1);
-		buttons[3] = addButton("End Turn", 1, 1, 1, 1);
+		buttons[0] = addButton("Trade", 4, 5, 1, 1);
+		buttons[1] = addButton("Build", 5, 5, 1, 1);
+		buttons[2] = addButton("Play Card", 6, 5, 1, 1);
+		buttons[3] = addButton("End Turn", 7, 5, 1, 1);
 
 		GBPanel panel = addPanel(new GBPanel(){
 			public void mouseClicked(int x, int y){
@@ -246,8 +252,7 @@ public class Board extends GBFrame {
 			nodes[i].addEdge(edg);
 			nodes[i-6].addEdge(edg);
 		}
-
-		this.setSize(900, 600);
+		this.setSize(1296, 880);
 		this.setVisible(true);
 	}
 
@@ -300,19 +305,16 @@ public class Board extends GBFrame {
 	}
 
 	public void buttonClicked(JButton btn){
-		if (btn == buttons[0]) 
-			trade();
+		if (btn == buttons[0]){ 
+			new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGAWAY, "Select a resource you would like to trade away.");
+			new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGFOR, "Select a resource you would like.");
+		}
 		else if (btn == buttons[1])
 			new Builder(manager);
 		else if (btn == buttons[2])
 			new HandViewer(manager);
 		else if (btn == buttons[3])
 			manager.endTurn();
-	}
-
-	private void trade() {
-		// TODO Auto-generated method stub
-
 	}
 	
 	public JButton[] getButtons(){
@@ -339,7 +341,7 @@ public class Board extends GBFrame {
 			}
 			else{
 				lastClicked = c;
-				clickList = null;
+				clickList = new ArrayList<Clickable>();
 				for (JButton b : buttons){
 					b.setEnabled(true);
 				}

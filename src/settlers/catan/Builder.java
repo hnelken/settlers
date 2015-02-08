@@ -16,22 +16,22 @@ public class Builder extends GBFrame {
 	public Builder(GameManager gManager) {
 		setSize(300, 400);
 		this.gManager = gManager;
-		buildRoad = addButton("Road", 1, 1, 200, 50);
-		buildRoad.setEnabled(gManager.getCurrPlayer().getResource(Resource.ADOBE) < 1
-					|| gManager.getCurrPlayer().getResource(Resource.BANTHA )<1);
-		buildSettlement = addButton("Settlement", 2, 1, 200, 50);
-		buildSettlement.setEnabled(gManager.getCurrPlayer().getResource(Resource.ADOBE) < 1
-				|| gManager.getCurrPlayer().getResource(Resource.BANTHA ) < 1 
-				|| gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 1
-				|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 1);
-		buildCity = addButton("Upgrade to City", 3, 1, 200, 50);
-		buildCity.setEnabled(gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 2
-				|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 3);
-		buildDevCard = addButton("Development Card", 4, 1, 200, 50);
-		buildDevCard.setEnabled(gManager.getCurrPlayer().getResource(Resource.BLUEMILK) < 1
-				|| gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 1
-				|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 1);
-		addButton("Cancel", 5, 1, 200, 50);
+		buildRoad = addButton("Road", 1, 1, 1, 1);
+		buildRoad.setEnabled(gManager.getCurrPlayer().getResource(Resource.ADOBE) >= 1
+					&& gManager.getCurrPlayer().getResource(Resource.BANTHA ) >= 1);
+		buildSettlement = addButton("Settlement", 2, 1, 1, 1); 
+		buildSettlement.setEnabled(gManager.getCurrPlayer().getResource(Resource.ADOBE) >= 1
+				&& gManager.getCurrPlayer().getResource(Resource.BANTHA ) >= 1 
+				&& gManager.getCurrPlayer().getResource(Resource.MOISTURE) >= 1
+				&& gManager.getCurrPlayer().getResource(Resource.BLUEMILK) >= 1);
+		buildCity = addButton("Upgrade to City", 3, 1, 1, 1);
+		buildCity.setEnabled(gManager.getCurrPlayer().getResource(Resource.MOISTURE) >= 2
+				&& gManager.getCurrPlayer().getResource(Resource.DURASTEEL) > 3);
+		buildDevCard = addButton("Development Card", 4, 1, 1, 1);
+		buildDevCard.setEnabled(gManager.getCurrPlayer().getResource(Resource.BLUEMILK) >= 1
+				&& gManager.getCurrPlayer().getResource(Resource.MOISTURE) >= 1
+				&& gManager.getCurrPlayer().getResource(Resource.DURASTEEL) >= 1);
+		addButton("Cancel", 5, 1, 1, 1);
 		setVisible(true);
 	}
 	
@@ -62,7 +62,7 @@ public class Builder extends GBFrame {
 			if (gManager.getCurrPlayer().getResource(Resource.ADOBE) < 1
 					|| gManager.getCurrPlayer().getResource(Resource.BANTHA ) < 1 
 					|| gManager.getCurrPlayer().getResource(Resource.MOISTURE) < 1
-					|| gManager.getCurrPlayer().getResource(Resource.DURASTEEL) < 1){
+					|| gManager.getCurrPlayer().getResource(Resource.BLUEMILK) < 1){
 				dispose();
 			}
 			else{
