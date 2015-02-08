@@ -1,7 +1,11 @@
 package settlers.catan;
+import java.util.ArrayList;
 
 import BreezySwing.GBFrame;
+
 import javax.swing.JButton;
+
+import settlers.catan.Node.NodeStatus;
 
 public class Builder extends GBFrame {
 
@@ -31,27 +35,35 @@ public class Builder extends GBFrame {
 				dispose();
 			}
 			else{
-				gManager.getBoard.clickList = new ArrayList<Node>();
+				gManager.getBoard().clickList = new ArrayList<Clickable>();
 				for (int i = 0; i < 72; i++){
 					Edge e = gManager.getBoard().getEdges()[i];
 					if (e.getOwner() != null || 
 					   (e.getNodes()[0].getOwner() != null && e.getNodes()[0].getOwner() != gManager.getCurrPlayer())||
 					   (e.getNodes()[1].getOwner() != null && e.getNodes()[1].getOwner() != gManager.getCurrPlayer())){
-						boolean road = false;
+						boolean road = (e.getNodes()[0].getOwner() == gManager.getCurrPlayer()
+								||e.getNodes()[1].getOwner() == gManager.getCurrPlayer());
 						for (Node n : e.getNodes()){
 							for (Edge e2: n.getEdges()){
 								if (e2.getOwner() == gManager.getCurrPlayer())
 									road = true;
 							}
 						}
+						if (road){
+							gManager.getBoard().clickList.add((Clickable)e);
+						}
 					}
-					
 				}
 			}
 		} else if (btn == buildSettlement) {
 			
 		} else if (btn == buildCity) {
-			
+			gManager.getBoard().clickList = new ArrayList<Clickable>();
+			for (Node n : gManager.getBoard().getNodes()){
+				if (n.getStatus() == Node.NodeStatus.SETTLEMENT && n.getOwner() == gManager.getCurrPlayer()){
+					gManager.getBoard().clickList.add((Clickable)n);
+				}
+			}
 		} else if (btn == buildDevCard) {
 			gManager.getDeck().draw(gManager.getCurrPlayer());
 		} else {// cancel
