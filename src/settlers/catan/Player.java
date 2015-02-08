@@ -55,6 +55,10 @@ public class Player {
 			return 0;
 		}
 	}
+	
+	public int getResource(int i){
+		return resources[i];
+	}
 
 	public void addResource(Resource resource){
 		switch (resource){
