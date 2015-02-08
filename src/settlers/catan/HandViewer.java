@@ -40,4 +40,12 @@ public class HandViewer extends GBFrame{
 			y = y + 20;
 		}
 	}
+	
+	public void buttonClicked(JButton btn){
+		for (int i = 0; i > 25; i++){
+			if (btn == buttons[i]){
+				manager.play(i);
+			}
+		}
+	}
 }
