@@ -20,10 +20,10 @@ public class Board extends GBFrame {
 
 	public Board(GameManager manager) {
 
-		buttons[0] = addButton("Trade", 1, 1, 1, 1);
-		buttons[1] = addButton("Build", 1, 1, 1, 1);
-		buttons[2] = addButton("Play Card", 1, 1, 1, 1);
-		buttons[3] = addButton("End Turn", 1, 1, 1, 1);
+		buttons[0] = addButton("Trade", 4, 5, 1, 1);
+		buttons[1] = addButton("Build", 5, 5, 1, 1);
+		buttons[2] = addButton("Play Card", 6, 5, 1, 1);
+		buttons[3] = addButton("End Turn", 7, 5, 1, 1);
 
 		GBPanel panel = addPanel(new GBPanel(){
 			public void mouseClicked(int x, int y){
