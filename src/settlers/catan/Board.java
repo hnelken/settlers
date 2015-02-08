@@ -133,7 +133,7 @@ public class Board extends GBFrame {
 			}
 			tiles[j].manager = manager;
 		}
-		
+
 		for (int i = 0; i < tiles.length; i++) {
 			for (int j = 0; j < tiles[i].getCorners().length; j++) {
 				Node node = tiles[i].getCorners()[j];
@@ -254,7 +254,7 @@ public class Board extends GBFrame {
 		this.setSize(1366, 768);
 		this.setVisible(true);
 	}
-	
+
 	public Tile[] getTiles(){
 		return tiles;
 	}
@@ -303,51 +303,62 @@ public class Board extends GBFrame {
 		return tileNum;
 	}
 
-	public void buttonClicked(JButton btn){
-		if (btn == buttons[0]){ 
-			if (manager.getCurrPlayer().getResource(0) > 4 || manager.getCurrPlayer().getResource(1) > 4 || 
-					manager.getCurrPlayer().getResource(2) > 4 || manager.getCurrPlayer().getResource(3) > 4 || 
-					manager.getCurrPlayer().getResource(4) > 4){
-			new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGAWAY, "Select a resource you would like to trade away.");
-			new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGFOR, "Select a resource you would like.");
+	public void clickLoc(int x, int y){
+		int tradex = 810;
+		int tradey = 320;
+		int buildx = 810;
+		int buildy = 480;
+		int seex = 810;
+		int seey = 560;
+		int endx = 810;
+		int endy = 642;
+		int bttnWidth = 291;
+		int bttnHeight = 57;
+		if (clickList.isEmpty()){
+			if (x > tradex && x < tradex+bttnWidth && x > tradey && x < tradey+bttnHeight){
+				if (manager.getCurrPlayer().getResource(0) > 4 || manager.getCurrPlayer().getResource(1) > 4 || 
+						manager.getCurrPlayer().getResource(2) > 4 || manager.getCurrPlayer().getResource(3) > 4 || 
+						manager.getCurrPlayer().getResource(4) > 4){
+					new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGAWAY, "Select a resource you would like to trade away.");
+					new ResourcePicker(manager, ResourcePicker.PickerType.TRADINGFOR, "Select a resource you would like.");
+				}
+			}
+			else if (x > buildx && x < buildx+bttnWidth && x > buildy && x < tradey+bttnHeight){
+				new Builder(manager);
+			}
+			else if (x > seex && x < seex+bttnWidth && x > seey && x < seey+bttnHeight){
+				new HandViewer(manager);
+			}
+			else if (x > endx && x < endx+bttnWidth && x > endy && x < endy+bttnHeight){
+				manager.endTurn();
+			}
+			else if (x > 794 && x < 1110 && x > 66 && x < 380){
+				new ResourceDisplayer(manager);
 			}
 		}
-		else if (btn == buttons[1])
-			new Builder(manager);
-		else if (btn == buttons[2])
-			new HandViewer(manager);
-		else if (btn == buttons[3])
-			manager.endTurn();
-	}
-	
-	public JButton[] getButtons(){
-		return buttons;
-	}
-
-	public void clickLoc(int x, int y){
-		for (Clickable c : clickList){
-			if (c.isInRange(x, y)){
-				c.doOnClick();
-				if (doubleClick){
-					doubleClick = false;
-					lastClicked = c;
-					if (clickList.get(0) instanceof Edge){
-						clickList = new ArrayList<Clickable>();
-						for (Edge e : getEdges()){
-							if (e.canBeRoad(manager.getCurrPlayer())){
-								clickList.add(e);
+		else{
+			for (Clickable c : clickList){
+				if (c.isInRange(x, y)){
+					c.doOnClick();
+					if (doubleClick){
+						doubleClick = false;
+						lastClicked = c;
+						if (clickList.get(0) instanceof Edge){
+							clickList = new ArrayList<Clickable>();
+							for (Edge e : getEdges()){
+								if (e.canBeRoad(manager.getCurrPlayer())){
+									clickList.add(e);
+								}
 							}
 						}
 					}
+					clickList.remove(c);
+					break;
 				}
-				clickList.remove(c);
-				break;
-			}
-			else{
-				lastClicked = c;
-				clickList = new ArrayList<Clickable>();
-				for (JButton b : buttons){
-					b.setEnabled(true);
+				else{
+					lastClicked = c;
+					clickList = new ArrayList<Clickable>();
+					break;
 				}
 			}
 		}
