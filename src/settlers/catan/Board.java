@@ -1,6 +1,9 @@
 package settlers.catan; 
 
+import java.util.ArrayList;
+
 import BreezySwing.*;
+
 import javax.swing.*;
 
 public class Board extends GBFrame{
@@ -9,9 +12,27 @@ public class Board extends GBFrame{
 	private Tile[] tiles;
 	private Node[] nodes;
 	private Edge[] edges;
+<<<<<<< HEAD
+	private JButton[] buttons = new JButton[4];
 
 	public Board(GameManager manager) {
+		
+		buttons[0] = new JButton("Trade", x, y, z, g);
+		buttons[1] = new JButton("Build", x, y, z, g);
+		buttons[2] = new JButton("Play Card", x, y, z, g);
+		buttons[3] = new JButton("End Turn", x, y, z, g);
+
 		GBPanel panel = addPanel(new GBPanel(), 1, 1, 1, 1);
+=======
+	public ArrayList<Clickable> clickList;
+
+	public Board(GameManager manager) {
+		GBPanel panel = addPanel(new GBPanel(){
+			public void mouseClicked(int x, int y){
+				Board.this.clickLoc(x,y);
+			};
+		}, 1, 1, 1, 1);
+>>>>>>> 5f3341105fde40aa171f65b3343dba16c4495d00
 		this.manager = manager;
 		tiles = new Tile[19];
 		Resource[] resources = getTileTypes();
@@ -273,5 +294,38 @@ public class Board extends GBFrame{
 		}
 		return tileNum;
 	}
+	
+<<<<<<< HEAD
+	public void buttonClicked(JButton btn){
+		if (btn == buttons[0]) 
+			trade();
+		else if (btn == buttons[1])
+			new Builder(manager);
+		else if (btn == buttons[2])
+			new HandViewer(manager);
+		else if (btn == buttons[3])
+			manager.endTurn();
+	}
+
+	private void trade() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
+	
+	
+=======
+	public void clickLoc(int x, int y){
+		for (Clickable c : clickList){
+			if (c.isInRange(x, y)){
+				c.doOnClick();
+				clickList = null;
+			}
+		}
+	}
+>>>>>>> 5f3341105fde40aa171f65b3343dba16c4495d00
 
 }
