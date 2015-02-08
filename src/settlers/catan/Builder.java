@@ -11,17 +11,28 @@ public class Builder extends GBFrame {
 	
 	// constructor
 	public Builder() {
-		buildRoad = new JButton("Road");
-		buildSettlement = new JButton("Settlement");
-		buildCity = new JButton("City");
-		buildDevCard = new JButton("Development Card");
-		new JButton("Cancel");
+		setSize(300, 400);
+		buildRoad = addButton("Road", 1, 1, 200, 50);
+		buildSettlement = addButton("Settlement", 2, 1, 200, 50);
+		buildCity = addButton("Upgrade to City", 3, 1, 200, 50);
+		buildDevCard = addButton("Development Card", 4, 1, 200, 50);
+		addButton("Cancel", 5, 1, 200, 50);
+		setVisible(true);
 	}
 	
 	// methods
 	
 	public void buttonClicked(JButton btn) {
-		
+		if (btn == buildRoad) {
+			
+		} else if (btn == buildSettlement) {
+			
+		} else if (btn == buildCity) {
+			
+		} else if (btn == buildDevCard) {
+			
+		} else // cancel
+			dispose();
 	}
 	
 }
